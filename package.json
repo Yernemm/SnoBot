@@ -18,7 +18,8 @@
   "homepage": "https://github.com/Yernemm/SnoBot#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "nodemon": "^1.19.1",
+    "enmap": "^5.1.0",
+    "express": "^4.17.1",
     "socket.io": "^2.2.0"
   }
 }
