@@ -1,0 +1,19 @@
+{
+  "name": "snobot",
+  "version": "1.0.0",
+  "description": "SnoBot Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yernemm/SnoBot.git"
+  },
+  "author": "Yernemm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yernemm/SnoBot/issues"
+  },
+  "homepage": "https://github.com/Yernemm/SnoBot#readme"
+}
