@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const db = require('./modules/db.js')
 var express = require('express');
 var http = require('http');
 var io = require('socket.io');
