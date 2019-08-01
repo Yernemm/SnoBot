@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 </head>
 <body>
-    Logged in as:
+    
     <ul id="login"></ul>
     <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -18,7 +18,7 @@
     $(function () {
       var socket = io();
       socket.on('login', function(msg){
-        $('#login').append($('<li>').text(msg));
+        $('#login').append(msg + '<br>');
       });
     });
   </script>

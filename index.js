@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const db = require('./modules/db.js')
+const m = require('./modules/methods.js')
 var express = require('express');
 var http = require('http');
 var io = require('socket.io');
@@ -105,7 +106,16 @@ console.log(cookies);
           {headers: {Authorization: `Bearer ${cookies.access_token}`}}
         ).then(function (response) {
             console.log("emit");
-            socket.emit('login', response.data.username)
+            socket.emit('login', "Logged in as " + response.data.username)
+            client.fetchUser(response.data.id).then(logged=>{
+              socket.emit('login', `<img src="${logged.avatarURL}">`)
+              socket.emit('login', "Guilds:")
+              m.getGuildsByUser(client, logged).forEach(g =>{
+                socket.emit('login', g.name)
+              })
+              
+            })
+            
           })
           .catch(function (error) {
             console.log(error);
