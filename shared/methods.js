@@ -1,11 +1,16 @@
 const Discord = require("discord.js");
 const newLine = require('os').EOL;
 module.exports = {
-    log: function (config, bot, message, msg, type ) {
+    log: function (data, msg, type ) {
+        let config = data.config
+        let bot = data.bot
+        let message = data.message
         //logging(config, bot, message, msg, type);
     },
-    logSend: function (config, bot, message, msg, type) {
-
+    logSend: function (data, msg, type) {
+        let config = data.config
+        let bot = data.bot
+        let message = data.message
         message.channel.send(msg);
         //logging(config, bot, message, msg, type);
     },    

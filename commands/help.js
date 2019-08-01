@@ -174,7 +174,7 @@ exports.run = (data) => {
 
 
     //--------------------------------------------------------------------
-    m.logSend(config, client, message, msg); //Method will send msg to user, and also log it in both console AND log channel.
+    m.logSend(data, msg); //Method will send msg to user, and also log it in both console AND log channel.
     //m.log(config, client, message, msg); //Alternative will log msg without sending msg.
 }
 function onlyUnique(value, index, self) {
