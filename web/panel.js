@@ -1,3 +1,5 @@
+//res.sendFile(path.join(__dirname + '/web/index.html'));
+
 const express = require('express');
 const config = require('../../config.json');
 const { catchAsync } = require('../../utils');
@@ -26,8 +28,11 @@ router.get('/callback', catchAsync(async (req, res) => {
         },
       });
     const json = await response.json();
+    req.url = '/uwu'
     res.redirect(`/panel?token=${json.access_token}`);
-
+    //req.url = '/uwu'
+    
+    console.log(json)
   }));
 
 module.exports = router;

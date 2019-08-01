@@ -1,20 +1,22 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const io = require('socket.io');
+var express = require('express');
+var http = require('http');
+var io = require('socket.io');
 const path = require('path');
 const fs = require('fs');
 const Enmap = require("enmap");
 
-const express = require('express')
-const app = express()
+
+var app = express()
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
 
 
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/index.html'));
-});
+
 
 //Discord Command and Event handler
 //=============================================
@@ -42,9 +44,21 @@ fs.readdir("./events/", (err, files) => {
   });
 //=============================================
 
+// Pages
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/web/index.html'));
+});
+
+app.get('/panel', function(req, res) {
+    res.sendFile(path.join(__dirname + '/web/panel.html'));
+});
+
+
 
 // Routes
 app.use('/api/discord', require('./web/api/discord'));
+
 
 //Err handling for express
 app.use((err, req, res, next) => {
@@ -62,9 +76,16 @@ app.use((err, req, res, next) => {
     }
   });
 
+  io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
+    });
+  });
+
 
 //Start Discord and web server
 client.login(config.discordToken);
-app.listen(config.webPort, () =>{
+server.listen(config.webPort, () =>{
     console.log(`Listening on ${config.webPort}`)
 });
