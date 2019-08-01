@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const Enmap = require("enmap");
 var userMap
-
+var cookieParser = require('cookie-parser')
 
 
 var app = express()
@@ -15,7 +15,7 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
-
+app.use(cookieParser());
 
 
 
@@ -54,6 +54,7 @@ app.get('/', function(req, res) {
 app.get('/panel', function(req, res) {
     res.sendFile(path.join(__dirname + '/web/panel.html'));
     console.log(req.url)
+    console.log(req.cookies) 
     var url = require('url');
 
 });

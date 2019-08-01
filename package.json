@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Yernemm/SnoBot#readme",
   "dependencies": {
     "btoa": "^1.2.1",
+    "cookie-parser": "^1.4.4",
     "discord.js": "^11.5.1",
     "enmap": "^5.1.0",
     "express": "^4.17.1",

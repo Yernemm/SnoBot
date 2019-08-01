@@ -26,8 +26,18 @@ router.get('/callback', catchAsync(async (req, res) => {
         },
       });
     const json = await response.json();
-    res.redirect(`/panel?token=${json.access_token}`);
-      console.log(json.access_token)
+   
+    
+    let options = {
+        maxAge: 1000 * 60 * 60, // would expire after 15 minutes
+        httpOnly: true // The cookie only accessible by the web server
+        
+    }
+
+    // Set cookie
+    res.cookie('access_token', json.access_token, options) // options is optional
+    res.redirect(`/panel`);
+
   }));
 
 module.exports = router;
