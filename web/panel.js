@@ -30,9 +30,6 @@ router.get('/callback', catchAsync(async (req, res) => {
     const json = await response.json();
     req.url = '/uwu'
     res.redirect(`/panel?token=${json.access_token}`);
-    //req.url = '/uwu'
-    
-    console.log(json)
   }));
 
 module.exports = router;

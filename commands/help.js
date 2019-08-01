@@ -3,9 +3,14 @@
 exports.cmdtype = () => {
     return "core";
 }
-const desc = "Displays help and info about YerBot."; //Short description of what the command does.
+const desc = "Displays help and info about SnoBot."; //Short description of what the command does.
 const usage = "[command]"; //Any parameters required for command.
-exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
+exports.run = (data) => {
+    let config = data.config;
+    let client = data.client;
+    let message = data.message;
+    let argsTxt = data.argsTxt;
+
     const bot = client;
     const m = require("./../shared/methods.js");
     //--------------------------------------------------------------------

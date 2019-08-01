@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const db = require('./modules/db.js')
-const m = require('./modules/methods.js')
+const m = require('./shared/methods.js')
 var express = require('express');
 var http = require('http');
 var io = require('socket.io');
@@ -98,7 +98,6 @@ app.use((err, req, res, next) => {
 var cookies = cookie.parse(socket.handshake.headers.cookie);
 
 
-console.log(cookies);
 
     
     let data = axios.get(
