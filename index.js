@@ -10,7 +10,6 @@ const fs = require('fs');
 const Enmap = require("enmap");
 const axios = require("axios");
 const cookie = require("cookie")
-var userMap
 var cookieParser = require('cookie-parser')
 
 
@@ -100,7 +99,7 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
 
 
     
-    let data = axios.get(
+   axios.get(
           `https://discordapp.com/api/users/@me`,
           {headers: {Authorization: `Bearer ${cookies.access_token}`}}
         ).then(function (response) {
