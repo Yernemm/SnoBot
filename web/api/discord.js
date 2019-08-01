@@ -1,5 +1,6 @@
 const express = require('express');
-const config = require('../../config.json')
+const config = require('../../config.json');
+const { catchAsync } = require('../../utils');
 const fetch = require('node-fetch');
 const btoa = require('btoa');
 
@@ -26,6 +27,7 @@ router.get('/callback', catchAsync(async (req, res) => {
       });
     const json = await response.json();
     res.redirect(`/?token=${json.access_token}`);
+    console.log(json)
   }));
 
 module.exports = router;
