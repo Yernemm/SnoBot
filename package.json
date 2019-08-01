@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/Yernemm/SnoBot#readme",
   "dependencies": {
+    "btoa": "^1.2.1",
     "discord.js": "^11.5.1",
     "enmap": "^5.1.0",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "socket.io": "^2.2.0"
   }
 }
