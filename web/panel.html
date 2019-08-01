@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 </head>
 <body>
-    HSUIDHPO
-
+    Logged in as:
+    <ul id="login"></ul>
     <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
 </script>
+<script>
+    $(function () {
+      var socket = io();
+      socket.on('login', function(msg){
+        $('#login').append($('<li>').text(msg));
+      });
+    });
+  </script>
 </body>
 </html>

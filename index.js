@@ -6,6 +6,8 @@ var io = require('socket.io');
 const path = require('path');
 const fs = require('fs');
 const Enmap = require("enmap");
+const axios = require("axios");
+const cookie = require("cookie")
 var userMap
 var cookieParser = require('cookie-parser')
 
@@ -88,6 +90,29 @@ app.use((err, req, res, next) => {
     socket.on('disconnect', function(){
       console.log('user disconnected');
     });
+
+    var cookief =socket.handshake.headers.cookie; 
+
+var cookies = cookie.parse(socket.handshake.headers.cookie);
+
+
+console.log(cookies);
+
+    
+    let data = axios.get(
+          `https://discordapp.com/api/users/@me`,
+          {headers: {Authorization: `Bearer ${cookies.access_token}`}}
+        ).then(function (response) {
+            console.log("emit");
+            socket.emit('login', response.data.username)
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });  
+    
   });
 
 
