@@ -6,6 +6,8 @@ var io = require('socket.io');
 const path = require('path');
 const fs = require('fs');
 const Enmap = require("enmap");
+var userMap
+
 
 
 var app = express()
@@ -13,7 +15,6 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
-
 
 
 
@@ -52,12 +53,17 @@ app.get('/', function(req, res) {
 
 app.get('/panel', function(req, res) {
     res.sendFile(path.join(__dirname + '/web/panel.html'));
+    console.log(req.url)
+    var url = require('url');
+
 });
 
 
 
 // Routes
 app.use('/api/discord', require('./web/api/discord'));
+
+
 
 
 //Err handling for express

@@ -27,7 +27,7 @@ router.get('/callback', catchAsync(async (req, res) => {
       });
     const json = await response.json();
     res.redirect(`/panel?token=${json.access_token}`);
-
+      console.log(json.access_token)
   }));
 
 module.exports = router;
