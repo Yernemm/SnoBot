@@ -5,6 +5,7 @@ exports.cmdtype = () => {
 }
 const desc = "Displays help and info about SnoBot."; //Short description of what the command does.
 const usage = "[command]"; //Any parameters required for command.
+const db = require('./../modules/db.js')
 exports.run = (data) => {
     let config = data.config;
     let client = data.client;
@@ -50,11 +51,12 @@ exports.run = (data) => {
     let count = 0;
 
     //INSTANTIATE CMD OBJECTS
+
     fs.readdirSync(dir).forEach(file => {
 
         if (file.endsWith(".js")) {
             let cmdfile = require(`./${file}`);
-
+           
             cmdObj[count] = new cmdClass(count);
 
             cmdObj[count].id = count;

@@ -1,3 +1,4 @@
+const db = require('./../modules/db.js')
 module.exports = (client, message) => {
     // Ignore all bots
     if (message.author.bot) return;
@@ -23,7 +24,14 @@ module.exports = (client, message) => {
     data.message = message
     data.argsArr = args
     data.argsTxt = argsTxt
+    data.cmd = cmd
   
     // Run the command
-    cmd.run(data);
+    db.checkPerms(data, command, res =>{
+      if (res)
+      cmd.run(data);
+      else
+      data.message.channel.send("You do not have permission to use this command.")
+    })
+
   };
