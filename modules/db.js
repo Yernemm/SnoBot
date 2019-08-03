@@ -1,6 +1,6 @@
 const sqlite = require("sqlite");
 const discord = require("discord.js");
-const dbpath = "./db/db.sqlite";
+const dbpath = "./data/db/db.sqlite";
 module.exports = {
 checkPerms: checkPerms
 }
