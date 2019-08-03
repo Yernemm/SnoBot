@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "SnoBot Discord Bot",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Yernemm/SnoBot.git"
@@ -15,8 +12,10 @@
   "bugs": {
     "url": "https://github.com/Yernemm/SnoBot/issues"
   },
-  "homepage": "https://github.com/Yernemm/SnoBot#readme",
   "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
     "axios": "^0.19.0",
     "btoa": "^1.2.1",
     "cookie": "^0.4.0",
@@ -27,5 +26,27 @@
     "node-fetch": "^2.6.0",
     "socket.io": "^2.2.0",
     "sqlite": "^3.0.3"
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage" : "/panel"
 }
