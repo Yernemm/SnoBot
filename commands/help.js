@@ -147,11 +147,11 @@ console.log(cmdObj)
                 var cmdInfoMsg = "";
                 console.log(getAllTypes());
                 getAllTypes().forEach( (type)=>{
-                    cmdInfoMsg+= "**" + capitalizeFirstLetter(type) + "**\r\n```";
+                    cmdInfoMsg+= "**" + capitalizeFirstLetter(type) + "**\r\n> ";
                     getAllCmdByType(type).forEach( (tcmd) =>{
-                        cmdInfoMsg += `${tcmd.name} `;
+                        cmdInfoMsg += `${tcmd.name}   `;
                     });
-                    cmdInfoMsg+= "```\r\n";
+                    cmdInfoMsg+= "\r\n";
     
                 });
     
@@ -171,7 +171,7 @@ console.log(cmdObj)
                     let us = file.use();
                     msg = `**Help for ${config.prefix}${cmd}**\r\n${de}\r\nUsage: ${config.prefix}${cmd} ${us}`;
                 } catch (err) {
-                    msg = `Command \"${argsTxt}\" not found.\r\nUse **>help** to see available commands.`
+                    msg = `Command \"${argsTxt}\" not found.\r\nUse **${config.prefix}help** to see available commands.`
                 }
     
                 break;
