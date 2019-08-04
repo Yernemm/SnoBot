@@ -38,5 +38,18 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+        <!--Socketio scripts-->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+          var socket = io();
+        </script>
+        <script>
+            $(function () {
+              var socket = io();
+              socket.on('login', function(msg){
+                $('#login').append(msg + '<br>');
+              });
+            });
+          </script>
   </body>
 </html>
