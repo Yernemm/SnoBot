@@ -15,7 +15,8 @@ function App() {
         <img class="w3-circle App-logo" src={logo} alt="logo" />
         </div>
         <Switch>
-        <Route exact={true} path="/" component={startPage}/>
+        <Route exact={true} path="/" component={infoPage}/>
+        <Route path="/start" component={startPage}/>
         <Route path="/panel" component={panel}/>
         <Route component={NoMatch} />
         </Switch>
@@ -27,15 +28,22 @@ function App() {
   );
 }
 
-const startPage = () => (
-  <div>
- <p>Log into the web panel:</p>
+const infoPage = () => (
+<div>
+  <h1>SnoBot</h1>
+<p>Log into the web panel:</p>
 
 <p>
 <div class="discordLoginBtn">
-  <a href="/api/discord/login">Login through discord</a>
+  <a href="/api/discord/login">Login through Discord</a>
 </div>
 </p>
+</div>
+)
+
+const startPage = () => (
+  <div>
+ 
   </div>
 )
 
@@ -56,33 +64,22 @@ function NoMatch({ location }) {
   );
 }
 
-const navStart = () => (
-  <div>
-  <Link class="active" to="/">Start Page</Link>
-  <Link to="/panel">Bot Panel</Link>
-  </div>
-)
-
-const navPanel = () => (
-  <div>
-  <Link  to="/">Start Page</Link>
-  <Link class="active" to="/panel">Bot Panel</Link>
-  </div>
-)
 
 function nav({ location }){
   let linkClasses = ["", ""];
   switch(location.pathname){
     case "/": linkClasses[0] = "active"; break;
-    case "/panel": linkClasses[1] = "active"; break;
+    case "/start": linkClasses[1] = "active"; break;
+    case "/panel": linkClasses[2] = "active"; break;
   }
 
 
  
   return(
     <div>
-    <Link class={linkClasses[0]} to="/">Start Page</Link>
-    <Link class={linkClasses[1]} to="/panel">Bot Panel</Link>
+    <Link class={linkClasses[0]} to="/">Info</Link>
+    <Link class={linkClasses[1]} to="/start">Start Page</Link>
+    <Link class={linkClasses[2]} to="/panel">Bot Panel</Link>
     </div>
   )
 }
