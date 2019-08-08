@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -22,9 +22,9 @@ function App() {
     )}/>
 </div>
       <header className="App-header">
-        
+        <div className="App-logo-container">
         <img src={logo} className="App-logo" alt="logo" />
-
+        </div>
         <Route exact={true} path="/" component={startPage}/>
         <Route path="/panel" component={panel}/>
         
