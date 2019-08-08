@@ -8,10 +8,7 @@ function App() {
     <Router>
     <div className="App">
     <div class="topnav">
-    <Switch>
-        <Route exact={true} path="/" component={navStart}/>
-        <Route path="/panel" component={navPanel}/>       
-</Switch>
+    <Route component={nav} />
 </div>
       <header className="App-header">
         <div className="App-logo-container">
@@ -73,6 +70,21 @@ const navPanel = () => (
   </div>
 )
 
+function nav({ location }){
+  let linkClasses = ["", ""];
+  switch(location.pathname){
+    case "/": linkClasses[0] = "active"; break;
+    case "/panel": linkClasses[1] = "active"; break;
+  }
 
+
+ 
+  return(
+    <div>
+    <Link class={linkClasses[0]} to="/">Start Page</Link>
+    <Link class={linkClasses[1]} to="/panel">Bot Panel</Link>
+    </div>
+  )
+}
 
 export default App;
