@@ -43,7 +43,12 @@ const infoPage = () => (
 
 const startPage = () => (
   <div>
- 
+        <div class="search-box">
+       <input type="text" name="" class="search-txt" placeholder="Search Google..."/>
+      <div class="search-btn">
+       <i class="fas fa-search"></i>
+       </div>
+     </div>
   </div>
 )
 
@@ -71,6 +76,7 @@ function nav({ location }){
     case "/": linkClasses[0] = "active"; break;
     case "/start": linkClasses[1] = "active"; break;
     case "/panel": linkClasses[2] = "active"; break;
+    default: break;
   }
 
 
