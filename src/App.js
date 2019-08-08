@@ -10,14 +10,14 @@ function App() {
     <div class="topnav">
     <Route exact={true} path="/" render={()=>(
       <div>
-  <a class="active" href="/">Start Page</a>
-  <a href="/panel">Bot Panel</a>
+  <Link class="active" to="/">Start Page</Link>
+  <Link to="/panel">Bot Panel</Link>
   </div>
     )}/>
     <Route exact={true} path="/panel" render={()=>(
       <div>
-  <a  href="/">Start Page</a>
-  <a class="active" href="/panel">Bot Panel</a>
+  <Link  to="/">Start Page</Link>
+  <Link class="active" to="/panel">Bot Panel</Link>
   </div>
     )}/>
 </div>
