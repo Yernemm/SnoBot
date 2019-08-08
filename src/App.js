@@ -23,7 +23,7 @@ function App() {
 </div>
       <header className="App-header">
         <div className="App-logo-container">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img class="w3-circle App-logo" src={logo} alt="logo" />
         </div>
         <Route exact={true} path="/" component={startPage}/>
         <Route path="/panel" component={panel}/>

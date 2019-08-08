@@ -11,14 +11,16 @@
 }
 
 .App-logo {
-
+  height: 10vmin;
 }
 
 .App-logo-container {
-  background: url(http://pic2.ooopic.com/11/26/30/31b1OOOPIC48.jpg);
-  box-shadow: 25px 25px 50px 0 white inset, -25px -25px 50px 0 white inset; 
-  width: 300px;
-  height: 300px;
+  height: 10vmin;
+  box-shadow:  0 0 10px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  border-radius:100px;
 }
 
 
