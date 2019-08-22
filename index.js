@@ -106,7 +106,10 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
             console.log("emit");
             socket.emit('login', "Logged in as " + response.data.username)
             client.fetchUser(response.data.id).then(logged=>{
-              let discordUserData = {loaded=true};
+
+              let discordUserData = {
+                "loaded": true
+              };
 
               socket.emit('login', `<img src="${logged.avatarURL}">`)
               socket.emit('login', "Guilds:")
