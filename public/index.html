@@ -51,6 +51,7 @@
               var socket = io();
               socket.on('login', function(msg){
                 $('#login').append(msg + '<br>');
+                console.log(msg)
               });
             });
           </script>
