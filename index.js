@@ -113,7 +113,7 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
               m.getGuildsByUser(client, logged).forEach(g =>{
                 socket.emit('login', g.name)
               })
-              socket.emit('login', logged)
+              socket.emit('login', JSON.stringify(logged))
               
             })
             
