@@ -65,7 +65,7 @@ const startPage = () => (
 
 
 function panel() {
-if(!window.discordUserData.loaded && false){
+if(!window.discordUserData.loaded){
   //Not logged in.
 return(
   <div>
