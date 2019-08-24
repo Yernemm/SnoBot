@@ -129,42 +129,75 @@ function NoMatch({ location }) {
 
 
 function nav({ location }){
-  let linkClasses = ["", ""];
-  switch(location.pathname){
-    case "/": linkClasses[0] = "active"; break;
-    case "/start": linkClasses[1] = "active"; break;
-    case "/panel": linkClasses[2] = "active"; break;
-    default: break;
+
+  let linkData = [];
+
+  function addLinkData(path, name){
+    linkData.push({
+      "name": name,
+      "path": path
+    })
   }
 
+  addLinkData("/", "Info");
+  addLinkData("/start", "Start Page");
+  addLinkData("/panel", "Bot Panel");
 
- 
-  return(
+  let links = [];
+
+  linkData.forEach(d =>{
+    let classes = ""
+    if(d.path != "/"){
+      if(location.pathname.startsWith(d.path)){
+        classes += "active"
+      }
+    }else if(location.pathname === d.path){
+      classes += "active"
+    }
+    links.push(<Link class={classes} to={d.path}>{d.name}</Link>);
+  })
+  
+  return (
     <div>
-    <Link class={linkClasses[0]} to="/">Info</Link>
-    <Link class={linkClasses[1]} to="/start">Start Page</Link>
-    <Link class={linkClasses[2]} to="/panel">Bot Panel</Link>
+      {links}
     </div>
   )
 }
 
 function panelNav({ location }){
-  let linkClasses = ["", ""];
-  switch(location.pathname){
-    case "/panel": linkClasses[0] = "panel-sidebar-btn-active"; break;
-    case "/panel/test": linkClasses[1] = "panel-sidebar-btn-active"; break;
-    default: break;
-  }
-  
-  for(let i = 0; i<linkClasses.length;i++){
-    linkClasses[i] += " w3-bar-item w3-button w3-padding";
+
+  let linkData = [];
+
+  function addLinkData(path, name, icon){
+    linkData.push({
+      "name": name,
+      "path": path,
+      "icon": icon
+    })
   }
 
- 
-  return(
+  addLinkData("", "Home", "fas fa-home");
+  addLinkData("/test", "Test", "fas fa-vials");
+
+
+  let links = [];
+
+  linkData.forEach(d =>{
+    let classes = "w3-bar-item w3-button w3-padding "
+    d.path = "/panel" + d.path;
+    if(d.path != "/panel"){
+      if(location.pathname.startsWith(d.path)){
+        classes += "panel-sidebar-btn-active"
+      }
+    }else if(location.pathname === d.path){
+      classes += "panel-sidebar-btn-active"
+    }
+    links.push(<Link class={classes} to={d.path}><i class={d.icon}></i> {d.name}</Link>);
+  })
+  
+  return (
     <div>
-    <Link class={linkClasses[0]} to="/panel"><i class="fas fa-home"></i> Home</Link>
-    <Link class={linkClasses[1]} to="/panel/test"><i class="fas fa-vials"></i> Test</Link>
+      {links}
     </div>
   )
 }
