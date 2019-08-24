@@ -97,9 +97,6 @@ return(
     </div>
   </div>
   <hr />
-  <div class="w3-container">
-    <h5>Dashboard</h5>
-  </div>
   <div class="w3-bar-block">
   <Route component={panelNav} />
     </div>
@@ -176,23 +173,49 @@ function panelNav({ location }){
     })
   }
 
+  function addSeparator(name){
+    linkData.push({
+      "isSeparator": true,
+      "name": name
+    })
+  }
+
+  addSeparator("Dashboard");
   addLinkData("", "Home", "fas fa-home");
-  addLinkData("/test", "Test", "fas fa-vials");
+  addSeparator("User");
+  addLinkData("/user/leaderboard", "Leaderboard", "fas fa-trophy");
+  addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
+  addSeparator("Manage Servers");
+
 
 
   let links = [];
 
   linkData.forEach(d =>{
-    let classes = "w3-bar-item w3-button w3-padding "
-    d.path = "/panel" + d.path;
-    if(d.path != "/panel"){
-      if(location.pathname.startsWith(d.path)){
+    if(!d.isSeparator){
+
+      let classes = "w3-bar-item w3-button w3-padding "
+      d.path = "/panel" + d.path;
+      if(d.path != "/panel"){
+        if(location.pathname.startsWith(d.path)){
+          classes += "panel-sidebar-btn-active"
+        }
+      }else if(location.pathname === d.path){
         classes += "panel-sidebar-btn-active"
       }
-    }else if(location.pathname === d.path){
-      classes += "panel-sidebar-btn-active"
+      links.push(<Link class={classes} to={d.path}><i class={d.icon}></i> {d.name}</Link>);
+
+    } else {
+      links.push(
+        <div>
+        
+        <div class="w3-container">   
+        <h5 style={{textAlign:"center"}}>{d.name}</h5>
+      </div>
+      </div>
+      )
     }
-    links.push(<Link class={classes} to={d.path}><i class={d.icon}></i> {d.name}</Link>);
+
   })
   
   return (
