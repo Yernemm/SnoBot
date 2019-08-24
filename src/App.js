@@ -87,7 +87,7 @@ return(
   <br />
   <div class="w3-container w3-row">
     <div class="w3-col s4">
-      <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style={{"width":"46px"}} />
+      <img src={"https://cdn.discordapp.com/avatars/" + window.discordUserData.id + "/" + window.discordUserData.avatar} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
     </div>
     <div class="w3-col s8 w3-bar">
       <span>Welcome, <strong>{window.discordUserData.username}</strong></span><br />
