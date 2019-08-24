@@ -101,17 +101,8 @@ return(
     <h5>Dashboard</h5>
   </div>
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br /><br />
-  </div>
+  <Route component={panelNav} />
+    </div>
     </nav>
     
   </div>
@@ -156,5 +147,25 @@ function nav({ location }){
     </div>
   )
 }
+
+function panelNav({ location }){
+  let linkClasses = ["", ""];
+  switch(location.pathname){
+    case "/panel": linkClasses[0] = "w3-blue"; break;
+    default: break;
+  }
+  
+  for(let i = 0; i<linkClasses.length;i++){
+    linkClasses[i] += " w3-bar-item w3-button w3-padding";
+  }
+
+ 
+  return(
+    <div>
+    <Link class={linkClasses[0]} to="/panel"><i class="fas fa-home"></i> Home</Link>
+    </div>
+  )
+}
+
 
 export default App;
