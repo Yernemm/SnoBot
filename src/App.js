@@ -9,7 +9,7 @@ function App() {
     <div className="App">
     <div class="topnav">
     <Route component={nav} />
-    <code style={{color:"#fff", float:"right"}}>- 0.0.0.52 -</code>
+    <code style={{color:"#fff", float:"right"}}>- 0.0.0.53 -</code>
 </div>
       <header className="App-header">
         <Switch>
