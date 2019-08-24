@@ -69,7 +69,7 @@ const startPage = () => (
 
 
 function panel() {
-if(!window.discordUserData.loaded && false){
+if(!window.discordUserData.loaded && !window.location.hostname.startsWith("localhost")){
   //Not logged in.
 return(
   <div>
