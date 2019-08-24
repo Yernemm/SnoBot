@@ -110,3 +110,12 @@ code {
   width: 70vw;
   padding: 0 6px;
  }
+
+ .panel-sidebar {
+   background-color: #1c2027;
+   color: white;
+ }
+
+ .panel-sidebar-btn-active{
+   background-color: #436689;
+ }

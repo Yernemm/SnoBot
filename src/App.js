@@ -83,7 +83,7 @@ return(
 
   <div style={{"text-align": "left"}}> 
     
-    <nav class="w3-sidebar w3-white w3-animate-left" style={{"z-index":3,"width":"300px"}} id="mySidebar">
+    <nav class="w3-sidebar panel-sidebar" style={{"z-index":3,"width":"300px"}} id="mySidebar">
   <br />
   <div class="w3-container w3-row">
     <div class="w3-col s4">
@@ -151,7 +151,8 @@ function nav({ location }){
 function panelNav({ location }){
   let linkClasses = ["", ""];
   switch(location.pathname){
-    case "/panel": linkClasses[0] = "w3-blue"; break;
+    case "/panel": linkClasses[0] = "panel-sidebar-btn-active"; break;
+    case "/panel/test": linkClasses[1] = "panel-sidebar-btn-active"; break;
     default: break;
   }
   
@@ -163,6 +164,7 @@ function panelNav({ location }){
   return(
     <div>
     <Link class={linkClasses[0]} to="/panel"><i class="fas fa-home"></i> Home</Link>
+    <Link class={linkClasses[1]} to="/panel/test"><i class="fas fa-vials"></i> Test</Link>
     </div>
   )
 }
