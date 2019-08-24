@@ -111,12 +111,12 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
                 "loaded": true
               };
 
-              socket.emit('login', `<img src="${logged.avatarURL}">`)
-              socket.emit('login', "Guilds:")
-              m.getGuildsByUser(client, logged).forEach(g =>{
-                socket.emit('login', g.name)
-              })
-              socket.emit('login', logged)
+              //socket.emit('login', `<img src="${logged.avatarURL}">`)
+              //socket.emit('login', "Guilds:")
+              //m.getGuildsByUser(client, logged).forEach(g =>{
+                //socket.emit('login', g.name)
+              //})
+              socket.emit('userData', logged)
               
             })
             

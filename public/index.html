@@ -53,6 +53,7 @@
                 $('#login').append(msg + '<br>');
                 console.log(msg)
               });
+              socket.on('userData', data => discordUserData = data)
             });
           </script>
   </body>
