@@ -67,7 +67,6 @@ const startPage = () => (
   </div>
 )
 
-
 function panel() {
 if(!window.discordUserData.loaded && !window.location.hostname.startsWith("localhost")){
   //Not logged in.
@@ -77,15 +76,17 @@ return(
     <DiscordLoginBtn />
   </div>
 )
+
 }else{
 //Logged in
 return(
 
   <div style={{"text-align": "left"}}> 
     
-    <nav class="w3-sidebar panel-sidebar" style={{"z-index":3,"width":"300px"}} id="mySidebar">
-  <br />
+    <nav class="panel-sidebar" style={{"z-index":3,"width":"300px"}} id="mySidebar">
+  <div class="panel-sidebar-welcome">
   <div class="w3-container w3-row">
+    <br />
     <div class="w3-col s4">
       <img src={"https://cdn.discordapp.com/avatars/" + window.discordUserData.id + "/" + window.discordUserData.avatar + ".png"} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
     </div>
@@ -95,10 +96,17 @@ return(
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
     </div>
+    
+    
   </div>
   <hr />
+  </div>
+  <div class="scrollbar">
+    <div class="overflow">
   <div class="w3-bar-block">
   <Route component={panelNav} />
+  </div>
+    </div>
     </div>
     </nav>
     
@@ -135,6 +143,7 @@ function nav({ location }){
       "path": path
     })
   }
+  
 
   addLinkData("/", "Info");
   addLinkData("/start", "Start Page");
@@ -186,7 +195,7 @@ function panelNav({ location }){
   addLinkData("/user/leaderboard", "Leaderboard", "fas fa-trophy");
   addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
   addSeparator("Manage Servers");
-
+  for(let i = 0;i<50;i++)addLinkData("/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
 
 
   let links = [];
