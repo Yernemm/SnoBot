@@ -9,6 +9,12 @@ module.exports = (client, message) => {
       ||
       message.content.startsWith(`<@${client.user.id}>`)
       ) return;
+
+     if( message.content.startsWith(`<@${client.user.id}> `) ){
+      message.content = message.content.replace(`<@${client.user.id}> `, client.config.prefix)
+     } else if( message.content.startsWith(`<@${client.user.id}>`) ){
+      message.content = message.content.replace(`<@${client.user.id}>`, client.config.prefix)
+     }
   
     // Our standard argument/command name definition.
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
