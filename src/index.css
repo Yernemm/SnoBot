@@ -165,3 +165,16 @@ body
   height: 15vh;
   overflow: hidden;
 }
+
+.infoBodyContainer{
+    width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.infoBody{
+  font-size: 20px;
+  padding: 20px;
+  color: #ddd;
+  margin: 0 auto;
+}
