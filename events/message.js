@@ -5,7 +5,7 @@ module.exports = (client, message) => {
   
     // Ignore messages not starting with the prefix (in config.json)
   
-
+console.log(message.content)
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
   if(message.content.indexOf(client.config.prefix) === 0){}
