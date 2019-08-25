@@ -4,17 +4,22 @@ module.exports = (client, message) => {
     if (message.author.bot) return;
   
     // Ignore messages not starting with the prefix (in config.json)
-    if (
-      message.content.indexOf(client.config.prefix) !== 0
-      ||
-      message.content.startsWith(`<@${client.user.id}>`)
-      ) return;
+  
 
-     if( message.content.startsWith(`<@${client.user.id}> `) ){
-      message.content = message.content.replace(`<@${client.user.id}> `, client.config.prefix)
-     } else if( message.content.startsWith(`<@${client.user.id}>`) ){
-      message.content = message.content.replace(`<@${client.user.id}>`, client.config.prefix)
-     }
+    //Reject messages not starting with prefix.
+    //Replace bot mentions with prefix.
+  if(message.content.indexOf(client.config.prefix) === 0){}
+  else if(message.content.startsWith(`<@${client.user.id}>`))
+    message.content = message.content.replace(`<@${client.user.id}>`, client.config.prefix);
+  else if(message.content.startsWith(`<@!${client.user.id}>`))
+    message.content = message.content.replace(`<@!${client.user.id}>`, client.config.prefix);
+  else
+    return;
+    //Remove space after prefix.
+  if(message.content[client.config.prefix.length] === " ")
+    message.content = message.content.replace(client.config.prefix + " ", client.config.prefix);
+
+    
   
     // Our standard argument/command name definition.
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
