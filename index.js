@@ -123,7 +123,7 @@ io.on('connection', function (socket) {
           {
             "loaded": true,
             "loggedIn": false,
-            "login-message": "You do not share a server with the bot."
+            "loginMessage": "You do not share a server with the bot."
           };
           socket.emit('userData', discordUserData)
         })
@@ -136,7 +136,7 @@ io.on('connection', function (socket) {
       {
         "loaded": true,
         "loggedIn": false,
-        "login-message": "Invalid login credentials."
+        "loginMessage": "Invalid login credentials."
       })
 
     })

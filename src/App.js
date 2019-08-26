@@ -158,25 +158,27 @@ class Panel extends React.Component {
 
   render () {
   return (
-<p>
+<div>
 {
         
 
     
         this.props.state.loggedIn?
         
-        "Logged in as " + this.props.state.discordUserData.username + "."
+        panelLogged(this.props.state)
         
         :
         
         this.props.state.authChecked?
-        "Not Logged in"
+        panelNotLogged(this.props.state)
         :
-        
-        "hmmmmmm"
-        
+        <div class="infoBodyContainer w3-card">
+  <div class="infoBody">
+        <h2>Checking authentication...</h2>
+        </div>
+  </div>
         }
-</p>
+</div>
   )
 }}
 /*
@@ -191,14 +193,21 @@ else{
 }
 }
 */
-const panelNotLogged = () =>(
+const panelNotLogged = (data) =>(
   <div>
-    <p>You are not logged in.</p>
+    <div class="infoBodyContainer w3-card">
+  <div class="infoBody">
+    <h2>You are not logged in.</h2>
+    <p>
+      <code>{data.loginMessage}</code>
+    </p>
     <DiscordLoginBtn />
+    </div>
+  </div>
   </div>
 )
 
-const panelLogged = () => (
+const panelLogged = (data) => (
   <div style={{"text-align": "left"}}> 
     
     <nav class="panel-sidebar w3-card" style={{"z-index":3,"width":"300px"}} id="mySidebar">
@@ -206,10 +215,10 @@ const panelLogged = () => (
   <div class="w3-container w3-row">
     <br />
     <div class="w3-col s4">
-      <img src={"https://cdn.discordapp.com/avatars/" + window.discordUserData.id + "/" + window.discordUserData.avatar + ".png"} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
+      <img src={"https://cdn.discordapp.com/avatars/" + data.discordUserData.id + "/" + data.discordUserData.avatar + ".png"} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>{window.discordUserData.username}</strong></span><br />
+      <span>Welcome, <strong>{data.discordUserData.username}</strong></span><br />
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
