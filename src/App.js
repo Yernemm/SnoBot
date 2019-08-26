@@ -165,7 +165,7 @@ class Panel extends React.Component {
     
         this.props.state.loggedIn?
         
-        "Logged in as " + this.state.discordUserData.username + "."
+        "Logged in as " + this.props.state.discordUserData.username + "."
         
         :
         
