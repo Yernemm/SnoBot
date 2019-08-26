@@ -151,17 +151,30 @@ function searchEnter(event) {
 class panel extends React.Component {
   constructor(props) {
     super(props);
-  this.state = {
-    loggedIn: false,
-    authChecked: false
-  }
+
   }
 
   render () {
   return (
-    <div>
-bruh
-</div>
+<p>
+{
+        
+
+    
+        this.props.state.loggedIn?
+        
+        "Logged in as " + this.state.discordUserData.username + "."
+        
+        :
+        
+        this.props.state.authChecked?
+        "Not Logged in"
+        :
+        
+        ""
+        
+        }
+</p>
   )
 }}
 
