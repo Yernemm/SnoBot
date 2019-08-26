@@ -27,6 +27,9 @@ class App extends React.Component {
           }
         )
     });
+    socket.on('login', function(msg){
+      console.log(msg)
+    });
   }
 
   render () {
