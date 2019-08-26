@@ -26,39 +26,39 @@ app.use(cookieParser());
 //=============================================
 client.config = config;
 fs.readdir("./events/", (err, files) => {
-    if (err) return console.error(err);
-    files.forEach(file => {
-      const event = require(`./events/${file}`);
-      let eventName = file.split(".")[0];
-      client.on(eventName, event.bind(null, client));
-    });
+  if (err) return console.error(err);
+  files.forEach(file => {
+    const event = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    client.on(eventName, event.bind(null, client));
   });
-  
-  client.commands = new Enmap();
-  
-  fs.readdir("./commands/", (err, files) => {
-    if (err) return console.error(err);
-    files.forEach(file => {
-      if (!file.endsWith(".js")) return;
-      let props = require(`./commands/${file}`);
-      let commandName = file.split(".")[0];
-      console.log(`Attempting to load command ${commandName}`);
-      client.commands.set(commandName, props);
-    });
+});
+
+client.commands = new Enmap();
+
+fs.readdir("./commands/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
+    let commandName = file.split(".")[0];
+    console.log(`Attempting to load command ${commandName}`);
+    client.commands.set(commandName, props);
   });
+});
 //=============================================
 
 // Pages
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/index.html'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/web/index.html'));
 });
 
-app.get('/panel', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/panel.html'));
-    console.log(req.url)
-    console.log(req.cookies) 
-    var url = require('url');
+app.get('/panel', function (req, res) {
+  res.sendFile(path.join(__dirname + '/web/panel.html'));
+  console.log(req.url)
+  console.log(req.cookies)
+  var url = require('url');
 
 });
 
@@ -72,73 +72,83 @@ app.use('/api/discord', require('./web/api/discord'));
 
 //Err handling for express
 app.use((err, req, res, next) => {
-    switch (err.message) {
-      case 'NoCodeProvided':
-        return res.status(400).send({
-          status: 'ERROR',
-          error: err.message,
-        });
-      default:
-        return res.status(500).send({
-          status: 'ERROR',
-          error: err.message,
-        });
-    }
+  switch (err.message) {
+    case 'NoCodeProvided':
+      return res.status(400).send({
+        status: 'ERROR',
+        error: err.message,
+      });
+    default:
+      return res.status(500).send({
+        status: 'ERROR',
+        error: err.message,
+      });
+  }
+});
+
+//User connected to websocket when page opened.
+io.on('connection', function (socket) {
+  console.log('a user connected');
+  socket.on('disconnect', function () {
+    console.log('user disconnected');
   });
 
-  io.on('connection', function(socket){
-    console.log('a user connected');
-    socket.on('disconnect', function(){
-      console.log('user disconnected');
+  let cookief = socket.handshake.headers.cookie;
+  let cookies = cookie.parse(socket.handshake.headers.cookie);
+
+  //Send axios request to discord API to verify the access token.
+  axios.get(
+      `https://discordapp.com/api/users/@me`, {
+        headers: {
+          Authorization: `Bearer ${cookies.access_token}`
+        }
+      }
+    ).then(function (response) {
+      console.log("emit");
+
+      socket.emit('login', "Logged in as " + response.data.username)
+      client.fetchUser(response.data.id).then(logged => {
+
+        //User logged in and found by bot.
+          let discordUserData = logged;
+          discordUserData.loaded = true;
+          discordUserData.loggedIn = true;
+
+          socket.emit('userData', discordUserData)
+
+        })
+        .catch(err => {
+          //User logged in but bot cannot find it.
+          let discordUserData = 
+          {
+            "loaded": true,
+            "loggedIn": false,
+            "login-message": "You do not share a server with the bot."
+          };
+          socket.emit('userData', discordUserData)
+        })
+
+    })
+    .catch(function (error) {
+      console.log(error);
+      //Authorisation failed.
+      socket.emit('userData', 
+      {
+        "loaded": true,
+        "loggedIn": false,
+        "login-message": "Invalid login credentials."
+      })
+
+    })
+    .then(function () {
+      // always executed
     });
 
-    var cookief =socket.handshake.headers.cookie; 
-
-var cookies = cookie.parse(socket.handshake.headers.cookie);
-
-
-
-    
-   axios.get(
-          `https://discordapp.com/api/users/@me`,
-          {headers: {Authorization: `Bearer ${cookies.access_token}`}}
-        ).then(function (response) {
-            console.log("emit");
-            socket.emit('login', "Logged in as " + response.data.username)
-            client.fetchUser(response.data.id).then(logged=>{
-              
-              let discordUserData = logged;
-              discordUserData.loaded = true;
-              discordUserData.loggedIn = true;
-
-              //socket.emit('login', `<img src="${logged.avatarURL}">`)
-              //socket.emit('login', "Guilds:")
-              //m.getGuildsByUser(client, logged).forEach(g =>{
-                //socket.emit('login', g.name)
-              //})
-              socket.emit('userData', discordUserData)
-              
-            })
-            .catch(err=>{
-              let discordUserData = {};
-              discordUserData.loaded = true;
-              discordUserData.loggedIn = false;
-              socket.emit('userData', discordUserData)
-            })
-            
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-          .then(function () {
-            // always executed
-          });  
-    
-  });
+});
 
 
 //Start Discord and web server
 client.login(config.discordToken);
-server.listen(config.webPort, () =>{
-    console.log(`Listening on ${config.webPort}`)
+server.listen(config.webPort, () => {
+  console.log(`Listening on ${config.webPort}`)
 });
