@@ -109,7 +109,7 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
               
               let discordUserData = logged;
               discordUserData.loaded = true;
-
+              discordUserData.loggedIn = true;
 
               //socket.emit('login', `<img src="${logged.avatarURL}">`)
               //socket.emit('login', "Guilds:")
@@ -118,6 +118,12 @@ var cookies = cookie.parse(socket.handshake.headers.cookie);
               //})
               socket.emit('userData', discordUserData)
               
+            })
+            .catch(err=>{
+              let discordUserData = {};
+              discordUserData.loaded = true;
+              discordUserData.loggedIn = false;
+              socket.emit('userData', discordUserData)
             })
             
           })
