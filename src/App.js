@@ -70,7 +70,9 @@ class App extends React.Component {
       <Switch>
       <Route exact={true} path="/" component={infoPage}/>
         <Route path="/start" component={startPage}/>
-        <Route path="/panel" component={panel}/>
+        <Route path="/panel" render={() => 
+  (<Panel state={this.state}/>)
+}/>
         </Switch>
     </div>
     </Router>
@@ -148,7 +150,7 @@ function searchEnter(event) {
   }
 }
 
-class panel extends React.Component {
+class Panel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -177,7 +179,7 @@ class panel extends React.Component {
 </p>
   )
 }}
-
+/*
 function panelOld() {
 if(!window.discordUserData.loaded)
   setTimeout(() =>{console.log("waiting for server response");return panel();}, 100);
@@ -188,7 +190,7 @@ else{
   return panelNotLogged
 }
 }
-
+*/
 const panelNotLogged = () =>(
   <div>
     <p>You are not logged in.</p>
