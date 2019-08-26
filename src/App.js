@@ -40,6 +40,7 @@ const headerPage = () => (
         </div>
         </header>
         <h2>Bot - Startpage - Ecosystem</h2>
+        <h5>Made by <a href="https://yernemm.xyz">Yernemm</a>.</h5>
         
 </div>
 )
@@ -71,13 +72,33 @@ Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed 
 const startPage = () => (
   <div>
         <div class="search-box w3-card">
-       <input type="text" name="" class="search-txt" placeholder="Search Google..."/>
-      <div class="search-btn">
+       <input id="SP-searchBox" type="text" name="" class="search-txt" onKeyPress={(event) => searchEnter(event)} placeholder="Search Google..."/>
+      <div class="search-btn" onClick={startSearch} >
        <i class="fas fa-search"></i>
        </div>
      </div>
   </div>
 )
+
+
+function encodeGoogleSearch(query) {
+  let googleUrl = "https://www.google.com/search?q="
+  return googleUrl + encodeURIComponent(query);
+}
+
+function googleSearch(query){
+  window.open(encodeGoogleSearch(query), '_blank');
+}
+
+function startSearch(){
+  googleSearch(document.getElementById('SP-searchBox').value);
+}
+
+function searchEnter(event) { 
+  if(event.key === "Enter"){
+    startSearch();
+  }
+}
 
 function panel() {
 if(!window.discordUserData.loaded && !window.location.hostname.startsWith("localhost")){
