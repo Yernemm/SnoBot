@@ -21,7 +21,7 @@ class App extends React.Component {
     {
       this.setState(
           {
-           response: data,
+           discordUserData: data,
            authChecked: data.loaded,
            loggedIn: data.loggedIn  
           }
@@ -44,7 +44,7 @@ class App extends React.Component {
     
         this.state.loggedIn?
         
-        "Logged in."
+        "Logged in as " + this.state.discordUserData.username + "."
         
         :
         
