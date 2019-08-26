@@ -19,6 +19,7 @@ class App extends React.Component {
     const socket = socketIOClient();
     socket.on('userData', data => 
     {
+      console.log(data)
       this.setState(
           {
            discordUserData: data,
@@ -52,7 +53,7 @@ class App extends React.Component {
         "Not Logged in"
         :
         
-        "hmmmmmm"
+        ""
         
         } - 00 -</code>
 </div>
@@ -199,7 +200,7 @@ const panelNotLogged = (data) =>(
   <div class="infoBody">
     <h2>You are not logged in.</h2>
     <p>
-      <code>{data.loginMessage}</code>
+      <code>Reason: {data.discordUserData.loginMessage}</code>
     </p>
     <DiscordLoginBtn />
     </div>
