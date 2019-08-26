@@ -2,16 +2,59 @@ import React from 'react';
 import logo from './logo.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import socketIOClient from "socket.io-client";
 
-function App() {
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  this.state = {
+    loggedIn: false,
+    authChecked: false
+  }
+  }
+
+  componentDidMount() {
+    const socket = socketIOClient();
+    socket.on('userData', data => 
+    {
+      this.setState(
+          {
+           response: data,
+           authChecked: data.loaded,
+           loggedIn: data.loggedIn  
+          }
+        )
+    });
+  }
+
+  render () {
   return (
     <Router>
     <div className="App">
     <div class="topnav w3-card">
     <Route component={nav} />
-    <code style={{color:"#fff", float:"right"}}>- 00 -</code>
+    <code style={{color:"#fff", float:"right"}}>- {
+        
+
+    
+        this.state.loggedIn?
+        
+        "Logged in."
+        
+        :
+        
+        this.state.authChecked?
+        "Not Logged in"
+        :
+        
+        ""
+        
+        } - 00 -</code>
 </div>
       <header className="App-header">
+
         
       <Switch>
       <Route exact={true} path="/" component={headerPage}/>
@@ -29,6 +72,8 @@ function App() {
     </div>
     </Router>
   );
+}
+
 }
 
 const headerPage = () => (
@@ -100,7 +145,24 @@ function searchEnter(event) {
   }
 }
 
-function panel() {
+class panel extends React.Component {
+  constructor(props) {
+    super(props);
+  this.state = {
+    loggedIn: false,
+    authChecked: false
+  }
+  }
+
+  render () {
+  return (
+    <div>
+bruh
+</div>
+  )
+}}
+
+function panelOld() {
 if(!window.discordUserData.loaded)
   setTimeout(() =>{console.log("waiting for server response");return panel();}, 100);
 else{
