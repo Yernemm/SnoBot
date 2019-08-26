@@ -101,19 +101,24 @@ function searchEnter(event) {
 }
 
 function panel() {
-if(!window.discordUserData.loaded && !window.location.hostname.startsWith("localhost")){
-  //Not logged in.
-return(
+if(!window.discordUserData.loaded)
+  setTimeout(() =>{console.log("waiting for server response");return panel();}, 100);
+else{
+  if(window.discordUserData.loggedIn)
+  return panelLogged
+  else
+  return panelNotLogged
+}
+}
+
+const panelNotLogged = () =>(
   <div>
     <p>You are not logged in.</p>
     <DiscordLoginBtn />
   </div>
 )
 
-}else{
-//Logged in
-return(
-
+const panelLogged = () => (
   <div style={{"text-align": "left"}}> 
     
     <nav class="panel-sidebar w3-card" style={{"z-index":3,"width":"300px"}} id="mySidebar">
@@ -145,8 +150,6 @@ return(
     
   </div>
 )
-}
-}
 
 const DiscordLoginBtn = () => (
   <div class="discordLoginBtn">
