@@ -176,24 +176,16 @@ class Panel extends React.Component {
         <div class="infoBodyContainer w3-card">
   <div class="infoBody">
         <h2>Checking authentication...</h2>
+        <hr />
+        <p>If this takes too long, try logging in.</p>
+        <DiscordLoginBtn />
         </div>
   </div>
         }
 </div>
   )
 }}
-/*
-function panelOld() {
-if(!window.discordUserData.loaded)
-  setTimeout(() =>{console.log("waiting for server response");return panel();}, 100);
-else{
-  if(window.discordUserData.loggedIn)
-  return panelLogged
-  else
-  return panelNotLogged
-}
-}
-*/
+
 const panelNotLogged = (data) =>(
   <div>
     <div class="infoBodyContainer w3-card">

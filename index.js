@@ -136,7 +136,7 @@ io.on('connection', function (socket) {
       {
         "loaded": true,
         "loggedIn": false,
-        "loginMessage": "Invalid login credentials."
+        "loginMessage": "Invalid Discord login details."
       })
 
     })
