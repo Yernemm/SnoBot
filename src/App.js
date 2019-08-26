@@ -70,8 +70,8 @@ class App extends React.Component {
       <Switch>
       <Route exact={true} path="/" component={infoPage}/>
         <Route path="/start" component={startPage}/>
-        <Route path="/panel" render={() => 
-  (<Panel state={this.state}/>)
+        <Route path="/panel" render={(props) => 
+  (<Panel {...props} state={this.state}/>)
 }/>
         </Switch>
     </div>
