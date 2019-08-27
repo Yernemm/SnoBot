@@ -108,7 +108,7 @@ io.on('connection', function (socket) {
 
       socket.emit('login', "Logged in as " + response.data.username)
        //User logged in.
-       let discordUserData = response;
+       let discordUserData = response.data;
        discordUserData.loaded = true;
        discordUserData.loggedIn = true;
 
