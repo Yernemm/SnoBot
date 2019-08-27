@@ -107,6 +107,13 @@ io.on('connection', function (socket) {
       console.log("emit");
 
       socket.emit('login', "Logged in as " + response.data.username)
+       //User logged in.
+       let discordUserData = response;
+       discordUserData.loaded = true;
+       discordUserData.loggedIn = true;
+
+       socket.emit('userData', discordUserData)
+      /*
       client.fetchUser(response.data.id).then(logged => {
 
         //User logged in and found by bot.
@@ -127,6 +134,7 @@ io.on('connection', function (socket) {
           };
           socket.emit('userData', discordUserData)
         })
+        */
 
     })
     .catch(function (error) {
