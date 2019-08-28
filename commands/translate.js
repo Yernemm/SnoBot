@@ -40,7 +40,7 @@ translate(tra, {from: tfr, to: tto}).then(res => {
     //console.log(res.from.language.iso);
 	
     //=> nl
-	msg = (tfr === "auto" ? res.data[0] : res.data);
+	msg = decodeEntities((tfr === "auto" ? res.data[0] : res.data));
 	if(msg.length >2048){
 		msg = msg.slice(0,2044) + "...";
 	}
@@ -70,4 +70,21 @@ exports.use = () =>{
 }
 exports.cmdtype = () => {
     return cmdtype;
+}
+
+function decodeEntities(encodedString) {
+    var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
+    var translate = {
+        "nbsp":" ",
+        "amp" : "&",
+        "quot": "\"",
+        "lt"  : "<",
+        "gt"  : ">"
+    };
+    return encodedString.replace(translate_re, function(match, entity) {
+        return translate[entity];
+    }).replace(/&#(\d+);/gi, function(match, numStr) {
+        var num = parseInt(numStr, 10);
+        return String.fromCharCode(num);
+    });
 }

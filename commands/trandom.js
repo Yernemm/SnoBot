@@ -54,7 +54,7 @@ function trand(argsTxt, index, langs, allLangs, config, client, message, argsArr
 	//console.log(outMsg);
 	index++;
 	langs.push(currLang);
-	trand(outMsg, index, langs, allLangs, config, client, message, argsArr, extraData);
+	trand(decodeEntities(outMsg), index, langs, allLangs, config, client, message, argsArr, extraData);
 	
 	
 }).catch(err => {
@@ -81,7 +81,7 @@ function trand(argsTxt, index, langs, allLangs, config, client, message, argsArr
 	
 	//console.log("d");
 		console.log(outMsg);
-		finish(outMsg, langs, config, client, message, argsArr, extraData, allLangs);
+		finish(decodeEntities(outMsg), langs, config, client, message, argsArr, extraData, allLangs);
 	
 }).catch(err => {
 	//console.log("c " + err.toString());
@@ -128,4 +128,23 @@ const embed = new Discord.RichEmbed()
 	message.channel.send({embed});
 	m.log(config, client, message, msg);
 	
+	}
+
+	
+
+	function decodeEntities(encodedString) {
+		var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
+		var translate = {
+			"nbsp":" ",
+			"amp" : "&",
+			"quot": "\"",
+			"lt"  : "<",
+			"gt"  : ">"
+		};
+		return encodedString.replace(translate_re, function(match, entity) {
+			return translate[entity];
+		}).replace(/&#(\d+);/gi, function(match, numStr) {
+			var num = parseInt(numStr, 10);
+			return String.fromCharCode(num);
+		});
 	}
