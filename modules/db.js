@@ -9,7 +9,8 @@ const defaultPermissions ={
     "mod": "admin",
     "admin": "admin",
     "core": "everyone",
-    "fun": "everyone"
+    "fun": "everyone",
+    "utility": "everyone"
 }
 
 function checkPerms(data, cmdString, callback) {

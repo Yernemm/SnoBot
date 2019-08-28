@@ -11,7 +11,7 @@ module.exports = {
         let config = data.config
         let bot = data.bot
         let message = data.message
-        message.channel.send(msg);
+        data.message.channel.send(msg);
         //logging(config, bot, message, msg, type);
     },    
     logNoMsg: function (config, bot, msg, type) {
