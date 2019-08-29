@@ -5,6 +5,7 @@ const cmdtype = "fun"; //Type of command
 const Discord = require("discord.js");
 const trColour = 0xce5c5c;
 const translate = require('google-translate-open-api').default;
+const parseMultiple = require('google-translate-open-api').parseMultiple;
 const m = require("./../shared/methods.js");
 //Command
 exports.run = (data) => {
@@ -45,16 +46,16 @@ function trand(argsTxt, index, langs, allLangs, config, client, message, argsArr
 	if (index < 10){
 		//console.log("b");
 		var currLang = randLang();
-		translate(argsTxt, {from: "auto", to: currLang}).then(res => {
+		translate(prepTrans(decodeEntities(argsTxt)), {from: "auto", to: currLang}).then(res => {
 	//console.log("e");
 	if(index == 0){
-		langs.push(res.data[1]);
+		langs.push(dePrepLang(res.data));
 	}
-	var outMsg = res.data[0];
+	var outMsg = dePrepTrans(res.data);
 	//console.log(outMsg);
 	index++;
 	langs.push(currLang);
-	trand(decodeEntities(outMsg), index, langs, allLangs, config, client, message, argsArr, extraData);
+	trand(outMsg, index, langs, allLangs, config, client, message, argsArr, extraData);
 	
 	
 }).catch(err => {
@@ -71,10 +72,10 @@ function trand(argsTxt, index, langs, allLangs, config, client, message, argsArr
 
 		
 		
-		translate(argsTxt, {from: "auto", to: "en"}).then(res => {
+		translate(prepTrans(decodeEntities(argsTxt)), {from: "auto", to: "en"}).then(res => {
 	//console.log("e");
 
-	var outMsg = res.data[0];
+	var outMsg = dePrepTrans(res.data);
 	//console.log(outMsg);
 	
 	
@@ -148,3 +149,26 @@ const embed = new Discord.RichEmbed()
 			return String.fromCharCode(num);
 		});
 	}
+
+
+	function prepTrans(text){
+		return text.split("\n")
+	}
+	
+	function dePrepTrans(data){
+		if(typeof data[0] != "string")   
+		return parseMultiple(data[0]).join("\n")
+		else if(typeof data == "string")
+		return data
+		else
+		return data[0]
+	}
+	
+	function dePrepLang(data){
+		if(typeof data[1] == "string")
+			return data[1]
+		else
+			return data[0][0][2]
+		
+	}
+	
