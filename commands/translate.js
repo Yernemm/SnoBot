@@ -2,6 +2,7 @@
 const desc = "Translates the message between two languages. Specify the languages first and then the message. The language is a two-letter code (e.g. 'en' for English). Alternatively, use 'auto' to detect the language to translate from. You can also simply use 'a' which will detect the language and then translate to English."; //Short description of what the command does.
 const usage = "<lang from> <lang to> <message> OR a <message> "; //Any parameters required for command.
 const cmdtype = "utility"; //Type of command
+const parseMultiple = require('google-translate-open-api').parseMultiple;
 //Command
 exports.run = (data) => {
     let message = data.message;
@@ -33,14 +34,14 @@ exports.run = (data) => {
 			tra = data.argsArr.slice(1).join(" ");
 		}
  
-translate(tra, {from: tfr, to: tto}).then(res => {
+translate(prepTrans(tra), {from: tfr, to: tto}).then(res => {
 	
     //console.log(res.text);
     //=> I speak English
     //console.log(res.from.language.iso);
 	
     //=> nl
-	msg = decodeEntities((tfr === "auto" ? res.data[0] : res.data));
+	msg = decodeEntities(dePrepTrans(res.data));
 	if(msg.length >2048){
 		msg = msg.slice(0,2044) + "...";
 	}
@@ -48,7 +49,7 @@ translate(tra, {from: tfr, to: tto}).then(res => {
 	const embed = new Discord.RichEmbed()
 	.setColor(trColour)
 	.setAuthor(message.guild.member(message.author).displayName, message.author.avatarURL)
-	.setTitle("Translated from " + (tfr === "auto" ? res.data[1] : tfr.toLowerCase()) + " to " + tto)
+	.setTitle("Translated from " + dePrepLang(res.data) + " to " + tto)
 	.setDescription(msg);
 	message.channel.send({embed});
 	m.log(data, msg);
@@ -88,3 +89,25 @@ function decodeEntities(encodedString) {
         return String.fromCharCode(num);
     });
 }
+
+function prepTrans(text){
+    return text.split("\n")
+}
+
+function dePrepTrans(data){
+    if(typeof data[0] != "string")   
+    return parseMultiple(data[0]).join("\n")
+    else if(typeof data == "string")
+    return data
+    else
+    return data[0]
+}
+
+function dePrepLang(data){
+    if(typeof data[1] == "string")
+        return data[1]
+    else
+        return data[0][0][2]
+    
+}
+
