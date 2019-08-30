@@ -63,7 +63,7 @@ class App extends React.Component {
 </div>
 
 <div id="particles-js" style={{"position":"fixed", "z-index":-1, "width": "100%", "height":"100%"}}></div>
-<div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"100%"}}>
+<div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"calc(100% - 30px)"}}>
       <header className="App-header">
 
         
