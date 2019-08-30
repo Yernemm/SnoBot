@@ -15,6 +15,8 @@ class App extends React.Component {
   }
   }
 
+  
+
   componentDidMount() {
     const socket = socketIOClient();
     socket.on('userData', data => 
@@ -36,7 +38,9 @@ class App extends React.Component {
   render () {
   return (
     <Router>
+      
     <div className="App">
+      
     <div class="topnav w3-card">
     <Route component={nav} />
     <code style={{color:"#fff", float:"right"}}>- {
@@ -57,6 +61,9 @@ class App extends React.Component {
         
         } - 00 -</code>
 </div>
+
+<div id="particles-js" style={{"position":"fixed", "z-index":-1, "width": "100%", "height":"100%"}}></div>
+<div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"100%"}}>
       <header className="App-header">
 
         
@@ -68,6 +75,7 @@ class App extends React.Component {
         </Switch>
         
       </header>
+      
       <Switch>
       <Route exact={true} path="/" component={infoPage}/>
         <Route path="/start" component={startPage}/>
@@ -75,7 +83,9 @@ class App extends React.Component {
   (<Panel {...props} state={this.state}/>)
 }/>
         </Switch>
+        </div>
     </div>
+  
     </Router>
   );
 }
@@ -98,7 +108,7 @@ const headerPage = () => (
 
 const infoPage = () => (
 <div>
-<div class="infoBodyContainer w3-card">
+<div class="infoBodyContainer w3-card card">
   <div class="infoBody">
 <p>This is a bot. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit pellentesque habitant morbi tristique senectus et. Cursus vitae congue mauris rhoncus aenean. Duis tristique sollicitudin nibh sit amet. Scelerisque fermentum dui faucibus in. Dictum fusce ut placerat orci. Justo nec ultrices dui sapien eget mi proin. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Quisque egestas diam in arcu. Id eu nisl nunc mi ipsum faucibus vitae aliquet. Id aliquet risus feugiat in ante.
 
@@ -111,12 +121,7 @@ Quisque non tellus orci ac auctor augue mauris augue. Purus non enim praesent el
 Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Sed arcu non odio euismod lacinia at quis risus. Donec ac odio tempor orci dapibus ultrices in. Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula. Nisl purus in mollis nunc sed id semper risus. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae proin. Facilisis leo vel fringilla est ullamcorper eget. Tempus iaculis urna id volutpat lacus laoreet non. Volutpat sed cras ornare arcu dui vivamus arcu. Porta non pulvinar neque laoreet suspendisse. Interdum velit laoreet id donec. Ornare suspendisse sed nisi lacus sed viverra tellus in hac.</p>
 </div>
 </div>
-<p>Log into the web panel:</p>
 
-
-<p>
-<DiscordLoginBtn />
-</p>
 </div>
 )
 
@@ -173,7 +178,7 @@ class Panel extends React.Component {
         this.props.state.authChecked?
         panelNotLogged(this.props.state)
         :
-        <div class="infoBodyContainer w3-card">
+        <div class="infoBodyContainer w3-card card">
   <div class="infoBody">
         <h2>Checking authentication...</h2>
         <hr />
@@ -188,7 +193,7 @@ class Panel extends React.Component {
 
 const panelNotLogged = (data) =>(
   <div>
-    <div class="infoBodyContainer w3-card">
+    <div class="infoBodyContainer w3-card card">
   <div class="infoBody">
     <h2>You are not logged in.</h2>
     <p>
@@ -203,7 +208,7 @@ const panelNotLogged = (data) =>(
 const panelLogged = (data) => (
   <div style={{"text-align": "left"}}> 
     
-    <nav class="panel-sidebar w3-card" style={{"z-index":3,"width":"300px"}} id="mySidebar">
+    <nav class="panel-sidebar w3-card card" style={{"z-index":3,"width":"300px"}} id="mySidebar">
   <div class="panel-sidebar-welcome">
   <div class="w3-container w3-row">
     <br />
@@ -245,7 +250,7 @@ function NoMatch({ location }) {
       <h3>
         No match for <code>{location.pathname}</code>
       </h3>
-      <Link class="active" to="/">Start Page</Link>
+      <Link class="active" to="/">Home Page</Link>
     </div>
   );
 }

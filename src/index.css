@@ -32,6 +32,10 @@ code {
   border-radius: 6px;
 }
 
+.card {
+  background-color: #202020;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: rgb(49, 48, 59);
