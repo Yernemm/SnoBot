@@ -41,7 +41,7 @@ class App extends React.Component {
       
     <div className="App">
     <div id="particles-js" style={{ "top":0,"left":0,"position":"fixed",  "width": "100%", "height":"vh"}}></div>
-<div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"calc(100% - 30px)"}}>
+<div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"100%"}}>
     <div class="topnav w3-card">
     <Route component={nav} />
     <code style={{color:"#fff", float:"right"}}>- {
