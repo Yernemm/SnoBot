@@ -163,13 +163,15 @@ class Panel extends React.Component {
   }
 
   render () {
+    if(!this.props.state.discordUserData)this.props.state.discordUserData = "none";
   return (
 <div>
 {
         
 
-    
-        this.props.state.loggedIn?
+
+        (this.props.state.loggedIn)?
+        
         
         panelLogged(this.props.state)
         
@@ -206,9 +208,10 @@ const panelNotLogged = (data) =>(
 )
 
 const panelLogged = (data) => (
+  <div>
   <div style={{"text-align": "left"}}> 
     
-    <nav class="panel-sidebar w3-card card" style={{"z-index":3,"width":"300px"}} id="mySidebar">
+    <nav class="panel-sidebar w3-card card" id="mySidebar">
   <div class="panel-sidebar-welcome">
   <div class="w3-container w3-row">
     <br />
@@ -234,7 +237,19 @@ const panelLogged = (data) => (
     </div>
     </div>
     </nav>
-    
+  </div>
+  <div class="panel-contents card w3-card">    
+  <div class="scrollbar-panel-content">
+    <div class="overflow">
+  <Switch>
+      <Route exact={true} path="/panel" component={ComingSoon}/>
+      <Route exact={true} path="/panel/user/leaderboard" component={ComingSoon}/>
+      <Route exact={true} path="/panel/user/stats" component={ComingSoon}/>
+      <Route component={NoMatch} />
+        </Switch>
+        </div>
+        </div>
+        </div>
   </div>
 )
 
@@ -248,12 +263,18 @@ function NoMatch({ location }) {
   return (
     <div>
       <h3>
-        No match for <code>{location.pathname}</code>
+        Page "<code>{location.pathname}</code>" not found.
       </h3>
       <Link class="active" to="/">Home Page</Link>
     </div>
   );
 }
+
+const ComingSoon = () => (
+<div>
+  <h1>Coming Soon!</h1>
+</div>
+)
 
 
 function nav({ location }){
@@ -318,7 +339,7 @@ function panelNav({ location }){
   addLinkData("/user/leaderboard", "Leaderboard", "fas fa-trophy");
   addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
   addSeparator("Manage Servers");
-  for(let i = 0;i<50;i++)addLinkData("/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
+  for(let i = 0;i<50;i++)addLinkData("/server/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
 
 
   let links = [];
