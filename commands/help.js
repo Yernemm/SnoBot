@@ -56,10 +56,10 @@ exports.run = (data) => {
     let cmdCount = client.commands.keyArray().length;
     client.commands.keyArray().forEach(c =>{
         
-        console.log("yeehaw " + c)
+
        db.checkPerms(data, c, res =>{
         if(res){
-            console.log("yeenawnaw " + c)
+
             let newCmdObj = {};
             theCmd = client.commands.get(c);
             newCmdObj.name = c;
