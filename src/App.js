@@ -13,6 +13,7 @@ class App extends React.Component {
     loggedIn: false,
     authChecked: false
   }
+  this.signOutState = this.signOutState.bind(this);
   }
 
   
@@ -36,6 +37,7 @@ class App extends React.Component {
   }
 
   signOutState(){
+    console.log("signing out...")
     document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     this.setState(
       {
@@ -64,7 +66,7 @@ class App extends React.Component {
     
         this.state.loggedIn?
         
-        <span><SignOut /> - Logged in as {this.state.discordUserData.username}.</span>
+        <span><SignOut signOutState={this.signOutState} /> - Logged in as {this.state.discordUserData.username}.</span>
         
         :
         
@@ -330,8 +332,20 @@ function nav({ location }){
 
 
 class SignOut extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.signOutState()
+  }
+  
   render() {
-    return <span onClick={this.signOutState}>[Sign Out]</span>;
+    return <a onClick={this.handleClick}>[Sign Out]</a>;
   }
 }
 
