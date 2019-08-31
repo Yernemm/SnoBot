@@ -11,7 +11,8 @@ const Enmap = require("enmap");
 const axios = require("axios");
 const cookie = require("cookie")
 var cookieParser = require('cookie-parser')
-
+let ver = JSON.parse(fs.readFileSync('.src/ver.json')).ver
+var exec = require('child_process').exec;
 
 var app = express()
 var server = http.createServer(app);
@@ -19,6 +20,12 @@ var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
 app.use(cookieParser());
+
+function execute(command, callback){
+  exec(command, function(error, stdout, stderr){ callback(stdout); });
+};
+client.ver = ver;
+execute("git rev-list --count HEAD", (build) => client.ver.build = build)
 
 
 
