@@ -72,6 +72,9 @@ exports.use = () =>{
 exports.cmdtype = () => {
     return cmdtype;
 }
+exports.alias = () => {
+	return ["tr"]
+}
 
 function decodeEntities(encodedString) {
     var translate_re = /&(nbsp|amp|quot|lt|gt);/g;

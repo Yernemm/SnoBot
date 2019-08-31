@@ -39,6 +39,9 @@ exports.use = () =>{
 exports.cmdtype = () => {
     return cmdtype;
 }
+exports.alias = () => {
+	return ["trand"]
+}
 
 function trand(argsTxt, index, langs, allLangs, config, client, message, argsArr, extraData)
 {
