@@ -3,6 +3,7 @@ import logo from './logo.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import socketIOClient from "socket.io-client";
+import ver from './ver.json'
 
 
 
@@ -76,7 +77,7 @@ class App extends React.Component {
         
         ""
         
-        } - 00 -</code>
+        } - v{ver.ver.num}.{process.env.REACT_APP_GIT_VER} -</code>
 </div>
 
 
