@@ -5,7 +5,12 @@ const cmdtype = "fun"; //Type of command.
 const alias = ["inspire"]; //Aliases for the command.
 //Command
 exports.run = (data) => {
-    const bot = client;
+    let bot = data.client,
+    message = data.message,
+    client = data.client,
+    config = data.config,
+    argsArr = data.argsArr,
+    argsTxt = data.argsTxt
     const m = require("./../shared/methods.js");
     //--------------------------------------------------------------------
     //Uncomment for protected owner-only command.
@@ -15,7 +20,7 @@ exports.run = (data) => {
     //--------------------------------------------------------------------
 
     //COMMAND LOGIC HERE:
-
+    const Discord = require("discord.js");
     var http = require('http');
 
     var apiLink = "http://inspirobot.me/api?generate=true";
@@ -26,7 +31,7 @@ exports.run = (data) => {
 request(apiLink, function (error, response, body) {
   const embed = new Discord.RichEmbed()
   .setTitle("Get inspired...")
-  .setColor(0x229c18)
+  .setColor(argsArr[0] === "xmas" ? 0x5b0609 : 0x229c18)
   .setImage(body);
 
   message.channel.send({embed});

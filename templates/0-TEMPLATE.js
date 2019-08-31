@@ -5,7 +5,12 @@ const cmdtype = ""; //Type of command.
 const alias = []; //Aliases for the command.
 //Command
 exports.run = (data) => {
-    const bot = client;
+    let bot = data.client,
+    message = data.message,
+    client = data.client,
+    config = data.config,
+    argsArr = data.argsArr,
+    argsTxt = data.argsTxt
     const m = require("./../shared/methods.js");
     //--------------------------------------------------------------------
     //Uncomment for protected owner-only command.
