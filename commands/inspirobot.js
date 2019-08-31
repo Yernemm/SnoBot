@@ -1,8 +1,8 @@
 //METADATA
-const desc = ""; //Short description of what the command does.
-const usage = ""; //Any parameters required for command.
-const cmdtype = ""; //Type of command.
-const alias = []; //Aliases for the command.
+const desc = "Returns an image from <https://inspirobot.me>/\nOptionally put `xmas` after the command to view xmas images."; //Short description of what the command does.
+const usage = "[xmas]"; //Any parameters required for command.
+const cmdtype = "fun"; //Type of command.
+const alias = ["inspire"]; //Aliases for the command.
 //Command
 exports.run = (data) => {
     const bot = client;
@@ -16,11 +16,26 @@ exports.run = (data) => {
 
     //COMMAND LOGIC HERE:
 
+    var http = require('http');
 
+    var apiLink = "http://inspirobot.me/api?generate=true";
+    if(argsArr[0] == "xmas")
+    apiLink += "&season=xmas";
+  
+    var request = require('request');
+request(apiLink, function (error, response, body) {
+  const embed = new Discord.RichEmbed()
+  .setTitle("Get inspired...")
+  .setColor(0x229c18)
+  .setImage(body);
+
+  message.channel.send({embed});
+  m.log(config, client, message, body);
+});
 
 
     //--------------------------------------------------------------------
-    m.logSend(data, msg); //Method will send msg to user, and also log it in both console AND log channel.
+    //m.logSend(data, msg); //Method will send msg to user, and also log it in both console AND log channel.
     //m.log(data, msg); //Alternative will log msg without sending msg.
 }
 exports.desc = () =>{

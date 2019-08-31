@@ -176,7 +176,7 @@ exports.run = (data) => {
                    console.log(c)
                     if(c){       
                         msg = `**Help for ${config.prefix}${c.name}**\r\n> ${c.desc}\r\nUsage: \n> \`${config.prefix}${c.name} ${c.usage}\``;
-                        if(c.alias)
+                        if(c.alias && c.alias.length > 0)
                         {
                             msg+="\nAliases:\n> `"
                             c.alias.forEach(a => msg+= a + " ")
