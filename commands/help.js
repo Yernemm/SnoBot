@@ -53,21 +53,22 @@ exports.run = (data) => {
 
     //INSTANTIATE CMD OBJECTS
     //--------------------------------
-    let cmdCount = client.commands.keyArray().length;
-    client.commands.keyArray().forEach(c =>{
+    let cmdCount = client.commandsNoAlias.keyArray().length;
+    client.commandsNoAlias.keyArray().forEach(c =>{
         
 
        db.checkPerms(data, c, res =>{
         if(res){
 
             let newCmdObj = {};
-            theCmd = client.commands.get(c);
+            theCmd = client.commandsNoAlias.get(c);
             newCmdObj.name = c;
             newCmdObj.desc = theCmd.desc();
             newCmdObj.usage = theCmd.use();
             newCmdObj.type = theCmd.cmdtype();
+            theCmd.alias ? newCmdObj.alias = theCmd.alias() : undefined ;
             cmdObj.push(newCmdObj);
-            console.log(cmdObj)
+            ///////////////////////////////////////////console.log(cmdObj)
         }
         cmdCount--;
         if(cmdCount === 0) start()
@@ -98,16 +99,19 @@ exports.run = (data) => {
 
     function findCmdByName(cmdName){
         //message.channel.send("`2|" + cmdName + "|`");
+        let toReturn = false;
         cmdObj.forEach( (thisCmd) => {
-            
+            console.log("a")
             if (thisCmd.name == cmdName)
             {
-                message.channel.send("`3|" + thisCmd.id + "|`");
-                return thisCmd.id;
+                //message.channel.send("`3|" + thisCmd.name + "|`");
+                console.log(thisCmd)
+                toReturn = thisCmd;
             }
         });
+        console.log("escaped")
         //message.channel.send("`4| escaped`");
-       return false;
+       return toReturn;
     }
 
 
@@ -142,7 +146,7 @@ exports.run = (data) => {
     
     
                 var cmdInfoMsg = "";
-                console.log(getAllTypes());
+                //console.log(getAllTypes());
                 getAllTypes().forEach( (type)=>{
                     cmdInfoMsg+= "**" + capitalizeFirstLetter(type) + "**\r\n> ";
                     getAllCmdByType(type).forEach( (tcmd) =>{
@@ -162,13 +166,21 @@ exports.run = (data) => {
     
                 let cmd = argsTxt;
                 try {
-                    let file = require(`./${cmd}.js`);
+                    /*let file = require(`./${cmd}.js`);
     
                     let de = file.desc();
                     let us = file.use();
                     msg = `**Help for ${config.prefix}${cmd}**\r\n${de}\r\nUsage: ${config.prefix}${cmd} ${us}`;
+                    */
+                   let c = findCmdByName(cmd)
+                   console.log(c)
+                    if(c){       
+                        msg = `**Help for ${config.prefix}${c.name}**\r\n> ${c.desc}\r\nUsage: \n> \`${config.prefix}${c.name} ${c.usage}\``;
+                    }else{
+                        msg = `Command \"${argsTxt}\" not found.\r\nUse **${config.prefix}help** to see available commands.`
+                    }
                 } catch (err) {
-                    msg = `Command \"${argsTxt}\" not found.\r\nUse **${config.prefix}help** to see available commands.`
+                    msg = `Error`
                 }
     
                 break;
