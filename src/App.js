@@ -80,7 +80,8 @@ class App extends React.Component {
         } - v{ver.ver.num}.{process.env.REACT_APP_GIT_VER} -</code>
 </div>
 
-
+<div class="scrollbar-app">
+    <div class="overflow">
       <header className="App-header">
 
         
@@ -100,6 +101,9 @@ class App extends React.Component {
   (<Panel {...props} state={this.state}/>)
 }/>
         </Switch>
+
+        </div>
+        </div>
         </div>
     </div>
   
