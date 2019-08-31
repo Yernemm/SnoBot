@@ -52,6 +52,12 @@ fs.readdir("./commands/", (err, files) => {
     let commandName = file.split(".")[0];
     console.log(`Attempting to load command ${commandName}`);
     client.commands.set(commandName, props);
+    if(props.alias){
+      props.alias().forEach(alias => {
+        console.log(`Attempting to load alias ${alias}`);
+        client.commands.set(alias, props);
+      })
+    }
   });
 });
 //=============================================
