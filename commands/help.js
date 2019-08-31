@@ -176,6 +176,13 @@ exports.run = (data) => {
                    console.log(c)
                     if(c){       
                         msg = `**Help for ${config.prefix}${c.name}**\r\n> ${c.desc}\r\nUsage: \n> \`${config.prefix}${c.name} ${c.usage}\``;
+                        if(c.alias)
+                        {
+                            msg+="\nAliases:\n> `"
+                            c.alias.forEach(a => msg+= a + " ")
+                            msg = msg.substring(0, msg.length - 1);
+                            msg+="`"
+                        }
                     }else{
                         msg = `Command \"${argsTxt}\" not found.\r\nUse **${config.prefix}help** to see available commands.`
                     }
