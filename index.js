@@ -11,7 +11,7 @@ const Enmap = require("enmap");
 const axios = require("axios");
 const cookie = require("cookie")
 var cookieParser = require('cookie-parser')
-let ver = JSON.parse(fs.readFileSync('.src/ver.json')).ver
+let ver = JSON.parse(fs.readFileSync('./src/ver.json')).ver
 var exec = require('child_process').exec;
 
 var app = express()
@@ -25,7 +25,8 @@ function execute(command, callback){
   exec(command, function(error, stdout, stderr){ callback(stdout); });
 };
 client.ver = ver;
-execute("git rev-list --count HEAD", (build) => client.ver.build = build)
+
+execute("git rev-list --count HEAD", (build) => {client.ver.build = build.split("\n")[0].split("\r")[0]})
 
 
 
