@@ -1,5 +1,9 @@
 module.exports = (client) => {
   
     console.log(`Logged in as ${client.user.tag}`);
-    client.user.setPresence({ status: 'online', game: { name: `snobot.yernemm.xyz  |  ${"v" + client.ver.num + "." + client.ver.build}` } });
+    let presence = ""
+    if(client.ver.branch == "dev")
+    presence += "[DEV] ";
+    presence += `snobot.yernemm.xyz  |  ${"v" + client.ver.num + "." + client.ver.build}`
+    client.user.setPresence({ status: 'online', game: { name: presence } });
   };
