@@ -35,7 +35,21 @@ class App extends React.Component {
     });
   }
 
+  signOutState(){
+    document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    this.setState(
+      {
+       discordUserData: undefined,
+       authChecked: true,
+       loggedIn: false  
+      }
+    )
+  }
+
+
+
   render () {
+    if(!this.state.discordUserData)this.state.discordUserData = "test"
   return (
     <Router>
       
@@ -50,7 +64,7 @@ class App extends React.Component {
     
         this.state.loggedIn?
         
-        "Logged in as " + this.state.discordUserData.username + "."
+        <span><SignOut /> - Logged in as {this.state.discordUserData.username}.</span>
         
         :
         
@@ -312,6 +326,13 @@ function nav({ location }){
       {links}
     </div>
   )
+}
+
+
+class SignOut extends React.Component {
+  render() {
+    return <span onClick={this.signOutState}>[Sign Out]</span>;
+  }
 }
 
 function panelNav({ location }){
