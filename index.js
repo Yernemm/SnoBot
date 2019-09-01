@@ -29,7 +29,6 @@ client.ver = ver;
 execute("git rev-list --count HEAD", (build) => {client.ver.build = build.split("\n")[0].split("\r")[0]})
 execute("git rev-parse --abbrev-ref HEAD", (branch) => {client.ver.branch = branch.split("\n")[0].split("\r")[0]})
 
-
 //Discord Command and Event handler
 //=============================================
 client.config = config;
