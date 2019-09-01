@@ -22,6 +22,7 @@ exports.run = (data) => {
     //COMMAND LOGIC HERE:
 
 
+
     const Discord = require("discord.js");
     const sqlite = require("sqlite");
     const request = require("request");
