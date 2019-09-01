@@ -42,6 +42,9 @@ module.exports = {
 	nl: function (){
 		return newLine;	
     },
+    capitalizeFirstLetter: function(string){
+        return capitalizeFirstLetter(string);
+    },
     getGuildsByUser: getGuildsByUser,
 	getLangs: function () {
 		return {
@@ -159,7 +162,9 @@ module.exports = {
 
 
 
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 function logging(config, bot, message, msg, type = "d") {
