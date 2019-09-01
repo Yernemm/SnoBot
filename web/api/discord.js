@@ -30,8 +30,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     let options = {
         maxAge: 1000 * 60 * 60, // would expire after 15 minutes
         //httpOnly: true // The cookie only accessible by the web server
-        path: "/"
-        
+        path: "/"      
     }
 
     // Set cookie
