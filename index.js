@@ -170,7 +170,6 @@ io.on('connection', function (socket) {
 
 });
 
-
 //Start Discord and web server
 client.login(config.discordToken);
 server.listen(config.webPort, () => {
