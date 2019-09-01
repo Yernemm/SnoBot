@@ -8,7 +8,8 @@ const router = express.Router();
 
 const CLIENT_ID = config.panelId;
 const CLIENT_SECRET = config.panelSecret;
-const redirect = encodeURIComponent('https://snobot.yernemm.xyz/api/discord/callback');
+const redirect = encodeURIComponent(config.panelRedirect);
+//'https://snobot.yernemm.xyz/api/discord/callback'
 
 router.get('/login', (req, res) => {
   res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${redirect}`);
