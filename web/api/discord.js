@@ -3,7 +3,6 @@ const config = require('../../config.json');
 const { catchAsync } = require('../../utils');
 const fetch = require('node-fetch');
 const btoa = require('btoa');
-
 const router = express.Router();
 const CLIENT_ID = config.panelId;
 const CLIENT_SECRET = config.panelSecret;
