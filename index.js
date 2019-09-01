@@ -13,7 +13,6 @@ const cookie = require("cookie")
 var cookieParser = require('cookie-parser')
 let ver = JSON.parse(fs.readFileSync('./src/ver.json')).ver
 var exec = require('child_process').exec;
-
 var app = express()
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
