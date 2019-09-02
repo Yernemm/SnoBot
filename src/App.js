@@ -147,13 +147,37 @@ Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed 
 )
 
 const startPage = () => (
-  <div>
+  <div class="start-page-wrapper">
+    <h1 class="big-clock">00:00:00</h1>
         <div class="search-box w3-card">
        <input id="SP-searchBox" type="text" name="" class="search-txt" onKeyPress={(event) => searchEnter(event)} placeholder="Search Google..."/>
       <div class="search-btn" onClick={startSearch} >
        <i class="fas fa-search"></i>
+
        </div>
+       
      </div>
+     {/* 
+     <div class="table">
+       <ul class="start-page-links-wrapper">
+         <li class="card w3-card"><p>Links:<ul><li>bruh</li></ul></p></li>
+         <li class="card w3-card">hoowdY</li>
+       </ul>
+       </div>
+       */}
+       <div class="table">
+       <table class="start-page-table">
+         <tr>
+           <td ><div class="start-card w3-card"><h5>Tools</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>Fun</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>Downloads</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>Discord</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>Social</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>Dev</h5></div></td>
+           <td ><div class="start-card w3-card"><h5>News</h5></div></td>
+         </tr>
+       </table>
+       </div>
   </div>
 )
 

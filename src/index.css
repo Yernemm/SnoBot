@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 code {
@@ -65,16 +66,22 @@ code {
   color: white;
 }
 
-.search-box {
+.start-page-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: calc(70vw + 60px);
+}
+
+.search-box {
   background: #2f3640;
   height: 60px;
   border-radius: 40px;
   padding: 10px;
-  width: calc(70vw + 60px);
+  width: calc(40vw + 70px);
+  left: 50%;
+  margin:auto
  }
  
  .search-box:hover > .search-btn {
@@ -98,7 +105,7 @@ code {
  }
  
  .search-btn > i {
-  font-size: 30px;
+  font-size: 25px;
  }
  
  .search-txt {
@@ -112,7 +119,7 @@ code {
   transition: 0.4s;
   line-height: 40px;
   font-weight: bold;
-  width: 70vw;
+  width: 40vw;
   padding: 0 6px;
  }
 
@@ -278,4 +285,48 @@ body
   overflow-y: scroll}
   .overflow{
     height: 100%px;
+  }
+
+
+  .start-page-links-wrapper {
+    min-width: 696px;
+    list-style: none;
+    padding-top: 20px;
+  }
+
+  .start-page-links-wrapper li {
+    display:inline;
+    padding: 20px;
+    margin: 10px;
+    max-height: 150px;
+    
+  }
+  .start-page-table{
+    width: 100%;
+    table-layout: fixed;
+    border: 20px
+  }
+
+  .start-page-table td {
+    padding: 5px;
+
+    
+    max-height: 150px;
+  }
+
+
+  .table {
+    margin: 0;
+    
+  }
+
+  .start-card {
+    background: #262a30;
+    color: #ccc;
+    border-radius: 6px;
+    padding: 10px
+  }
+
+  .big-clock {
+    font-size: 100px;
   }
