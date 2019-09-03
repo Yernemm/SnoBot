@@ -4,6 +4,10 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import socketIOClient from "socket.io-client";
 import ver from './ver.json'
+import {headerPage, infoPage} from './pages/info.js'
+import {startPage} from './pages/start-page.js'
+import {Panel} from './pages/bot-panel.js'
+import {NoMatch} from './common.js'
 
 
 
@@ -48,8 +52,6 @@ class App extends React.Component {
       }
     )
   }
-
-
 
   render () {
     if(!this.state.discordUserData)this.state.discordUserData = "test"
@@ -113,224 +115,9 @@ class App extends React.Component {
 
 }
 
-const headerPage = () => (
-<div>
-  <h1>SnoBot</h1>
-  <header className="App-header">
-        <div className="App-logo-container">
-        <img class="w3-circle App-logo" src={logo} alt="logo" />
-        </div>
-        </header>
-        <h2>Bot - Startpage - Ecosystem</h2>
-        <h5>Made by <a href="https://yernemm.xyz">Yernemm</a>.</h5>
-        
-</div>
-)
-
-const infoPage = () => (
-<div>
-<div class="infoBodyContainer w3-card card">
-  <div class="infoBody">
-<p>This is a bot. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit pellentesque habitant morbi tristique senectus et. Cursus vitae congue mauris rhoncus aenean. Duis tristique sollicitudin nibh sit amet. Scelerisque fermentum dui faucibus in. Dictum fusce ut placerat orci. Justo nec ultrices dui sapien eget mi proin. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Quisque egestas diam in arcu. Id eu nisl nunc mi ipsum faucibus vitae aliquet. Id aliquet risus feugiat in ante.
-
-Mattis aliquam faucibus purus in massa tempor nec. Urna duis convallis convallis tellus id interdum. Aliquet risus feugiat in ante metus dictum at tempor commodo. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Placerat duis ultricies lacus sed turpis tincidunt id. Bibendum at varius vel pharetra vel turpis nunc eget. Id nibh tortor id aliquet. Ornare suspendisse sed nisi lacus sed viverra tellus in hac. Amet purus gravida quis blandit. Rutrum tellus pellentesque eu tincidunt tortor. Amet luctus venenatis lectus magna fringilla.
-
-Consectetur adipiscing elit pellentesque habitant. Duis ut diam quam nulla porttitor massa id neque. Nisi quis eleifend quam adipiscing. Ut consequat semper viverra nam libero justo laoreet. In arcu cursus euismod quis. Id venenatis a condimentum vitae sapien pellentesque habitant. Lectus urna duis convallis convallis tellus. In vitae turpis massa sed. Suspendisse ultrices gravida dictum fusce. Velit scelerisque in dictum non consectetur a. Sit amet facilisis magna etiam tempor. Nisl nunc mi ipsum faucibus vitae aliquet. Sed blandit libero volutpat sed cras ornare arcu. Sapien et ligula ullamcorper malesuada. Sed faucibus turpis in eu mi bibendum neque egestas congue. Sagittis vitae et leo duis.
-
-Quisque non tellus orci ac auctor augue mauris augue. Purus non enim praesent elementum facilisis. Felis imperdiet proin fermentum leo vel orci porta non pulvinar. Sagittis id consectetur purus ut faucibus pulvinar elementum. Nullam eget felis eget nunc lobortis mattis. Massa massa ultricies mi quis hendrerit dolor. Id semper risus in hendrerit. Eget aliquet nibh praesent tristique magna sit amet purus. Cursus in hac habitasse platea dictumst quisque. Dolor sit amet consectetur adipiscing. Cursus vitae congue mauris rhoncus. Congue quisque egestas diam in arcu. Rhoncus urna neque viverra justo nec ultrices dui sapien eget. Sit amet tellus cras adipiscing. Nam at lectus urna duis convallis. Vel pretium lectus quam id leo in vitae turpis. Habitasse platea dictumst quisque sagittis purus. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Nibh tortor id aliquet lectus.
-
-Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Sed arcu non odio euismod lacinia at quis risus. Donec ac odio tempor orci dapibus ultrices in. Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula. Nisl purus in mollis nunc sed id semper risus. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae proin. Facilisis leo vel fringilla est ullamcorper eget. Tempus iaculis urna id volutpat lacus laoreet non. Volutpat sed cras ornare arcu dui vivamus arcu. Porta non pulvinar neque laoreet suspendisse. Interdum velit laoreet id donec. Ornare suspendisse sed nisi lacus sed viverra tellus in hac.</p>
-</div>
-</div>
-
-</div>
-)
-
-const startPage = () => (
-  <div class="start-page-wrapper">
-      <BigClock />
-      <SearchBar />
-      <LinksList />    
-  </div>
-)
-
-const BigClock = () =>{
-  return <h1 class="big-clock"><Clock /></h1>
-}
-
-class SearchBar extends React.Component {
-render(){
-  return <div>
-    <div class="search-box w3-card">
-       <input id="SP-searchBox" type="text" name="" class="search-txt" onKeyPress={(event) => searchEnter(event)} placeholder="Search Google..."/>
-      <div class="search-btn" onClick={startSearch} >
-       <i class="fas fa-search"></i>
-
-       </div>
-       
-     </div>
-  </div>
-}
-}
-
-class LinksList extends React.Component {
-  render(){
-    return <div>
-<div class="table">
-       <table class="start-page-table">
-         <tr>
-           <td ><div class="start-card w3-card"><h5>Tools</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>Fun</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>Downloads</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>Discord</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>Social</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>Dev</h5></div></td>
-           <td ><div class="start-card w3-card"><h5>News</h5></div></td>
-         </tr>
-       </table>
-       </div>
-    </div>
-  }
-}
-
-function encodeGoogleSearch(query) {
-  let googleUrl = "https://www.google.com/search?q="
-  return googleUrl + encodeURIComponent(query);
-}
-
-function googleSearch(query){
-  window.open(encodeGoogleSearch(query), '_blank');
-}
-
-function startSearch(){
-  googleSearch(document.getElementById('SP-searchBox').value);
-}
-
-function searchEnter(event) { 
-  if(event.key === "Enter"){
-    startSearch();
-  }
-}
-
-class Panel extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-  render () {
-    if(!this.props.state.discordUserData)this.props.state.discordUserData = "none";
-  return (
-<div>
-{
-        
 
 
-        (this.props.state.loggedIn)?
-        
-        
-        panelLogged(this.props.state)
-        
-        :
-        
-        this.props.state.authChecked?
-        panelNotLogged(this.props.state)
-        :
-        <div class="infoBodyContainer w3-card card">
-  <div class="infoBody">
-        <h2>Checking authentication...</h2>
-        <hr />
-        <p>If this takes too long, try logging in.</p>
-        <DiscordLoginBtn />
-        </div>
-  </div>
-        }
-</div>
-  )
-}}
 
-const panelNotLogged = (data) =>(
-  <div>
-    <div class="infoBodyContainer w3-card card">
-  <div class="infoBody">
-    <h2>You are not logged in.</h2>
-    <p>
-      <code>Reason: {data.discordUserData.loginMessage}</code>
-    </p>
-    <DiscordLoginBtn />
-    </div>
-  </div>
-  </div>
-)
-
-const panelLogged = (data) => (
-  <div>
-  <div style={{"text-align": "left"}}> 
-    
-    <nav class="panel-sidebar w3-card card" id="mySidebar">
-  <div class="panel-sidebar-welcome">
-  <div class="w3-container w3-row">
-    <br />
-    <div class="w3-col s4">
-      <img src={"https://cdn.discordapp.com/avatars/" + data.discordUserData.id + "/" + data.discordUserData.avatar + ".png"} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
-    </div>
-    <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>{data.discordUserData.username}</strong></span><br />
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-    </div>
-    
-    
-  </div>
-  <hr />
-  </div>
-  <div class="scrollbar">
-    <div class="overflow">
-  <div class="w3-bar-block">
-  <Route component={panelNav} />
-  </div>
-    </div>
-    </div>
-    </nav>
-  </div>
-  <div class="panel-contents card w3-card">    
-  <div class="scrollbar-panel-content">
-    <div class="overflow">
-  <Switch>
-      <Route exact={true} path="/panel" component={ComingSoon}/>
-      <Route exact={true} path="/panel/user/leaderboard" component={ComingSoon}/>
-      <Route exact={true} path="/panel/user/stats" component={ComingSoon}/>
-      <Route component={NoMatch} />
-        </Switch>
-        </div>
-        </div>
-        </div>
-  </div>
-)
-
-const DiscordLoginBtn = () => (
-  <div class="discordLoginBtn">
-  <a class="w3-card-4" href="/api/discord/login">Login through Discord</a>
-</div>
-)
-
-function NoMatch({ location }) {
-  return (
-    <div>
-      <h3>
-        Page "<code>{location.pathname}</code>" not found.
-      </h3>
-      <Link class="active" to="/">Home Page</Link>
-    </div>
-  );
-}
-
-const ComingSoon = () => (
-<div>
-  <h1>Coming Soon!</h1>
-</div>
-)
 
 
 function nav({ location }){
@@ -389,105 +176,7 @@ class SignOut extends React.Component {
   }
 }
 
-function panelNav({ location }){
 
-  let linkData = [];
-
-  function addLinkData(path, name, icon){
-    linkData.push({
-      "name": name,
-      "path": path,
-      "icon": icon
-    })
-  }
-
-  function addSeparator(name){
-    linkData.push({
-      "isSeparator": true,
-      "name": name
-    })
-  }
-
-  addSeparator("Dashboard");
-  addLinkData("", "Home", "fas fa-home");
-  addSeparator("User");
-  addLinkData("/user/leaderboard", "Leaderboard", "fas fa-trophy");
-  addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
-  addSeparator("Manage Servers");
-  for(let i = 0;i<50;i++)addLinkData("/server/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
-
-
-  let links = [];
-
-  linkData.forEach(d =>{
-    if(!d.isSeparator){
-
-      let classes = "w3-bar-item w3-button w3-padding "
-      d.path = "/panel" + d.path;
-      if(d.path != "/panel"){
-        if(location.pathname.startsWith(d.path)){
-          classes += "panel-sidebar-btn-active"
-        }
-      }else if(location.pathname === d.path){
-        classes += "panel-sidebar-btn-active"
-      }
-      links.push(<Link class={classes} to={d.path}><i class={d.icon}></i> {d.name}</Link>);
-
-    } else {
-      links.push(
-        <div>
-        
-        <div class="w3-container">   
-        <h5 style={{textAlign:"center"}}>{d.name}</h5>
-      </div>
-      </div>
-      )
-    }
-
-  })
-  
-  return (
-    <div>
-      {links}
-    </div>
-  )
-}
-
-function FormattedDate(props) {
-  return <span>{props.date.toLocaleTimeString()}</span>;
-}
-
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <FormattedDate date={this.state.date} />
-      </div>
-    );
-  }
-}
 
 
 export default App;
