@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const DiscordLoginBtn = () => (
     <div class="discordLoginBtn">
-    <a class="w3-card-4" href="/api/discord/login">Login through Discord</a>
+    <a class="w3-card-4" href="/api/discord/login"><i class="fab fa-discord"></i> Login through Discord</a>
   </div>
   )
 
