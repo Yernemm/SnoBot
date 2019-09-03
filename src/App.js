@@ -148,9 +148,20 @@ Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed 
 
 const startPage = () => (
   <div class="start-page-wrapper">
-    <h1 class="big-clock"><Clock /></h1>
-    
-        <div class="search-box w3-card">
+      <BigClock />
+      <SearchBar />
+      <LinksList />    
+  </div>
+)
+
+const BigClock = () =>{
+  return <h1 class="big-clock"><Clock /></h1>
+}
+
+class SearchBar extends React.Component {
+render(){
+  return <div>
+    <div class="search-box w3-card">
        <input id="SP-searchBox" type="text" name="" class="search-txt" onKeyPress={(event) => searchEnter(event)} placeholder="Search Google..."/>
       <div class="search-btn" onClick={startSearch} >
        <i class="fas fa-search"></i>
@@ -158,15 +169,14 @@ const startPage = () => (
        </div>
        
      </div>
-     {/* 
-     <div class="table">
-       <ul class="start-page-links-wrapper">
-         <li class="card w3-card"><p>Links:<ul><li>bruh</li></ul></p></li>
-         <li class="card w3-card">hoowdY</li>
-       </ul>
-       </div>
-       */}
-       <div class="table">
+  </div>
+}
+}
+
+class LinksList extends React.Component {
+  render(){
+    return <div>
+<div class="table">
        <table class="start-page-table">
          <tr>
            <td ><div class="start-card w3-card"><h5>Tools</h5></div></td>
@@ -179,9 +189,9 @@ const startPage = () => (
          </tr>
        </table>
        </div>
-  </div>
-)
-
+    </div>
+  }
+}
 
 function encodeGoogleSearch(query) {
   let googleUrl = "https://www.google.com/search?q="
