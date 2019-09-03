@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import socketIOClient from "socket.io-client";
 import ver from './ver.json'
 import {headerPage, infoPage} from './pages/info.js'
-import {startPage} from './pages/start-page.js'
+import {StartPage} from './pages/start-page.js'
 import {Panel} from './pages/bot-panel.js'
 import {NoMatch} from './common.js'
 
@@ -65,8 +65,6 @@ class App extends React.Component {
     <Route component={nav} />
     <code style={{color:"#fff", float:"right"}}>- {
         
-
-    
         this.state.loggedIn?
         
         <span><SignOut signOutState={this.signOutState} /> - Logged in as {this.state.discordUserData.username}.</span>
@@ -98,7 +96,11 @@ class App extends React.Component {
       
       <Switch>
       <Route exact={true} path="/" component={infoPage}/>
-        <Route path="/start" component={startPage}/>
+
+        <Route path="/start" render={(props) => 
+  (<StartPage {...props} state={this.state}/>)
+}/>
+
         <Route path="/panel" render={(props) => 
   (<Panel {...props} state={this.state}/>)
 }/>

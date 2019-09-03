@@ -1,12 +1,20 @@
 import React from 'react';
 
-export const startPage = () => (
-    <div class="start-page-wrapper">
+export class StartPage extends React.Component {
+    constructor(props) {
+      super(props);
+  
+    }
+  
+    render () {
+    return <div class="start-page-wrapper">
+        {WelcomeText(this.props)}
         <BigClock />
         <SearchBar />
         <LinksList />    
     </div>
-  )
+    }
+}
   
   const BigClock = () =>{
     return <h1 class="big-clock"><Clock /></h1>
@@ -100,5 +108,14 @@ export const startPage = () => (
         </div>
       );
     }
+  }
+
+  const WelcomeText = (props) => {
+
+        if(props.state.loggedIn)
+        return <h1>Welcome, {props.state.discordUserData.username}.</h1>
+        else
+        return <h1>Welcome.</h1>
+      
   }
   
