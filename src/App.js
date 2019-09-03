@@ -67,12 +67,12 @@ class App extends React.Component {
         
         this.state.loggedIn?
         
-        <span><SignOut signOutState={this.signOutState} /> - Logged in as {this.state.discordUserData.username}.</span>
+        <span> - <SignOut signOutState={this.signOutState} /> - Logged in as {this.state.discordUserData.username}.</span>
         
         :
         
         this.state.authChecked?
-        "Not Logged in"
+        <span> - <a href="/api/discord/login"><i class="fab fa-discord"></i> Login through Discord</a></span>
         :
         
         ""
