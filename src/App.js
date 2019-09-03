@@ -148,7 +148,8 @@ Ullamcorper eget nulla facilisi etiam dignissim diam. Nunc eget lorem dolor sed 
 
 const startPage = () => (
   <div class="start-page-wrapper">
-    <h1 class="big-clock">00:00:00</h1>
+    <h1 class="big-clock"><Clock /></h1>
+    
         <div class="search-box w3-card">
        <input id="SP-searchBox" type="text" name="" class="search-txt" onKeyPress={(event) => searchEnter(event)} placeholder="Search Google..."/>
       <div class="search-btn" onClick={startSearch} >
@@ -440,6 +441,42 @@ function panelNav({ location }){
       {links}
     </div>
   )
+}
+
+function FormattedDate(props) {
+  return <span>{props.date.toLocaleTimeString()}</span>;
+}
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <FormattedDate date={this.state.date} />
+      </div>
+    );
+  }
 }
 
 
