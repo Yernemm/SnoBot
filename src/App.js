@@ -40,7 +40,7 @@ class App extends React.Component {
       console.log(msg)
     });
   }
-
+  
   signOutState(){
     console.log("signing out...")
     document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
