@@ -48,21 +48,10 @@ export class StartPage extends React.Component {
         this.allLinks = [];
         this.addLink("Social", "Twitter", "https://twitter.com/home", "For tweeting.")
         this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
-        this.addLink("Tools", "TiddlyWiki", "https://tiddlywiki.com/")
-        this.addLink("Dev", "Enjoy CSS", "https://enjoycss.com")
-        this.addLink("Tools", "Fake Name Generator", "https://www.fakenamegenerator.com")
-        this.addLink("Tools", "JXlate", "http://otp22.com/xlate/")
+        this.addLink("Tools", "TiddlyWiki", "https://tiddlywiki.com/", "Free offline personal html wiki.")
+        this.addLink("Dev", "Enjoy CSS", "https://enjoycss.com", "Tools for generating CSS.")
+        this.addLink("Tools", "Fake Name Generator", "https://www.fakenamegenerator.com", "Generate a fake identity.")
+        this.addLink("Tools", "JXlate", "http://otp22.com/xlate/", "A versatile cipher tool. Useful for solving ARGs.")
 
       }
 
