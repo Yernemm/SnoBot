@@ -40,7 +40,7 @@ class App extends React.Component {
       console.log(msg)
     });
   }
-  
+
   signOutState(){
     console.log("signing out...")
     document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -72,7 +72,7 @@ class App extends React.Component {
         :
         
         this.state.authChecked?
-        <span> <Link to="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord]</Link></span>
+        <span> <a href="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord</a>]</span>
         :
         
         ""
@@ -141,7 +141,7 @@ function nav({ location }){
   let links = [];
 
   linkData.forEach(d =>{
-    let classes = ""
+    let classes = "topnav-item "
     if(d.path != "/"){
       if(location.pathname.startsWith(d.path)){
         classes += "active"
@@ -174,7 +174,7 @@ class SignOut extends React.Component {
   }
   
   render() {
-    return <Link onClick={this.handleClick}>[Sign Out]</Link>;
+    return <a onClick={this.handleClick}>[Sign Out]</a>;
   }
 }
 
