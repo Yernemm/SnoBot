@@ -1,4 +1,5 @@
 import React from 'react';
+import { all } from 'q';
 
 export class StartPage extends React.Component {
     constructor(props) {
@@ -36,104 +37,80 @@ export class StartPage extends React.Component {
   }
   
   class LinksList extends React.Component {
+    constructor(props) {
+        super(props);
+
+      }
+
+      allLinks = [];
+
+      addAllLinks(){
+        this.allLinks = [];
+        this.addLink("Social", "Twitter", "https://twitter.com/home", "For tweeting.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Social", "Reddit", "https://www.reddit.com", "The front page of the internet.")
+        this.addLink("Tools", "TiddlyWiki", "https://tiddlywiki.com/")
+        this.addLink("Dev", "Enjoy CSS", "https://enjoycss.com")
+        this.addLink("Tools", "Fake Name Generator", "https://www.fakenamegenerator.com")
+        this.addLink("Tools", "JXlate", "http://otp22.com/xlate/")
+
+      }
+
+      addLink(category, name, url, description = ""){
+          this.allLinks.push({
+              "category": category,
+              "name": name,
+              "url": url,
+              "description": description
+          })
+      }
+
+      generateLinkHtml(){
+          this.addAllLinks()
+          let cards = [];
+          let categories = [];
+        this.allLinks.forEach(link => {
+            if(!categories.includes(link.category))
+            categories.push(link.category)
+        })
+
+        categories.forEach(cat => {
+            let links = [];
+            this.allLinks.forEach(link => {
+                if(link.category === cat)
+                links.push(<div class="tooltip"><a href={link.url} target="_blank">{link.name}</a><div class="tooltiptext">{link.description}</div><br /></div>)
+            })
+            cards.push(<td ><div class="start-card w3-card"><div class="linksWrapper"><h5>{cat}</h5>
+            <div class="scrollbar-start-list">
+           <div class="overflow">
+           {links}
+         </div></div></div></div></td>)
+        })
+
+
+        let linksWrapper = <div class="table">
+          <table class="start-page-table">
+            <tr>{cards}</tr></table></div>
+
+            return linksWrapper
+      }
+
+
+    
+
+
     render(){
-      return <div>
-  <div class="table">
-         <table class="start-page-table">
-           <tr>
-             <td ><div class="start-card w3-card">
-                 <h5>Tools</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            bruh <br />
-            bruh <br />
-            bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh bruhbruh bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>Fun</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            bruh <br />
-            bruh <br />
-            bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh bruhbruh <br />
-            bruh <br />
-           
-            bruh <br />
-            bruh <br />
-            bruh <br />
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>Downloads</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            bruh <br />
-            bruh <br />
-            bruh <br />
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>Discord</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            bruh <br />
-            bruh <br />
-            bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh bruhbruh bruhbruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-            bruh <br />
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>Social</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>Dev</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            
-          </div></div></div></td>
-             <td ><div class="start-card w3-card"><h5>News</h5>
-             <div class="scrollbar-start-list">
-            <div class="overflow">
-            
-          </div></div></div></td>
-           </tr>
-         </table>
-         </div>
-      </div>
+      return <div>{this.generateLinkHtml()}</div>
     }
   }
   
