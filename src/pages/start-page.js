@@ -52,7 +52,11 @@ export class StartPage extends React.Component {
         this.addLink("Dev", "Enjoy CSS", "https://enjoycss.com", "Tools for generating CSS.")
         this.addLink("Tools", "Fake Name Generator", "https://www.fakenamegenerator.com", "Generate a fake identity.")
         this.addLink("Tools", "JXlate", "http://otp22.com/xlate/", "A versatile cipher tool. Useful for solving ARGs.")
-
+        this.addLink("Dev", "RegExr", "https://regexr.com/", "Create and test RegEx.")
+        this.addLink("Social", "Discord", "https://discordapp.com", "All-in-one voice and text chat for gamers.")
+        this.addLink("Tools", "Weboasis", "https://weboas.is", "Startpage and a large set of tools.")
+        this.addLink("Media", "YouTube", "https://www.youtube.com", "Broadcast yourself.")
+        this.addLink("Media", "Twitch", "https://www.twitch.tv", "Watch game streams live.")
       }
 
       addLink(category, name, url, description = ""){
