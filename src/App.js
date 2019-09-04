@@ -63,21 +63,21 @@ class App extends React.Component {
 <div style={{"position":"absolute", "z-index":1, "width": "100%", "height":"100%"}}>
     <div class="topnav w3-card">
     <Route component={nav} />
-    <code style={{color:"#fff", float:"right"}}>- {
+    <code style={{color:"#fff", float:"right"}}>| {
         
         this.state.loggedIn?
         
-        <span> - <SignOut signOutState={this.signOutState} /> - Logged in as {this.state.discordUserData.username}.</span>
+        <span> <SignOut signOutState={this.signOutState} /> | Logged in as {this.state.discordUserData.username}.</span>
         
         :
         
         this.state.authChecked?
-        <span> - <a href="/api/discord/login"><i class="fab fa-discord"></i> Login through Discord</a></span>
+        <span> <a href="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord</a>]</span>
         :
         
         ""
         
-        } - v{ver.ver.num}.{process.env.REACT_APP_GIT_VER} -</code>
+        } | v{ver.ver.num}.{process.env.REACT_APP_GIT_VER} |</code>
 </div>
 
 <div class="scrollbar-app">
