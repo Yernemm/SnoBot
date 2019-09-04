@@ -72,7 +72,7 @@ class App extends React.Component {
         :
         
         this.state.authChecked?
-        <span> <a href="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord</a>]</span>
+        <span> <a href="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord]</a></span>
         :
         
         ""
