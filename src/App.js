@@ -72,7 +72,7 @@ class App extends React.Component {
         :
         
         this.state.authChecked?
-        <span> <a href="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord</a>]</span>
+        <span> <Link to="/api/discord/login">[<i class="fab fa-discord"></i> Login through Discord]</Link></span>
         :
         
         ""
@@ -174,7 +174,7 @@ class SignOut extends React.Component {
   }
   
   render() {
-    return <a onClick={this.handleClick}>[Sign Out]</a>;
+    return <Link onClick={this.handleClick}>[Sign Out]</Link>;
   }
 }
 
