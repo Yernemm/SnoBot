@@ -59,6 +59,8 @@ export class StartPage extends React.Component {
         this.addLink("Media", "Twitch", "https://www.twitch.tv", "Watch game streams live.")
         this.addLink("Dev", "Gradient Magic", "https://www.gradientmagic.com", "A gallery of fantastic and unique CSS gradients.")
         this.addLink("Social", "Reddit Modqueue", "https://www.reddit.com/r/mod/about/modqueue/", "Check reported content from subs you moderate.")
+        this.addLink("Social", "Random Subreddit", "http://www.reddit.com/r/random/", "r/random takes you to a random page on Reddit.")
+      
       }
 
       addLink(category, name, url, description = ""){
