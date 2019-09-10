@@ -9,7 +9,7 @@ module.exports = (client, message) => {
 console.log(message.content)
 
 //Drop exp
-lvl.expDrop(message.author.id, message.guild.id, message.content)
+//lvl.expDrop(message.author.id, message.guild.id, message.content)
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
   if(message.content.indexOf(client.config.prefix) === 0){}
