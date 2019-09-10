@@ -1,4 +1,5 @@
 const db = require('./../modules/db.js')
+const lvl = require('./../modules/levels.js')
 module.exports = (client, message) => {
     // Ignore all bots
     if (message.author.bot) return;
@@ -6,6 +7,9 @@ module.exports = (client, message) => {
     // Ignore messages not starting with the prefix (in config.json)
   
 console.log(message.content)
+
+//Drop exp
+expDrop(message.author.id, message.guild.id, message.content)
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
   if(message.content.indexOf(client.config.prefix) === 0){}
