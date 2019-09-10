@@ -10,10 +10,59 @@ var cooldownMap = {};
 
 module.exports = {
     calcLevel: calcLevel,
-    calcExpToGive: calcExpToGive
+    calcExpToGive: calcExpToGive,
+    expDrop: expDrop,
+    getStats: getStats
  }
 
 //Store global and per-server rankings.
+
+function expDrop(userId, serverId, message){
+    let globalExp = 0
+    let serverExp = 0
+    db.getFrom("exp-global", userId)
+    .then(val => globalExp = val * 1)
+    .catch(err => {console.error(err)})
+    .finally(()=>{
+        db.getFrom("exp-server-" + serverId, userId)
+        .then(val => serverId = val * 1)
+        .catch(err => {console.error(err)})
+        .finally(()=>{
+            let expDropValue = calcExpToGive(userId, message.length);
+            globalExp += expDropValue;
+            serverExp += expDropValue;
+            db.setTo("exp-global", userId, globalExp).then(()=>{}).catch(err=>console.error(err))
+            db.setTo("exp-server-" + serverId, userId, serverExp).then(()=>{}).catch(err=>console.error(err))
+        })
+    })
+} 
+
+function getStats(userId, serverId){
+    return new Promise((resolve, reject) => {
+        let globalExp = 0
+    let serverExp = 0
+        db.getFrom("exp-global", userId)
+    .then(val => globalExp = val * 1)
+    .catch(err => {console.error(err)})
+    .finally(()=>{
+        db.getFrom("exp-server-" + serverId, userId)
+        .then(val => serverId = val * 1)
+        .catch(err => {console.error(err)})
+        .finally(()=>{
+            resolve({
+                global: {
+                    expTotal: globalExp,
+                    level: calcLevel(globalExp)
+                },
+                server:{
+                    expTotal: serverExp,
+                    level: calcLevel(serverExp)
+                }
+            })
+        })
+    })
+    })
+}
 
 function calcExpToGive(id, length){
     console.log(cooldownMap)
