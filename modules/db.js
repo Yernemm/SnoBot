@@ -85,8 +85,9 @@ function getFrom(table, key) {
             .then(sql => {
                 sql.get(`SELECT data FROM ${table.replace(/\W/g, '')} WHERE key = ?`, key)
                     .then(data => {
-                        console.log(data? true : false)
-                        resolve(JSON.parse(data.data))
+                        console.log(data)
+                        data? resolve(JSON.parse(data.data)) : resolve(false)
+                        
                     })
                     .catch(err => {
                         if ((err + "").startsWith("Error: SQLITE_ERROR: no such table:")) {
