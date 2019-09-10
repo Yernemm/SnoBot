@@ -20,19 +20,22 @@ module.exports = {
 function expDrop(userId, serverId, message){
     let globalExp = 0
     let serverExp = 0
+    console.log(1)
     db.getFrom("exp-global", userId)
     .then(val => globalExp = val * 1)
     .catch(err => {console.error(err)})
     .finally(()=>{
+        console.log(2)
         db.getFrom("exp-server-" + serverId, userId)
         .then(val => serverId = val * 1)
         .catch(err => {console.error(err)})
         .finally(()=>{
+            console.log(3)
             let expDropValue = calcExpToGive(userId, message.length);
             globalExp += expDropValue;
             serverExp += expDropValue;
-            db.setTo("exp-global", userId, globalExp).then(()=>{}).catch(err=>console.error(err))
-            db.setTo("exp-server-" + serverId, userId, serverExp).then(()=>{}).catch(err=>console.error(err))
+            db.setTo("exp-global", userId, globalExp).then(()=>{console.log("set g")}).catch(err=>console.log(err))
+            db.setTo("exp-server-" + serverId, userId, serverExp).then(()=>{console.log("set s")}).catch(err=>console.log(err))
         })
     })
 } 
