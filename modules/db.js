@@ -4,7 +4,8 @@ const dbpath = "./data/db/db.sqlite";
 module.exports = {
 checkPerms: checkPerms,
 getFrom: getFrom,
-setTo: setTo
+setTo: setTo,
+calcLevel: calcLevel
 }
 
 const defaultPermissions ={
@@ -130,4 +131,19 @@ function setTo(table, key, data) {
                 reject(err);
             })
     })
+}
+
+function calcExpRequirement(level){
+    level = Math.floor(level)
+    if(level < 1)
+    return 0
+    else
+        return (5 * Math.floor(20 * Math.pow(level, 2/3))) + calcExpRequirement(level - 1)    
+}
+
+function calcLevel(exp){
+    let level = 0
+    while(exp > calcExpRequirement(level))
+        level++
+    return level <= 0 ? 0 : level - 1;
 }
