@@ -85,7 +85,7 @@ function getFrom(table, key) {
             .then(sql => {
                 sql.get(`SELECT data FROM ${table.replace(/\W/g, '')} WHERE key = ?`, key)
                     .then(data => {
-                        console.log(data)
+                        console.log(data? true : false)
                         resolve(JSON.parse(data.data))
                     })
                     .catch(err => {
