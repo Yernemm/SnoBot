@@ -120,7 +120,7 @@ function setTo(table, key, data) {
                 ON CONFLICT(key) 
                 DO UPDATE SET data=excluded.data;`, key, JSON.stringify(data))
                             .then(() => {
-                                resolve
+                                resolve()
                             })
                             .catch(err => reject(err))
 
