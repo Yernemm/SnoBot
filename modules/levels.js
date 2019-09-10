@@ -27,7 +27,7 @@ function expDrop(userId, serverId, message){
     .finally(()=>{
         console.log(2)
         db.getFrom("exp-server-" + serverId, userId)
-        .then(val => serverId = val * 1)
+        .then(val => serverExp = val * 1)
         .catch(err => {console.error(err)})
         .finally(()=>{
             console.log(3)
