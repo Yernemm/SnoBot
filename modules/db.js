@@ -110,6 +110,7 @@ function getFrom(table, key) {
 
 function setTo(table, key, data) {
     return new Promise((resolve, reject) => {
+        console.log(table)
         sqlite.open(dbpath)
             .then(sql => {
                 sql.run(`CREATE TABLE IF NOT EXISTS ${table.replace(/\W/g, '')} (key TEXT PRIMARY KEY, data TEXT)`)
