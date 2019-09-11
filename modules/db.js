@@ -84,6 +84,7 @@ function getFrom(table, key) {
                         console.log(data)
                         if(data)
                         data.data? resolve(JSON.parse(data.data)) : resolve(false)
+                        else
                         resolve(false)
                     })
                     .catch(err => {
