@@ -84,7 +84,7 @@ function getFrom(table, key) {
                         console.log(data)
                         if(data)
                         data.data? resolve(JSON.parse(data.data)) : resolve(false)
-                        
+                        resolve(false)
                     })
                     .catch(err => {
                         if ((err + "").startsWith("Error: SQLITE_ERROR: no such table:")) {
