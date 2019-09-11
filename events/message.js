@@ -6,7 +6,7 @@ module.exports = (client, message) => {
   
     // Ignore messages not starting with the prefix (in config.json)
   
-console.log(message.content)
+console.log(message.member.displayName + ": " + message.content)
 
 //Drop exp
 lvl.expDrop(message.author.id, message.guild.id, message.content)

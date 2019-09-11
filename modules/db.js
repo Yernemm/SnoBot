@@ -40,7 +40,6 @@ function checkPerms(data, cmdString, callback) {
 
 
         let res = false;
-        console.log(cmdPerm)
                 switch (cmdPerm) {
                     
                     case "everyone":
@@ -50,18 +49,14 @@ function checkPerms(data, cmdString, callback) {
                         res = false;
                         break;
                     case "admin":
-                        console.log("yess")
                         if (data.message.member.hasPermission('ADMINISTRATOR', false, true, true)){
-                            console.log("got")
                             res = true
                         }
                         else{
-                            console.log("not")
                             res = false
                         }
                         break;
                     default:
-                        console.log("bruh ddon")
                         let flag = false;
                         data.message.member.roles.forEach(role =>{
                             if(role.id == cmdPerm)
@@ -110,7 +105,6 @@ function getFrom(table, key) {
 
 function setTo(table, key, data) {
     return new Promise((resolve, reject) => {
-        console.log(table)
         sqlite.open(dbpath)
             .then(sql => {
                 sql.run(`CREATE TABLE IF NOT EXISTS ${table.replace(/\W/g, '')} (key TEXT PRIMARY KEY, data TEXT)`)
