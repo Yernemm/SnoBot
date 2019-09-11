@@ -16,7 +16,7 @@ exports.run = (data) => {
     //Uncomment for protected owner-only command.
     //if(message.author.id !== config.ownerID) return; 
     //--------------------------------------------------------------------
-    var msg = ""; //Put response message to be logged here.
+    var msg = "Pro tip: "; //Put response message to be logged here.
     //--------------------------------------------------------------------
 
     //COMMAND LOGIC HERE:
