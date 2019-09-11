@@ -23,12 +23,12 @@ function expDrop(userId, serverId, message){
     console.log(1)
     db.getFrom("exp-global", userId)
     .then(val => globalExp = val * 1)
-    .catch(err => {console.error(err)})
+    .catch(err => {console.error("1e " + err)})
     .finally(()=>{
         console.log(2)
         db.getFrom("exp-server-" + serverId, userId)
         .then(val => serverExp = val * 1)
-        .catch(err => {console.error(err)})
+        .catch(err => {console.error("2e " + err)})
         .finally(()=>{
             console.log(3)
             let expDropValue = calcExpToGive(userId, message.length);
@@ -46,11 +46,11 @@ function getStats(userId, serverId){
     let serverExp = 0
         db.getFrom("exp-global", userId)
     .then(val => globalExp = val * 1)
-    .catch(err => {console.error(err)})
+    .catch(err => {console.error("1e " + err)})
     .finally(()=>{
         db.getFrom("exp-server-" + serverId, userId)
         .then(val => serverId = val * 1)
-        .catch(err => {console.error(err)})
+        .catch(err => {console.error("2e " + err)})
         .finally(()=>{
             resolve({
                 global: {
