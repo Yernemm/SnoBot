@@ -40,6 +40,7 @@ function expDrop(userId, serverId, message){
     })
 } 
 
+
 function getStats(userId, serverId){
     return new Promise((resolve, reject) => {
         let globalExp = 0
