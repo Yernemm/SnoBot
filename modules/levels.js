@@ -49,7 +49,7 @@ function getStats(userId, serverId){
     .catch(err => {console.error("1e " + err)})
     .finally(()=>{
         db.getFrom("exp-server-" + serverId, userId)
-        .then(val => serverId = val * 1)
+        .then(val => serverExp = val * 1)
         .catch(err => {console.error("2e " + err)})
         .finally(()=>{
             resolve({
