@@ -1,7 +1,7 @@
 //METADATA
-const desc = ""; //Short description of what the command does.
-const usage = ""; //Any parameters required for command.
-const cmdtype = ""; //Type of command.
+const desc = "Sends an image file for the sent custom emoji."; //Short description of what the command does.
+const usage = "<emoji>"; //Any parameters required for command.
+const cmdtype = "utility"; //Type of command
 const alias = []; //Aliases for the command.
 //Command
 exports.run = (data) => {
