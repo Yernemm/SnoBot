@@ -20,7 +20,7 @@ exports.run = (data) => {
     //--------------------------------------------------------------------
 
     //COMMAND LOGIC HERE:
-
+    let extraData = 0;
 
     var Color = require('color');
     //debug thing
