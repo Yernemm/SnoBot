@@ -82,3 +82,46 @@ exports.cmdtype = () => {
 exports.alias = () => {
     return alias;
 }
+function isHex(h) {
+    const m = require("./../shared/methods.js");
+    return (m.lZero(parseInt(h,16).toString(16),6) == h.toString())
+}
+function validateRGB(argsArr, message) {
+    //Too lazy for long variable names. Deal with it >.<
+    var f = true;
+    for (i = 1; i <= 3; i++) {
+        let a = argsArr[i];
+        let b = parseInt(argsArr[i], 10);
+        if (a != b) {
+            //debug stuff commented out.
+            // message.channel.send(`first ${i}`);
+            f = false;
+        }
+        if (b > 255 || b < 0) {
+            // message.channel.send(`second ${i}`);
+            f = false;
+        }
+    }
+    return f;
+}
+function sendRGBCol(col, config, client, message, argsArr, argsTxt, extraData) {
+    const m = require("./../shared/methods.js");
+    var textColHex;
+    if (col.isLight())
+        textColHex = "000000";
+    else
+        textColHex = "ffffff";
+
+    var hexNum = m.lZero(col.rgbNumber().toString(16), 6);
+
+    const Discord = require("discord.js");
+    const embed = new Discord.RichEmbed()
+        .setTitle("__Colour preview__")
+        .addField("RGB", `${col.red()} ${col.green()} ${col.blue()}`)
+        .addField("Hex", hexNum)
+        .setColor(col.rgbNumber())
+        .setThumbnail(`https://dummyimage.com/800x800/${hexNum}/${textColHex}.png&text=%23${hexNum}`)
+        .setImage(`https://dummyimage.com/800x200/36393e/${hexNum}.png&text=${encodeURI(message.member.displayName)}`)
+
+    message.channel.send({ embed });
+}
