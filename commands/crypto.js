@@ -1,9 +1,10 @@
 //METADATA
 const desc = "Cryptography and base shifts. [THIS COMMAND IS NOT FULLY COMPLETE]"; //Short description of what the command does.
 const usage = `<mode> <input>
-modes:
+currently available modes:
 -shift, rot, caesar
---<mode> <shift amount> <string input>`; //Any parameters required for command.
+--<mode> <shift amount> <string input>
+--e.g. shift 13 hello`; //Any parameters required for command.
 const cmdtype = "utility"; //Type of command
 const alias = []; //Aliases for the command.
 //Command
