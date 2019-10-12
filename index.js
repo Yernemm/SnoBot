@@ -107,7 +107,9 @@ io.on('connection', function (socket) {
     console.log('user disconnected');
   });
 
-  let cookief = socket.handshake.headers.cookie;
+  if (!typeof socket.handshake.headers.cookie === 'string')
+    return;
+
   let cookies = cookie.parse(socket.handshake.headers.cookie);
 
   //Send axios request to discord API to verify the access token.
