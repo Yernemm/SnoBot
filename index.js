@@ -107,7 +107,7 @@ io.on('connection', function (socket) {
     console.log('user disconnected');
   });
 
-  if (!typeof socket.handshake.headers.cookie === 'string')
+  if (typeof socket.handshake.headers.cookie !== 'string')
     return;
 
   let cookies = cookie.parse(socket.handshake.headers.cookie);
