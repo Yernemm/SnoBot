@@ -4,6 +4,6 @@ module.exports = (client) => {
     let presence = ""
     if(client.ver.branch == "dev")
     presence += "[DEV] ";
-    presence += `snobot.yernemm.xyz  |  ${"v" + client.ver.num + "." + client.ver.build}`
+    presence += `snobot.xyz  |  ${"v" + client.ver.num + "." + client.ver.build}`
     client.user.setPresence({ status: 'online', game: { name: presence } });
   };

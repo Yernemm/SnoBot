@@ -65,10 +65,7 @@ export class Panel extends React.Component {
         <img src={"https://cdn.discordapp.com/avatars/" + data.discordUserData.id + "/" + data.discordUserData.avatar + ".png"} class="w3-circle w3-margin-right" style={{"width":"46px"}} />
       </div>
       <div class="w3-col s8 w3-bar">
-        <span>Welcome, <strong>{data.discordUserData.username}</strong></span><br />
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+        <span>Welcome, <strong>{data.discordUserData.username}</strong></span>
       </div>
       
       
@@ -123,8 +120,8 @@ export class Panel extends React.Component {
     addSeparator("User");
     addLinkData("/user/leaderboard", "Leaderboard", "fas fa-trophy");
     addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
-    addSeparator("Manage Servers");
-    for(let i = 0;i<50;i++)addLinkData("/server/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
+   // addSeparator("Manage Servers");
+   // for(let i = 0;i<50;i++)addLinkData("/server/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
   
   
     let links = [];
