@@ -41,6 +41,7 @@ export const infoPage = () => (
 <li>Moderation commands</li>
 <li>Mod mail</li>
 <li>Server spam detection and prevention</li>
+<li>Cleverbot conversations</li>
 </ul>
 <p>For a full plan listing, check the <a href="https://trello.com/b/ic3OCNEa/snobot">Trello page.</a></p>
     </div>
