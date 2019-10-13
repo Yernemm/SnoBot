@@ -20,6 +20,7 @@ export const infoPage = () => (
     <div class="infoBodyContainer w3-card card">
       <div class="infoBody">
       <h2>Bot</h2>
+      <p><a href="https://discordapp.com/oauth2/authorize?client_id=606167605165817856&permissions=0&scope=bot">Invite the bot.</a></p>
 <p>A successor to YerBot, this bot offers a selection of both fun and useful commands:</p>
 <ul>
 <li>/translate -- Translate a message between any two languages.</li>

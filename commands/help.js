@@ -137,7 +137,7 @@ exports.run = (data) => {
     
     
     
-                msg = `**SnoBot, Made by Yernemm. https://snobot.yernemm.xyz**\r\nv${client.ver.num + "." + client.ver.build} \r\nTo get help for a specific command, do ${config.prefix}help [command]\r\n\r\n`;
+                msg = `**SnoBot, Made by Yernemm. https://snobot.xyz**\r\nv${client.ver.num + "." + client.ver.build} \r\nTo get help for a specific command, do ${config.prefix}help [command]\r\n\r\n`;
                 //Line below will be re-added when help command is finished for each command.
                 //TO-DO: finish this.
                 // msg += "__Use **>help [command]** to view specific help for that command.__\r\n";
