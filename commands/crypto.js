@@ -32,8 +32,10 @@ exports.run = (data) => {
         case "shift":
         case "rot":
         case "caesar":
+            //rewrite this to be a separte function
         if (Number.isInteger(argsArr[1] * 1))
         {
+            message.channel.send(argsArr)
             var shift = argsArr[1];
             var msgBefore = argsTxt.substring(argsArr[0].length + argsArr[1].length + 2);
             var msgNew = "";
