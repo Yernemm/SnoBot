@@ -39,8 +39,8 @@ exports.run = (data) => {
             var msgBefore = argsTxt.substring(argsArr[0].length + argsArr[1].length + 2);
             var msgNew = "";
             msgBefore.split('').forEach(c =>{
-                var upper = (c == c.toUpperCase());
-                var pos = alpha.indexOf(c.toLowerCase());
+                let upper = (c == c.toUpperCase());
+                let pos = alpha.indexOf(c.toLowerCase());
                 if (pos == -1){
                     msgNew += c;
                 }else{
