@@ -27,7 +27,6 @@ exports.run = (data) => {
     const alphaCap = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const alpha = "abcdefghijklmnopqrstuvwxyz";
 
-
     switch (argsArr[0]){
         case "shift":
         case "rot":
