@@ -7,5 +7,6 @@
     "panelRedirect": "/api/discord/callback",
     "lfmApiKey": "",
     "lfmSecret": "",
-    "dblapiKey": ""
+    "dblapiKey": "",
+    "ownerId": ""
 }
