@@ -10,6 +10,7 @@ const fs = require('fs');
 const Enmap = require("enmap");
 const axios = require("axios");
 const cookie = require("cookie")
+const DBL = require("dblapi.js");
 var cookieParser = require('cookie-parser')
 let ver = JSON.parse(fs.readFileSync('./src/ver.json')).ver
 var exec = require('child_process').exec;
@@ -18,6 +19,22 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
+//dblapi
+if(client.ver.branch != "dev")
+    {
+      console.log("Attempting to send dblapi stats...")
+      const dbl = new DBL(config.dblapiKey, client);  
+
+      // Optional events
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
+
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
+
+    }
 app.use(cookieParser());
 
 function execute(command, callback){
