@@ -20,7 +20,7 @@ var io = require('socket.io').listen(server);
 
 const client = new Discord.Client();
 //dblapi
-if(client.ver.branch != "dev")
+if(ver.branch != "dev")
     {
       console.log("Attempting to send dblapi stats...")
       const dbl = new DBL(config.dblapiKey, client);  
