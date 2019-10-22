@@ -1,0 +1,11 @@
+{
+    "discordToken": "",
+    "webPort": 0,
+    "prefix": "/",
+    "panelId": "",
+    "panelSecret": "",
+    "panelRedirect": "/api/discord/callback",
+    "lfmApiKey": "",
+    "lfmSecret": "",
+    "dblapiKey": ""
+}
