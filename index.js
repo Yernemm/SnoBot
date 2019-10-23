@@ -17,6 +17,9 @@ var exec = require('child_process').exec;
 var app = express()
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+execute("git rev-list --count HEAD", (build) => {client.ver.build = build.split("\n")[0].split("\r")[0]})
+execute("git rev-parse --abbrev-ref HEAD", (branch) => {client.ver.branch = branch.split("\n")[0].split("\r")[0]})
+
 
 const client = new Discord.Client();
 //dblapi
@@ -42,8 +45,6 @@ function execute(command, callback){
 };
 client.ver = ver;
 
-execute("git rev-list --count HEAD", (build) => {client.ver.build = build.split("\n")[0].split("\r")[0]})
-execute("git rev-parse --abbrev-ref HEAD", (branch) => {client.ver.branch = branch.split("\n")[0].split("\r")[0]})
 
 //Discord Command and Event handler
 //=============================================
