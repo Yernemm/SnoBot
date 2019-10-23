@@ -19,6 +19,14 @@ export const infoPage = () => (
     <div>
     <div class="infoBodyContainer w3-card card">
       <div class="infoBody">
+        <div style={{textAlign: "center"}}>
+      <a href="https://top.gg/bot/606167605165817856" >
+  
+  <img src="https://top.gg/api/widget/servers/606167605165817856.svg" alt="SnoBot" /> 
+  <img src="https://top.gg/api/widget/upvotes/606167605165817856.svg?noavatar=true" alt="SnoBot" /> 
+  <img src="https://top.gg/api/widget/status/606167605165817856.svg?noavatar=true" alt="SnoBot" /> 
+</a>
+</div>
       <h2>Bot</h2>
       <p><a href="https://discordapp.com/oauth2/authorize?client_id=606167605165817856&permissions=0&scope=bot">Invite the bot.</a></p>
 <p>A successor to YerBot, this bot offers a selection of both fun and useful commands:</p>
