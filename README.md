@@ -1,5 +1,7 @@
 # SnoBot
 
+## [SnoBot Website](https://snobot.xyz)
+
  ### Bot
  
 [Invite the bot.](https://discordapp.com/oauth2/authorize?client_id=606167605165817856&permissions=0&scope=bot)
