@@ -21,6 +21,16 @@ function checkPerms(data, cmdString, callback) {
 
     if (cmdObj.cmdtype() == "core")
     {callback(true);return;};
+
+    //Owner only command
+    if(cmdObj.cmdtype() === "owner"){
+        if(data.message.author.id == data.client.config.ownerId)
+            callback(true);
+        else   
+            callback(false);
+        return;
+    }
+
     getFrom("guildPerms", guildId)
         .then(obj => {
             let cmdPerm;//The command permission entry for this cmd type
