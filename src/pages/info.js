@@ -27,8 +27,16 @@ export const infoPage = () => (
   <img src="https://top.gg/api/widget/status/606167605165817856.svg?noavatar=true" alt="SnoBot" /> 
 </a>
 </div>
+<p>
+        <div class="w3-center">
+      <div class="w3-bar">
+        <a class="w3-btn w3-round w3-indigo" href="https://snobot.xyz/invite/">Invite the bot</a>
+        <a class="w3-btn w3-round w3-indigo" href="https://snobot.xyz/discord/">Community server</a>
+        </div>
+        </div>
+        </p>
       <h2>Bot</h2>
-      <p><a href="https://discordapp.com/oauth2/authorize?client_id=606167605165817856&permissions=0&scope=bot">Invite the bot.</a></p>
+      
 <p>A successor to YerBot, this bot offers a selection of both fun and useful commands:</p>
 <ul>
 <li>/translate -- Translate a message between any two languages.</li>
