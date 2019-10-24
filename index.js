@@ -23,7 +23,7 @@ execute("git rev-parse --abbrev-ref HEAD", (branch) => {client.ver.branch = bran
 
 const client = new Discord.Client();
 //dblapi
-if(ver.branch != "dev")
+if(ver.branch == "master")
     {
       console.log("Attempting to send dblapi stats...")
       const dbl = new DBL(config.dblapiKey, client);  
