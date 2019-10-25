@@ -26,7 +26,7 @@ function messageEventClever(messageChannel, messageTxt)
         if(res){
             let session = getChannelSession(messageChannel.id)
     
-            session.queue(messageTxt).then(MessageChannel.send)
+            session.queue(messageTxt).then(messageChannel.send)
         }
     })
     
