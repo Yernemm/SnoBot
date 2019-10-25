@@ -85,6 +85,14 @@ function checkPerms(data, cmdString, callback) {
 
 }
 
+/*
+    Get data from table / key combo
+    table: name of table
+    key: name of key for the data 
+    returns:
+        if data found: the parsed JSON data
+        if not found: boolean false
+*/
 function getFrom(table, key) {
     return new Promise((resolve, reject) => {
         sqlite.open(dbpath)
