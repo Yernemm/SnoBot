@@ -28,7 +28,7 @@ function messageEventClever(messageChannel, messageTxt)
             console.log("ch3");
             let session = getChannelSession(messageChannel.id)
             console.log("ch4");
-            session.queue(messageTxt).then(messageChannel.send)
+            session.queue(messageTxt).then(resp => messageChannel.send(resp))
             console.log("ch5");
         }
     })
