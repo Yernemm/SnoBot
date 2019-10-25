@@ -52,7 +52,6 @@ exports.run = (data) => {
             break;
     }
 
-
     //--------------------------------------------------------------------
     m.logSend(data, msg); //Method will send msg to user, and also log it in both console AND log channel.
     //m.log(data, msg); //Alternative will log msg without sending msg.
