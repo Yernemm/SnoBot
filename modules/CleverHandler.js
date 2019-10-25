@@ -22,11 +22,14 @@ messageTxt: the contents of the message to send.
 */
 function messageEventClever(messageChannel, messageTxt)
 {
+    console.log("ch2");
     checkCleverChannel(messageChannel.id, res => {
         if(res){
+            console.log("ch3");
             let session = getChannelSession(messageChannel.id)
-    
+            console.log("ch4");
             session.queue(messageTxt).then(messageChannel.send)
+            console.log("ch5");
         }
     })
     
