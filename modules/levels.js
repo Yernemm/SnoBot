@@ -20,22 +20,22 @@ module.exports = {
 function expDrop(userId, serverId, message){
     let globalExp = 0
     let serverExp = 0
-    console.log(1)
+    //console.log(1)
     db.getFrom("exp-global", userId)
     .then(val => globalExp = val * 1)
     .catch(err => {console.error("1e " + err)})
     .finally(()=>{
-        console.log(2)
+        //console.log(2)
         db.getFrom("exp-server-" + serverId, userId)
         .then(val => serverExp = val * 1)
         .catch(err => {console.error("2e " + err)})
         .finally(()=>{
-            console.log(3)
+            //console.log(3)
             let expDropValue = calcExpToGive(userId, message.length);
             globalExp += expDropValue;
             serverExp += expDropValue;
-            db.setTo("exp-global", userId, globalExp).then(()=>{console.log("set g")}).catch(err=>console.log(err))
-            db.setTo("exp-server-" + serverId, userId, serverExp).then(()=>{console.log("set s")}).catch(err=>console.log(err))
+            db.setTo("exp-global", userId, globalExp).then(()=>{}).catch(err=>console.log(err))
+            db.setTo("exp-server-" + serverId, userId, serverExp).then(()=>{}).catch(err=>console.log(err))
         })
     })
 } 
@@ -69,7 +69,7 @@ function getStats(userId, serverId){
 }
 
 function calcExpToGive(id, length){
-    console.log(cooldownMap)
+    //console.log(cooldownMap)
     if (checkCooldown(id).bool)
     return calcExpToGiveBeforeCooldown(length)
     else
