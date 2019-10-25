@@ -6,7 +6,10 @@ const db = require('./db.js');
 var cleverSessions = {};
 
 module.exports = {
-
+    messageEventClever,
+    addCleverChannel,
+    removeCleverChannel,
+    checkCleverChannel
 }
 
 //TO-DO: Store the clever channel states in memory to avoid reading from disk every message.
@@ -21,6 +24,8 @@ function messageEventClever(messageChannel, messageTxt)
 {
     if(checkCleverChannel(messageChannel.id)){
         let session = getChannelSession(messageChannel.id)
+
+        session.queue(messageTxt).then(MessageChannel.send)
     }
 }
 
