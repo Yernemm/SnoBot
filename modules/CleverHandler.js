@@ -25,7 +25,7 @@ function messageEventClever(messageChannel, messageTxt)
     
     checkCleverChannel(messageChannel.id, res => {
         if(res){
-            messageChannel.startTyping()
+            messageChannel.startTyping();
             let session = getChannelSession(messageChannel.id)
             
             session.queue(messageTxt).then(resp => {
