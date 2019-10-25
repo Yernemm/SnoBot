@@ -38,7 +38,14 @@ exports.run = (data) => {
             break;
         case undefined:
             msg = "checking..."
-            ch.checkCleverChannel(message.channel.id, res => message.channel.send(res))
+            ch.checkCleverChannel(message.channel.id, res => 
+                message.channel.send(
+                    res ? 
+                    "You can talk with CleverBot in this channel.\nUse `setupcleverbot false` to disable."
+                    :
+                    "CleverBot is not enabled in this channel.\nUse `setupcleverbot true` to enable."
+                    )
+                )
             break;
         default:
             msg="Run this command with either 'true' or 'false' afterwards."
