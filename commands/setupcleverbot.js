@@ -37,7 +37,8 @@ exports.run = (data) => {
             msg = "You may no longer talk with CleverBot in this channel."
             break;
         case undefined:
-            msg = "CHECK NOT IMPLEMENTED YET"
+            msg = "checking..."
+            ch.checkCleverChannel(message.channel.id, res => message.channel.send(res))
             break;
         default:
             msg="Run this command with either 'true' or 'false' afterwards."
