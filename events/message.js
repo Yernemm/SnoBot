@@ -20,7 +20,7 @@ lvl.expDrop(message.author.id, message.guild.id, message.content)
   else if(message.content.startsWith(`<@!${client.user.id}>`))
     message.content = message.content.replace(`<@!${client.user.id}>`, client.config.prefix);
   else{
-    console.log("ch1");
+    
     CleverHandler.messageEventClever(message.channel, message.content);
     return;
   }
