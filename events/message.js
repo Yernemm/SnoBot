@@ -1,5 +1,6 @@
 const db = require('./../modules/db.js')
 const lvl = require('./../modules/levels.js')
+const CleverHandler = require("./../modules/CleverHandler.js")
 module.exports = (client, message) => {
     // Ignore all bots
     if (message.author.bot) return;
@@ -10,6 +11,7 @@ console.log(message.member.displayName + ": " + message.content)
 
 //Drop exp
 lvl.expDrop(message.author.id, message.guild.id, message.content)
+
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
   if(message.content.indexOf(client.config.prefix) === 0){}
@@ -17,8 +19,10 @@ lvl.expDrop(message.author.id, message.guild.id, message.content)
     message.content = message.content.replace(`<@${client.user.id}>`, client.config.prefix);
   else if(message.content.startsWith(`<@!${client.user.id}>`))
     message.content = message.content.replace(`<@!${client.user.id}>`, client.config.prefix);
-  else
+  else{
+    CleverHandler.messageEventClever(message.channel, message.content);
     return;
+  }
     //Remove space after prefix.
   if(message.content[client.config.prefix.length] === " ")
     message.content = message.content.replace(client.config.prefix + " ", client.config.prefix);
