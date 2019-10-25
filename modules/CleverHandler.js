@@ -2,7 +2,57 @@
 //It connects CleverChannel.js with the bot and saves data with db.js
 const CleverChannel = require('./CleverChannel.js');
 const db = require('./db.js');
+
+var cleverSessions = {};
+
 module.exports = {
 
 }
+
+//TO-DO: Store the clever channel states in memory to avoid reading from disk every message.
+
+/*
+Run this on every message in the message event.
+Checks if the channel is clever and sends message from correct session.
+messageChannel: the discord channel object, e.g. message.channel
+messageTxt: the contents of the message to send.
+*/
+function messageEventClever(messageChannel, messageTxt)
+{
+    if(checkCleverChannel(messageChannel.id)){
+        let session = getChannelSession(messageChannel.id)
+    }
+}
+
+//Add a clever channel to database.
+function addCleverChannel(channelId)
+{
+
+}
+
+//Remove a clever channel from database.
+function removeCleverChannel(channelId)
+{
+
+}
+
+//Check if a channel is clever.
+function checkCleverChannel(channelId)
+{
+
+}
+
+/*  
+Check if a channel has a session
+if yes, return it
+if not, create one
+*/
+function getChannelSession(channelId)
+{
+    if(cleverSessions[channelId] === undefined)
+    cleverSessions[channelId] = new CleverChannel();
+
+    return cleverSessions[channelId];   
+}
+
 
