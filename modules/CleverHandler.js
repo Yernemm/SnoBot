@@ -22,11 +22,14 @@ messageTxt: the contents of the message to send.
 */
 function messageEventClever(messageChannel, messageTxt)
 {
-    if(checkCleverChannel(messageChannel.id)){
-        let session = getChannelSession(messageChannel.id)
-
-        session.queue(messageTxt).then(MessageChannel.send)
-    }
+    checkCleverChannel(messageChannel.id, res => {
+        if(res){
+            let session = getChannelSession(messageChannel.id)
+    
+            session.queue(messageTxt).then(MessageChannel.send)
+        }
+    })
+    
 }
 
 //Add a clever channel to database.
@@ -46,11 +49,16 @@ function removeCleverChannel(channelId)
 }
 
 //Check if a channel is clever.
-function checkCleverChannel(channelId)
+function checkCleverChannel(channelId, callback)
 {
     db.getFrom("CleverChannels", channelId)
-    .then()
-    .catch()
+    .then(val => {
+        if(val === false || val.clever == false)
+        callback(false)
+        else
+        callback(true)
+    })
+    .catch(() => callback(false))
 }
 
 /*  
