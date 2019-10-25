@@ -25,10 +25,13 @@ function messageEventClever(messageChannel, messageTxt)
     
     checkCleverChannel(messageChannel.id, res => {
         if(res){
-            
+            messageChannel.startTyping()
             let session = getChannelSession(messageChannel.id)
             
-            session.queue(messageTxt).then(resp => messageChannel.send(resp))
+            session.queue(messageTxt).then(resp => {
+                messageChannel.send(resp)
+                .finally(messageChannel.stopTyping());
+            })
             
         }
     })
