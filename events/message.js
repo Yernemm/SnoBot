@@ -3,7 +3,7 @@ const lvl = require('./../modules/levels.js')
 const CleverHandler = require("./../modules/CleverHandler.js")
 module.exports = (client, message) => {
     // Ignore all bots
-    //if (message.author.bot) return;
+    if (message.author.bot) return;
   
     // Ignore messages not starting with the prefix (in config.json)
   
