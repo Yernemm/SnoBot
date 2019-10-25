@@ -27,19 +27,25 @@ function messageEventClever(messageChannel, messageTxt)
 //Add a clever channel to database.
 function addCleverChannel(channelId)
 {
-
+    db.setTo("CleverChannels", channelId, {"clever" : true})
+    .then()
+    .catch()
 }
 
 //Remove a clever channel from database.
 function removeCleverChannel(channelId)
 {
-
+    db.setTo("CleverChannels", channelId, {"clever" : false})
+    .then()
+    .catch()
 }
 
 //Check if a channel is clever.
 function checkCleverChannel(channelId)
 {
-
+    db.getFrom("CleverChannels", channelId)
+    .then()
+    .catch()
 }
 
 /*  
