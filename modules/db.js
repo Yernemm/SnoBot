@@ -114,6 +114,12 @@ function getFrom(table, key) {
     })
 }
 
+/*
+Set data to a table and key combo in the main database.
+table: table name 
+key: an key / identifier for this data
+data: the JSON data to set to this key (Must be a JS object / parsed JSON)
+*/
 function setTo(table, key, data) {
     return new Promise((resolve, reject) => {
         sqlite.open(dbpath)
