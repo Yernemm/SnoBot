@@ -39,6 +39,7 @@ export const infoPage = () => (
       
 <p>A successor to YerBot, this bot offers a selection of both fun and useful commands:</p>
 <ul>
+<li>/setupcleverbot -- Enables Cleverbot conversations in the current channel. (Admin only command)</li>
 <li>/translate -- Translate a message between any two languages.</li>
 <li>/trandom -- Translate a message between 10 random languages and back to English.</li>
 <li>/lastfm -- Get user music listening data from <a href="https://www.last.fm">last.fm</a></li>
@@ -58,7 +59,6 @@ export const infoPage = () => (
 <li>Moderation commands</li>
 <li>Mod mail</li>
 <li>Server spam detection and prevention</li>
-<li>Cleverbot conversations</li>
 </ul>
 <p>For a full plan listing, check the <a href="https://trello.com/b/ic3OCNEa/snobot">Trello page.</a></p>
     </div>
