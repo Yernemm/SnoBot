@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 class Analytics {
 
     /**
@@ -18,12 +19,11 @@ class Analytics {
      *  The time between each message in ms. Default is 1 hour.
      */
     start(interval = 1000 * 60 * 60){
-        
+        setInterval(() => {
+            
+        }, interval);
     }
 
-    _sendingInterval(params) {
-        
-    }
     
 }
 
