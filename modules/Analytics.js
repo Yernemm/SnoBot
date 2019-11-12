@@ -21,12 +21,12 @@ class Analytics {
      *  Confirmation that channel has been found.
      */
     start(interval = 1000 * 60 * 60) {
-        if (this.client.channels.get(this.channelId)) {
+        if (this._client.channels.get(this._channelId)) {
             setInterval(() => {
-                let svnum = this.client.guilds.array().length;
-                let chnum = this.client.channels.array().length;
+                let svnum = this._client.guilds.array().length;
+                let chnum = this._client.channels.array().length;
                 let usnum = 0;
-                this.client.guilds.array().forEach(element => {
+                this._client.guilds.array().forEach(element => {
                     usnum += element.memberCount;
                 });
 
@@ -41,7 +41,7 @@ class Analytics {
                     )
                     .setTimestamp();
 
-                this.client.channels.get(this.channelId).send({
+                this._client.channels.get(this._channelId).send({
                     embed
                 });
                 return true;
