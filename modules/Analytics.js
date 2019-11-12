@@ -31,7 +31,7 @@ class Analytics {
                 });
 
                 //TODO: list number of clever channels.
-                //must upgrade CleverChannel.js and db.js first to add required functionality.
+                //must upgrade CleverHandler.js and db.js first to add required functionality.
                 const embed = new Discord.RichEmbed()
                     .setTitle("Bot Stats")
                     .addField("Stats",
