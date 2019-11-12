@@ -23,10 +23,21 @@ class Analytics {
     start(interval = 1000 * 60 * 60) {
         if (this.client.channels.get(this.channelId)) {
             setInterval(() => {
+                let svnum = this.client.guilds.array().length;
+                let chnum = this.client.channels.array().length;
+                let usnum = 0;
+                this.client.guilds.array().forEach(element => {
+                    usnum += element.memberCount;
+                });
+
+                //TODO: list number of clever channels.
+                //must upgrade CleverChannel.js and db.js first to add required functionality.
                 const embed = new Discord.RichEmbed()
                     .setTitle("Bot Stats")
                     .addField("Stats",
-                        `Servers: ${this.client.guilds.toArray().length}`
+                        `Servers: ${svnum}
+                        Channels: ${chnum}
+                        Users: ${usnum}`
                     )
                     .setTimestamp();
 

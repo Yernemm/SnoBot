@@ -122,6 +122,11 @@ function getFrom(table, key) {
     })
 }
 
+//TO-DO
+function getAllKeys(table){
+//return all keys in table
+}
+
 /*
 Set data to a table and key combo in the main database.
 table: table name 
