@@ -8,5 +8,6 @@
     "lfmApiKey": "",
     "lfmSecret": "",
     "dblapiKey": "",
-    "ownerId": ""
+    "ownerId": "",
+    "analyticsChannel": ""
 }
