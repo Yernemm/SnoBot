@@ -17,6 +17,8 @@ class Analytics {
      * Starts sending analytics data to the channel at the given interval.
      * @param {int} interval 
      *  The time between each message in ms. Default is 1 hour.
+     * @returns {boolean}
+     *  Confirmation that channel has been found.
      */
     start(interval = 1000 * 60 * 60) {
         if (this.client.channels.get(this.channelId)) {
@@ -31,7 +33,7 @@ class Analytics {
                 this.client.channels.get(this.channelId).send({
                     embed
                 });
-
+                return true;
             }, interval);
         } else return false;
     }
