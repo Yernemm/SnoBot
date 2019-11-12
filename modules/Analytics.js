@@ -8,7 +8,7 @@ class Analytics {
      * @param {Object} client
      *  The logged in Discord.JS client object.
      */
-    constructor(client, channelId){
+    constructor(client, channelId) {
         this._channelId = channelId;
         this._client = client;
     }
@@ -18,23 +18,25 @@ class Analytics {
      * @param {int} interval 
      *  The time between each message in ms. Default is 1 hour.
      */
-    start(interval = 1000 * 60 * 60){
-        if(this.client.channels.get(this.channelId)){
-        setInterval(() => {
-            const embed = new Discord.RichEmbed()
-            .setTitle("Bot Stats")
-            .addField("Stats",
-            `Servers: ${this.client.guilds.toArray().length}`
-            )
-            .setTimestamp();
+    start(interval = 1000 * 60 * 60) {
+        if (this.client.channels.get(this.channelId)) {
+            setInterval(() => {
+                const embed = new Discord.RichEmbed()
+                    .setTitle("Bot Stats")
+                    .addField("Stats",
+                        `Servers: ${this.client.guilds.toArray().length}`
+                    )
+                    .setTimestamp();
 
-            this.client.channels.get(this.channelId).send({embed});
-            
-        }, interval);
-    }
+                this.client.channels.get(this.channelId).send({
+                    embed
+                });
+
+            }, interval);
+        } else return false;
     }
 
-    
+
 }
 
 module.exports = Analytics;
