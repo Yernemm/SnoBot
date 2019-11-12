@@ -40,14 +40,18 @@ class Analytics {
 
         //TODO: list number of clever channels.
         //must upgrade CleverHandler.js and db.js first to add required functionality.
+        let statsMsg = 
+        `Servers: ${svnum}
+        Channels: ${chnum}
+        Users: ${usnum}`;
         const embed = new Discord.RichEmbed()
             .setTitle("Bot Stats")
             .addField("Stats",
-                `Servers: ${svnum}
-                Channels: ${chnum}
-                Users: ${usnum}`
+                statsMsg
             )
             .setTimestamp();
+
+            console.log(statsMsg);
 
         this._client.channels.get(this._channelId).send({
             embed
