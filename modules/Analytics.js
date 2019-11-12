@@ -22,31 +22,37 @@ class Analytics {
      */
     start(interval = 1000 * 60 * 60) {
         if (this._client.channels.get(this._channelId)) {
+            this._botInterval();
             setInterval(() => {
-                let svnum = this._client.guilds.array().length;
-                let chnum = this._client.channels.array().length;
-                let usnum = 0;
-                this._client.guilds.array().forEach(element => {
-                    usnum += element.memberCount;
-                });
-
-                //TODO: list number of clever channels.
-                //must upgrade CleverHandler.js and db.js first to add required functionality.
-                const embed = new Discord.RichEmbed()
-                    .setTitle("Bot Stats")
-                    .addField("Stats",
-                        `Servers: ${svnum}
-                        Channels: ${chnum}
-                        Users: ${usnum}`
-                    )
-                    .setTimestamp();
-
-                this._client.channels.get(this._channelId).send({
-                    embed
-                });
-                return true;
+                this._botInterval();
             }, interval);
+            return true;
         } else return false;
+    }
+
+    _botInterval(){
+        let svnum = this._client.guilds.array().length;
+        let chnum = this._client.channels.array().length;
+        let usnum = 0;
+        this._client.guilds.array().forEach(element => {
+            usnum += element.memberCount;
+        });
+
+        //TODO: list number of clever channels.
+        //must upgrade CleverHandler.js and db.js first to add required functionality.
+        const embed = new Discord.RichEmbed()
+            .setTitle("Bot Stats")
+            .addField("Stats",
+                `Servers: ${svnum}
+                Channels: ${chnum}
+                Users: ${usnum}`
+            )
+            .setTimestamp();
+
+        this._client.channels.get(this._channelId).send({
+            embed
+        });
+        
     }
 
 
