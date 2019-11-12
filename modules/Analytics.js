@@ -49,6 +49,8 @@ class Analytics {
             .addField("Stats",
                 statsMsg
             )
+            .addField("Version",
+            "v" + this._client.ver.num + "." + this._client.ver.build)
             .setTimestamp();
 
             console.log(statsMsg);
