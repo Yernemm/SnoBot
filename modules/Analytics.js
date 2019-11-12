@@ -19,9 +19,19 @@ class Analytics {
      *  The time between each message in ms. Default is 1 hour.
      */
     start(interval = 1000 * 60 * 60){
+        if(this.client.channels.get(this.channelId)){
         setInterval(() => {
+            const embed = new Discord.RichEmbed()
+            .setTitle("Bot Stats")
+            .addField("Stats",
+            `Servers: ${this.client.guilds.toArray().length}`
+            )
+            .setTimestamp();
+
+            this.client.channels.get(this.channelId).send({embed});
             
         }, interval);
+    }
     }
 
     
