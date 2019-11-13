@@ -1,4 +1,6 @@
 const db = require('./db.js');
+const Discord = require("discord.js");
+const fetchVideoInfo = require('youtube-info');
 class YouTubeEmbedFixer {
 
 
@@ -13,6 +15,11 @@ class YouTubeEmbedFixer {
         }
     }
 
+    /**
+     * Async - Checks if fix is enabled in this server. Callback returned with boolean response.
+     * @param {function} callback
+     *  The function to call after the check is done. 
+     */
     checkIfEnabled(callback){
         db.getFrom("YouTubeEmbedFixerServers", this.message.guild.id)
     .then(val => {
@@ -23,6 +30,8 @@ class YouTubeEmbedFixer {
     })
     .catch(() => callback(false))
     }
+
+    sendFix()
 
 
     

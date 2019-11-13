@@ -31,7 +31,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "socket.io": "^2.2.0",
-    "sqlite": "^3.0.3"
+    "sqlite": "^3.0.3",
+    "youtube-info": "^1.3.2"
   },
   "scripts": {
     "start": "set 'REACT_APP_GIT_VER=`git rev-list --count HEAD`' && react-scripts start",
