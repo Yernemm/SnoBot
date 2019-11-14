@@ -2,6 +2,11 @@ const db = require('./../modules/db.js')
 const lvl = require('./../modules/levels.js')
 const CleverHandler = require("./../modules/CleverHandler.js")
 module.exports = (client, message) => {
+
+  //Run YouTube Fixer.
+client.youTubeEmbedFixer.runFix(message);
+
+
     // Ignore all bots
     if (message.author.bot) return;
   
@@ -12,8 +17,7 @@ module.exports = (client, message) => {
 //Drop exp
 lvl.expDrop(message.author.id, message.guild.id, message.content)
 
-//Run YouTube Fixer.
-client.youTubeEmbedFixer.runFix(message);
+
 
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
