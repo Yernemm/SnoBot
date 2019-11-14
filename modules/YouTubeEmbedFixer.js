@@ -30,6 +30,7 @@ class YouTubeEmbedFixer {
 
                     if (ids) {
                         this.sendDebug(message.channel, ids);
+                        this.sendDebug(message.channel, message.embeds[0].description);
                         if (message.embeds && message.embeds[0].description.startsWith(this.triggerDesc))
                             ids.forEach(id => {
                                 this.sendDebug(message.channel, id);
