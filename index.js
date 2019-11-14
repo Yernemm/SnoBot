@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const db = require('./modules/db.js')
+const ytf = require('./modules/YouTubeEmbedFixer.js')
 const m = require('./shared/methods.js')
 var express = require('express');
 var http = require('http');
@@ -43,12 +44,14 @@ app.use(cookieParser());
 function execute(command, callback){
   exec(command, function(error, stdout, stderr){ callback(stdout); });
 };
-client.ver = ver;
 
+client.ver = ver;
+client.config = config;
+client.youTubeEmbedFixer = new ytf(ver.branch == "dev")
 
 //Discord Command and Event handler
 //=============================================
-client.config = config;
+
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
