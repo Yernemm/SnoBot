@@ -31,7 +31,30 @@ class YouTubeEmbedFixer {
     .catch(() => callback(false))
     }
 
-    sendFix()
+    /**
+     * Generates Discord embed for video from id.
+     * @param {string} ytId 
+     *  ID of YouTube video.
+     * @param {function} callback 
+     *  returns embed. Returns false if failed.
+     */
+    generateEmbed(ytId, callback){
+
+            fetchVideoInfo(ytId).then(function (videoInfo) {
+                console.log(videoInfo);
+                let ytEmbed = new Discord.RichEmbed()
+        .setColor('ff0000')
+        .setTitle(videoInfo.title)
+        .setURL(videoInfo.url)
+        .setAuthor(videoInfo.owner)
+        .setImage(videoInfo.thumbnailUrl)
+        .setTimestamp()
+        
+                callback(ytEmbed);
+            })
+            .catch(()=>callback(false));
+           
+    }
 
 
     
