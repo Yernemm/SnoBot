@@ -3,8 +3,7 @@ const Discord = require("discord.js");
 const fetchVideoInfo = require('youtube-info');
 class YouTubeEmbedFixer {
 
-    triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
-
+    
     /**
      * Instantiate on bot creation.
      * @param {bool} debugMode
@@ -12,6 +11,8 @@ class YouTubeEmbedFixer {
      */
     constructor(debugMode = false) {
         this.debugMode = debugMode;
+        this.triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
+
     }
 
     /**
