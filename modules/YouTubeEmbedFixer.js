@@ -21,7 +21,7 @@ class YouTubeEmbedFixer {
      * Message to check and fix. 
      */
     runFix(message) {
-        setTimeout(this.delayedRunFixFunction(message), this.delay);
+        setTimeout(() => {this.delayedRunFixFunction(message)}, this.delay);
     }
 
     delayedRunFixFunction(message){
