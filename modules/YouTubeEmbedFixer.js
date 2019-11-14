@@ -24,7 +24,6 @@ class YouTubeEmbedFixer {
         if (message.guild.available) {
             this.checkIfEnabled(message, (res) => {
                 if (res) {
-                    this.sendDebug(message.channel, "test thingy");
                     let rg = /(((?<=youtu.be\/).\w+)|((?<=youtube.com\/watch\?v=).\w+))/g
 
                     let ids = message.content.match(rg)
