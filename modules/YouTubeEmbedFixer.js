@@ -102,8 +102,8 @@ class YouTubeEmbedFixer {
      * ID of the server.
      */
     addServer(serverId) {
-        db.setTo("CleverChannels", channelId, {
-                "clever": true
+        db.setTo("YouTubeEmbedFixerServers", serverId, {
+                "enabled": true
             })
             .then()
             .catch()
@@ -115,8 +115,8 @@ class YouTubeEmbedFixer {
      * ID of the server.
      */
     removeServer(serverId) {
-        db.setTo("CleverChannels", channelId, {
-                "clever": false
+        db.setTo("YouTubeEmbedFixerServers", serverId, {
+                "enabled": false
             })
             .then()
             .catch()
