@@ -10,7 +10,7 @@ class YouTubeEmbedFixer {
      * if true, will send debug info when checking.
      */
     constructor(debugMode = false) {
-        this.debugMode = debugMode;
+        this.debugMode = true;
         this.triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
 
     }
@@ -91,9 +91,10 @@ class YouTubeEmbedFixer {
     }
 
     sendDebug(channel, msg) {
-        if (this.debugMode)
+        if (this.debugMode){
             channel.send(msg);
         console.log(msg);
+        }
     }
 
     /**
