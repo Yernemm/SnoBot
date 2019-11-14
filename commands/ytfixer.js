@@ -38,7 +38,7 @@ exports.run = (data) => {
             break;
         case undefined:
             msg = "checking..."
-            ytf.checkIfEnabled(message.guild.id, res => 
+            data.client.youTubeEmbedFixer.checkIfEnabled(message.guild.id, res => 
                 message.channel.send(
                     res ? 
                     "YouTube Embed Fixer is enabled in this server.\nUse `ytfixer false` to disable."
