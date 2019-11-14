@@ -12,7 +12,7 @@ class YouTubeEmbedFixer {
     constructor(debugMode = false) {
         this.debugMode = true;
         this.triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
-
+        this.delay = 1000 * 2.5;
     }
 
     /**
@@ -21,6 +21,10 @@ class YouTubeEmbedFixer {
      * Message to check and fix. 
      */
     runFix(message) {
+        setTimeout(this.delayedRunFixFunction(message), this.delay);
+    }
+
+    delayedRunFixFunction(message){
         if (message.guild.available) {
             this.checkIfEnabled(message, (res) => {
                 if (res) {
