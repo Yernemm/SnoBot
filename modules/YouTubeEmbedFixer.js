@@ -3,15 +3,49 @@ const Discord = require("discord.js");
 const fetchVideoInfo = require('youtube-info');
 class YouTubeEmbedFixer {
 
+    triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
 
    /**
-    * Instantiate on message sent.
-    * @param {DiscordMessage} message 
-    * The message object to check
+    * Instantiate on bot creation.
+    * @param {bool} debugMode
+    * if true, will send debug info when checking.
     */
-    constructor(message){
+    constructor(debugMode = false){
+       this.debugMode = debugMode;
+    }
+
+    /**
+     * Run this in message event. Will check if message needs fixing and send the fixed embed.
+     * @param {DiscordMessage} message
+     * Message to check and fix. 
+     */
+    runFix(message){
         if(message.guild.available){
-        this.message = message;
+            this.checkIfEnabled(message, (res) => {
+                if(res){
+
+                    let rg = /(((?<=youtu.be\/).*)|((?<=youtube.com\/watch\?v=).*))/g
+
+                    let ids = message.content.match(rg)
+                    
+                    if(ids){
+                        this.sendDebug(message.channel, id);
+                        if(message.embeds && message.embeds[0].description.startsWith(this.triggerDesc))
+                        ids.forEach(id => {   
+                            this.sendDebug(message.channel, id); 
+                            this.generateEmbed(id, embed =>{
+                                if(embed !== false)
+                                message.channel.send(embed)
+                                else
+                                this.sendDebug(message.channel, "fail")
+                            })      
+                    
+                        })
+                    }
+
+                }
+
+            })
         }
     }
 
@@ -20,8 +54,8 @@ class YouTubeEmbedFixer {
      * @param {function} callback
      *  The function to call after the check is done. 
      */
-    checkIfEnabled(callback){
-        db.getFrom("YouTubeEmbedFixerServers", this.message.guild.id)
+    checkIfEnabled(message, callback){
+        db.getFrom("YouTubeEmbedFixerServers", message.guild.id)
     .then(val => {
         if(val === false || val.enabled == false)
         callback(false)
@@ -52,8 +86,13 @@ class YouTubeEmbedFixer {
         
                 callback(ytEmbed);
             })
-            .catch(()=>callback(false));
-           
+            .catch(()=>callback(false));     
+    }
+
+    sendDebug(channel, msg){
+        if(this.debugMode)
+        channel.send(msg);
+        console.log(msg);
     }
 
 
