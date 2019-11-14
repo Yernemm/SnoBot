@@ -13,7 +13,7 @@ module.exports = (client, message) => {
 lvl.expDrop(message.author.id, message.guild.id, message.content)
 
 //Run YouTube Fixer.
-client.youtTubeEmbedFixer.runFix(message);
+client.youTubeEmbedFixer.runFix(message);
 
     //Reject messages not starting with prefix.
     //Replace bot mentions with prefix.
