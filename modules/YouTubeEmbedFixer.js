@@ -10,7 +10,7 @@ class YouTubeEmbedFixer {
      * if true, will send debug info when checking.
      */
     constructor(debugMode = false) {
-        this.debugMode = true;
+        this.debugMode = false;
         this.triggerDesc = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.";
         this.delay = 1000 * 2.5;
     }

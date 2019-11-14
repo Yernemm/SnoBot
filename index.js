@@ -47,7 +47,7 @@ function execute(command, callback){
 
 client.ver = ver;
 client.config = config;
-client.youTubeEmbedFixer = new ytf(ver.branch == "dev")
+client.youTubeEmbedFixer = new ytf((ver.branch == "dev"))
 
 //Discord Command and Event handler
 //=============================================
