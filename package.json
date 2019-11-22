@@ -1,6 +1,6 @@
 {
   "name": "snobot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "SnoBot Discord Bot",
   "main": "index.js",
   "repository": {
