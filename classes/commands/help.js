@@ -49,7 +49,7 @@ class Help {
                     console.log("ebgames")
                     let newCmdObj = {};
                     let theCmd = c;
-                    newCmdObj.name = c.constructor.name;
+                    newCmdObj.name = c.constructor.name.toLowerCase();
                     newCmdObj.desc = theCmd.desc;
                     newCmdObj.usage = theCmd.usage;
                     newCmdObj.type = theCmd.cmdtype;
