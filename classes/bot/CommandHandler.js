@@ -1,14 +1,18 @@
 const Enmap = require("enmap");
 const Config = require('./../../config.json');
 const fs = require('fs');
+const Permissions = require('./Permissions.js');
 class CommandHandler {
 
     
-    constructor() {
-        this.commands = new Enmap(); //all commands with aliases
-        this.commandsNoAlias = new Enmap(); //all unique commands
+    constructor(bot) {
         this._loadCommands();
+        this._commands = new Enmap(); //all commands with aliases
+        this._commandsNoAlias = new Enmap(); //all unique commands
+        
         this.config = Config;
+        this.permissions = new Permissions();
+        this.bot = bot;
     }
 
     /**
@@ -22,6 +26,9 @@ class CommandHandler {
 
     }
 
+    get commands() { return this._commands; }
+    get commandsNoAlias() { return this._commandsNoAlias; }
+
     /**
      * Loads all commands and aliases into class enmaps.
      */
@@ -31,7 +38,7 @@ class CommandHandler {
             files.forEach(file => {
                 if (!file.endsWith(".js")) return;
                 let propsClass = require(`./../commands/${file}`);
-                let props = new propsClass();
+                let props = new propsClass(this.bot);
                 let commandName = file.split(".")[0];
                 console.log(`Attempting to load command ${commandName}`);
                 this.commands.set(commandName, props);
@@ -43,6 +50,7 @@ class CommandHandler {
                     });
                 }
             });
+            console.log(this.commands.keyArray())
         });
     }
 
@@ -86,16 +94,16 @@ class CommandHandler {
 
         // Run the command
 
-        cmd.run(data);
+        
 
-        /*
-        db.checkPerms(data, command, res => {
+        
+        this.permissions.checkPerms(data, this.commands.get(command), res => {
             if (res)
                 cmd.run(data);
             else
                 data.message.channel.send("You do not have permission to use this command.");
         });
-        */
+        
     }
 
 }

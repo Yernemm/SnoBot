@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const config = require('./../../config.json');
 const fs = require('fs');
 const Db = require('./../Db.js');
+
 class Bot
 {
   
@@ -11,9 +12,16 @@ class Bot
         this._client = new Discord.Client();
         this._clientEventHandler();
         this.logIn(config.discordToken);
-        this.commandHandler = new CommandHandler();
         this.db = new Db(this);
+        this.commandHandler = new CommandHandler(this);
+        this._ver = {
+            num: 2,
+            build: 0
+        }
+        
     }
+
+    get ver() { return this._ver; }
 
     logIn(token)
     {

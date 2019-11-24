@@ -1,4 +1,4 @@
-const Db = require('./../Db.js');
+const Db= require('./../Db.js');
 class Permissions
 {
     constructor()
@@ -12,21 +12,22 @@ class Permissions
             "admin": "admin",
             "core": "everyone",
             "fun": "everyone",
-            "utility": "everyone"
+            "utility": "everyone",
+            "test": "everyone"
         };
     }
 
-    checkPerms(data, cmdString, callback) {
+    checkPerms(data, cmdObj, callback) {
         let guildId = data.message.guild.id; //The ID of the guild this cmd is in
-        let cmdObj = data.client.commands.get(cmdString); //The actual command object
+       // let cmdObj =  //The actual command object
     
-        if (cmdObj.cmdtype() == "core") {
+        if (cmdObj.cmdtype == "core") {
             callback(true);
             return;
         }
     
         //Owner only command
-        if (cmdObj.cmdtype() === "owner") {
+        if (cmdObj.cmdtype === "owner") {
             if (data.message.author.id == data.client.config.ownerId)
                 callback(true);
             else
@@ -34,21 +35,21 @@ class Permissions
             return;
         }
     
-        db.getFrom("guildPerms", guildId)
+        this.db.getFrom("guildPerms", guildId)
             .then(obj => {
                 let cmdPerm; //The command permission entry for this cmd type
                 if (obj) {
-                    cmdPerm = obj[cmdObj.cmdtype()]; //The command permission entry for this cmd type
+                    cmdPerm = obj[cmdObj.cmdtype]; //The command permission entry for this cmd type
                     if (!cmdPerm) {
                         //Permission empty
                         //Get default perms.
     
-                        cmdPerm = defaultPermissions[cmdObj.cmdtype()];
+                        cmdPerm = this.defaultPermissions[cmdObj.cmdtype];
                     }
                 } else {
-                    //Permission not found in db
+                    //Permission not found in this.db
                     //Get default perms.
-                    cmdPerm = defaultPermissions[cmdObj.cmdtype()];
+                    cmdPerm = this.defaultPermissions[cmdObj.cmdtype];
                 }
     
     
