@@ -1,10 +1,10 @@
-const DiscordBot = require("./discord/DiscordBot.js");
+const Bot = require("./bot/Bot.js");
 class Main
 {
     constructor()
     {
         console.log("Starting...");   
-        this.discordBot = new DiscordBot();
+        this.discordBot = new Bot();
     }
 }
 module.exports = Main;
