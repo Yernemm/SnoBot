@@ -1,7 +1,14 @@
+
 class Ready
 {
-    constructor(client){
-
+    constructor(){
+      
     }
+
+    run(client){
+        console.log(`Logged in as ${client.user.tag}`);
+    }
+
+
 }
 module.exports = Ready;
