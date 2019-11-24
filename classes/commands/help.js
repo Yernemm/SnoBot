@@ -1,10 +1,10 @@
 var bot;
 class Help {
     constructor(botPass) {
-        this.desc = "h"; //Short description of what the command does.
-        this.usage = ""; //Any parameters required for command.
+        this.desc = "Displays help and info about SnoBot."; //Short description of what the command does.
+        this.usage = "[command]"; //Any parameters required for command.
         this.cmdtype = "core"; //Type of command.
-        this.alias = []; //Aliases for the command.
+        this.alias = ["?"]; //Aliases for the command.
         bot = botPass;
         console.log(bot.commandHandler.commands.keyArray())
     }
