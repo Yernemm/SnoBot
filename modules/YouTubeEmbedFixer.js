@@ -35,8 +35,10 @@ class YouTubeEmbedFixer {
                     if (ids) {
                         this.sendDebug(message.channel, ids);
                         this.sendDebug(message.channel, message.embeds[0].description);
-                        if (message.embeds && message.embeds[0].description.startsWith(this.triggerDesc))
-                            ids.forEach(id => {
+                        if (message.embeds)
+                        message.embeds.forEach(embedbr => {
+                            if(embedbr.description.startsWith(this.triggerDesc)){
+                                let id = embed.url.match(rg)[0]
                                 this.sendDebug(message.channel, id);
                                 this.generateEmbed(id, embed => {
                                     if (embed !== false)
@@ -44,6 +46,9 @@ class YouTubeEmbedFixer {
                                     else
                                         this.sendDebug(message.channel, "fail")
                                 })
+
+                            }
+
 
                             })
                     }
