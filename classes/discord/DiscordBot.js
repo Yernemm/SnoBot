@@ -5,5 +5,8 @@ module.exports = class DiscordBot{
         let bot = new SnoCord();
         bot.setConfig(require('./../../config.js'));
         bot.addCommandHandler('./commands/');
+
+        this.bot = bot;
+        bot.init();
     }
 };
