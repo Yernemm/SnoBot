@@ -7,8 +7,17 @@ function execute(command, callback){
   };
   
 
-execute("git rev-list --count HEAD", (build) => {ver.build = build.split("\n")[0].split("\r")[0]});
-execute("git rev-parse --abbrev-ref HEAD", (branch) => {ver.branch = branch.split("\n")[0].split("\r")[0]});
+execute("git rev-list --count HEAD", (build) => {
+    ver.build = build.split("\n")[0].split("\r")[0]
+    execute("git rev-parse --abbrev-ref HEAD", (branch) => {
+        ver.branch = branch.split("\n")[0].split("\r")[0]
 
-require('./index-web.js');
-require('./index-bot.js');
+        require('./index-web.js');
+        const botindex = require('./index-bot.js');
+        botindex.run(ver);
+    
+    });
+
+});
+
+

@@ -3,10 +3,18 @@ const SnoCord = require('snocord');
 const SnoDB = require('snodb');
 const config = require('./config.json');
 
-let bot = new SnoCord.Bot();
+function run(ver){
 
-bot.setConfig(config);
-bot.addCoreCommands();
-bot.addCommandHandler('./src-bot/commands/');
+    let bot = new SnoCord.Bot();
 
-bot.init();
+    bot.setConfig(config);
+    bot.addCoreCommands();
+    bot.addCommandHandler('./src-bot/commands/');
+    bot.setPresence({ activity: { name: `snobot.xyz | v${ver.num}.${ver.build}` }, status: 'online' });
+
+    bot.init();
+    bot.client.options.disableMentions = 'everyone';
+
+};
+
+module.exports = {run};
