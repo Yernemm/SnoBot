@@ -30,6 +30,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "snocord": "^1.1.1",
     "socket.io": "^2.2.0",
     "sqlite": "^3.0.3",
     "sqlite3": "^4.1.1",
