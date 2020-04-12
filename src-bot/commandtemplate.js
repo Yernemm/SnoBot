@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const m = require("./../../shared/methods.js");
 module.exports = 
 class Command
 {
@@ -6,7 +7,7 @@ class Command
     {
         this.metadata = {
             commandWord: 'cmd',
-            aliases: [''],
+            aliases: [],
             description: '',
             usage: '',
             category: '',

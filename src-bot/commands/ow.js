@@ -6,7 +6,7 @@ class Command
     {
         this.metadata = {
             commandWord: 'ow',
-            aliases: [''],
+            aliases: [],
             description: 'Gets Overwatch stats and user information. Use ow help for more info.',
             usage: 'help',
             category: 'utility',

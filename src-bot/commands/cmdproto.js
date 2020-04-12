@@ -6,7 +6,7 @@ class Command
     {
         this.metadata = {
             commandWord: 'cmdproto',
-            aliases: [''],
+            aliases: [],
             description: '',
             usage: '',
             category: 'debug',

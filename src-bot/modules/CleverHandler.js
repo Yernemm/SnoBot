@@ -4,12 +4,14 @@ const CleverChannel = require('./CleverChannel.js');
 const db = require('./db.js');
 
 var cleverSessions = {};
+let cleverChannelCache = {};
 
 module.exports = {
     messageEventClever,
     addCleverChannel,
     removeCleverChannel,
-    checkCleverChannel
+    checkCleverChannel,
+    checkCleverChannelCache
 }
 
 //TO-DO: Store the clever channel states in memory to avoid reading from disk every message.
@@ -41,6 +43,7 @@ function messageEventClever(messageChannel, messageTxt)
 //Add a clever channel to database.
 function addCleverChannel(channelId)
 {
+    cleverChannelCache[channelId] = true;
     db.setTo("CleverChannels", channelId, {"clever" : true})
     .then()
     .catch()
@@ -49,6 +52,7 @@ function addCleverChannel(channelId)
 //Remove a clever channel from database.
 function removeCleverChannel(channelId)
 {
+    cleverChannelCache[channelId] = false;
     db.setTo("CleverChannels", channelId, {"clever" : false})
     .then()
     .catch()
@@ -60,11 +64,30 @@ function checkCleverChannel(channelId, callback)
     db.getFrom("CleverChannels", channelId)
     .then(val => {
         if(val === false || val.clever == false)
-        callback(false)
-        else
-        callback(true)
+        {        
+            cleverChannelCache[channelId] = false;
+            callback(false);
+        }
+        else{
+            cleverChannelCache[channelId] = true;
+            callback(true)
+        }
+        
     })
-    .catch(() => callback(false))
+    .catch(() => {
+        cleverChannelCache[channelId] = true;
+        callback(false);
+    });
+}
+
+function checkCleverChannelCache(channelId)
+{
+    if(cleverChannelCache[channelId] === undefined){
+        checkCleverChannel(channelId, ()=>{});
+        return false;
+    }else{
+        return cleverChannelCache[channelId];
+    }
 }
 
 /*  
