@@ -21,7 +21,7 @@ class Analytics {
      *  Confirmation that channel has been found.
      */
     start(interval = 1000 * 60 * 60) {
-        if (this._client.channels.get(this._channelId)) {
+        if (this._client.channels.cache.get(this._channelId)) {
             this._botInterval();
             setInterval(() => {
                 this._botInterval();
@@ -31,10 +31,10 @@ class Analytics {
     }
 
     _botInterval(){
-        let svnum = this._client.guilds.array().length;
-        let chnum = this._client.channels.array().length;
+        let svnum = this._client.guilds.cache.array().length;
+        let chnum = this._client.channels.cache.array().length;
         let usnum = 0;
-        this._client.guilds.array().forEach(element => {
+        this._client.guilds.cache.array().forEach(element => {
             usnum += element.memberCount;
         });
 
@@ -44,7 +44,7 @@ class Analytics {
         `Servers: ${svnum}
         Channels: ${chnum}
         Users: ${usnum}`;
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
             .setTitle("Bot Stats")
             .addField("Stats",
                 statsMsg
@@ -55,7 +55,7 @@ class Analytics {
 
             console.log(statsMsg);
 
-        this._client.channels.get(this._channelId).send({
+        this._client.channels.cache.get(this._channelId).send({
             embed
         });
         

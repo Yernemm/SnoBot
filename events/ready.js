@@ -1,4 +1,4 @@
-const Analytics  = require('./../modules/Analytics.js')
+const Analytics  = require('./../src-bot/modules/Analytics.js')
 const DBL = require("dblapi.js");
 
 module.exports = (client) => {

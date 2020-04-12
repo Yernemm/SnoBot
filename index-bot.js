@@ -4,6 +4,7 @@ const SnoDB = require('snodb');
 const config = require('./config.json');
 const CleverResponse = require('./src-bot/modules/CleverResponse.js');
 const ytf = require('./src-bot/modules/YouTubeEmbedFixer.js');
+const readyEvent = require('./events/ready.js');
 
 function run(ver){
 
@@ -12,11 +13,21 @@ function run(ver){
     bot.setConfig(config);
     bot.addCoreCommands();
     bot.addCommandHandler('./src-bot/commands/');
-    bot.setPresence({ activity: { name: `snobot.xyz | v${ver.num}.${ver.build}` }, status: 'online' });
+
+    let presence = ""
+    if(ver.branch == "dev")
+    presence += "[DEV] ";
+    presence += `snobot.xyz | v${ver.num}.${ver.build}`;
+    bot.setPresence({ activity: { name: presence }, status: 'online' });
+
+
     bot.addCustomResponse(new CleverResponse(bot));
 
     bot.client.youTubeEmbedFixer = new ytf((ver.branch == "dev"))
+    bot.client.ver = ver;
+    bot.client.config = bot.config;
     bot.client.on('message', (message)=>bot.client.youTubeEmbedFixer.runFix(message));
+    bot.client.on('ready', ()=>{readyEvent(bot.client)})
 
     bot.init();
     bot.client.options.disableMentions = 'everyone';
