@@ -8,7 +8,7 @@ class CleverResponse extends Response {
     constructor(bot) {
         super((message,bot)=>{
             return CleverHandler.checkCleverChannelCache(message.channel.id);
-        },sno=>this.cleverfunct(sno),2,2000)
+        },sno=>this.cleverfunct(sno),2,1000)
     }
 
     cleverfunct(sno){
