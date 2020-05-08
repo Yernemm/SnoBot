@@ -84,7 +84,7 @@ function checkCleverChannelCache(channelId)
 {
     if(cleverChannelCache[channelId] === undefined){
         checkCleverChannel(channelId, ()=>{});
-        return false;
+        return true;
     }else{
         return cleverChannelCache[channelId];
     }
