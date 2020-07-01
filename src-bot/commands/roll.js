@@ -9,7 +9,7 @@ class Command
         this.metadata = {
             commandWord: 'roll',
             aliases: ['r'],
-            description: 'Roll a die for an RPG game like D&D. Interacts with the RPG Dice Roller module. More usage info at https://greenimp.github.io/rpg-dice-roller/ \n\n Usage examples include\nroll 1d6\nroll 2d6 + 1d4\netc.',
+            description: 'Roll a die for an RPG game like D&D. Interacts with the RPG Dice Roller module. More usage info at https://greenimp.github.io/rpg-dice-roller/ \n\n Usage examples include\nroll 1d6\nroll 2d6 + 1d4\netc.\n\nNote: This command is more restricted than the module due to some operations or modifiers having the possibility to cause an endless loop, which would break the bot.',
             usage: '<roll code>',
             category: 'utility',
             permissions: [],
