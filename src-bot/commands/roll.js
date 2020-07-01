@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const m = require("./../../shared/methods.js");
-const { DiceRoll } = require('rpg-dice-roller');
+const m = require("../../shared/methods.js");
+const { DiceRoll } = require('rpg-dice-roller/lib/umd/bundle.js');
 module.exports = 
 class Command
 {
@@ -21,7 +21,47 @@ class Command
     {
         //sno contains { bot, message, command, args, argsText, respond }
         
-            sno.respond(DiceRoll.roll(sno.message.content));
+            
+            
+        let res;
+
+        if(sno.argsText.length <= 0){
+            sno.respond("Enter the dice roll.");
+        }else if (/([0-9][0-9][0-9][0-9])/g.test(sno.argsText)){
+            sno.respond("Entered numbers are too large.");
+        }else{
+
+            //let bannedCombos = ['!>=0', '!p>=0', '!p>0', '!>=-', '!p>=-', '!p>-', '!>0', '!>-'];
+
+            let bannedCombos = ['>', '<', '!', "r", "exp", "log", "max", "min", "pow", "sign"];
+            let flag = true;
+            let bannedOps = "";
+            bannedCombos.forEach(c=>{
+                if (sno.argsText.includes(c)){
+                    flag = false;
+                    bannedOps += c + " ";
+                }
+            });
+
+            if(flag){
+                try {
+                    res = new DiceRoll(sno.argsText);
+                } catch (error) {
+                    res = "Some error has occurred."
+                    if(error.name == "SyntaxError"){
+                        res = "The roll is incorrect. Please use 'help roll' for more info about this command.\n\n"
+                        //res += "*" + error.message +"*";
+                    }
+                } finally {
+                    sno.respond(res.toString().length <= 2000 ? res : "... " + res.toString().substr(-1996, 1996));
+                }
+                
+            } else {
+                sno.respond("Dice roll contains a banned operation or modifier: " + bannedOps);
+            }
+
+         
+        }     
 
     }
 }
