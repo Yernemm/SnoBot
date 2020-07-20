@@ -22,6 +22,7 @@ router.get('/callback', catchAsync(async (req, res) => {
         method: 'POST',
         headers: {
           Authorization: `Basic ${creds}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
       });
     const json = await response.json();
@@ -36,10 +37,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     // Set cookie
     res.cookie('access_token', json.access_token, options) // options is optional
 
-    res.json({
-      init: json,
-      req: `${CLIENT_ID}:${CLIENT_SECRET}`
-    })
+    res.json(json)
 
     //res.redirect(`/panel`);
 
