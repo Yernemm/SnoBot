@@ -7,7 +7,14 @@ const router = express.Router();
 const CLIENT_ID = config.panelId;
 const CLIENT_SECRET = config.panelSecret;
 const redirect = encodeURIComponent(config.panelRedirect);
+const DiscordOauth2 = require("discord-oauth2");
 //'https://snobot.yernemm.xyz/api/discord/callback'
+
+const oauth = new DiscordOauth2({
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    redirectUri: redirect,
+});
 
 router.get('/login', (req, res) => {
   res.redirect(`https://discord.com/api/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify&redirect_uri=${redirect}`);
@@ -18,7 +25,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     const code = req.query.code;
     const creds = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
     //const response = await fetch(`https://discord.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`,
-    const response = await fetch(`https://discord.com/api/oauth2/token`,
+  /*  const response = await fetch(`https://discord.com/api/oauth2/token`,
       {
         method: 'POST',
         body: {
@@ -35,7 +42,14 @@ router.get('/callback', catchAsync(async (req, res) => {
         },
       });
     const json = await response.json();
+    */
 
+    let json = await oauth.tokenRequest({
+    // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
+      code: code,
+      grantType: "authorization_code",
+      scope: ["identify"],
+    });
 
     let options = {
         maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours.
