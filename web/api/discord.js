@@ -6,14 +6,14 @@ const btoa = require('btoa');
 const router = express.Router();
 const CLIENT_ID = config.panelId;
 const CLIENT_SECRET = config.panelSecret;
-const redirect = encodeURIComponent(config.panelRedirect);
+const REDIRECT_URI = config.panelRedirect;
 const DiscordOauth2 = require("discord-oauth2");
 //'https://snobot.yernemm.xyz/api/discord/callback'
 
 const oauth = new DiscordOauth2();
 
 router.get('/login', (req, res) => {
-  res.redirect(`https://discord.com/api/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify&redirect_uri=${redirect}`);
+  res.redirect(`https://discord.com/api/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify&redirect_uri=${REDIRECT_URI}`);
 });
 
 router.get('/callback', catchAsync(async (req, res) => {
@@ -44,7 +44,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
-    redirectUri: "https://dev.snobot.yernemm.xyz/api/discord/callback",
+    redirectUri: REDIRECT_URI,
 
       code: code,
       grantType: "authorization_code",
