@@ -10,11 +10,7 @@ const redirect = encodeURIComponent(config.panelRedirect);
 const DiscordOauth2 = require("discord-oauth2");
 //'https://snobot.yernemm.xyz/api/discord/callback'
 
-const oauth = new DiscordOauth2({
-    clientId: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
-    redirectUri: redirect,
-});
+const oauth = new DiscordOauth2();
 
 router.get('/login', (req, res) => {
   res.redirect(`https://discord.com/api/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify&redirect_uri=${redirect}`);
@@ -46,9 +42,13 @@ router.get('/callback', catchAsync(async (req, res) => {
 
     let json = await oauth.tokenRequest({
     // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    redirectUri: redirect,
+
       code: code,
       grantType: "authorization_code",
-      scope: "identify",
+      scope: "identify"
     });
 
     let options = {
