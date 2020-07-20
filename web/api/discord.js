@@ -44,7 +44,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
-    redirectUri: redirect,
+    redirectUri: "https://dev.snobot.yernemm.xyz/api/discord/callback",
 
       code: code,
       grantType: "authorization_code",
