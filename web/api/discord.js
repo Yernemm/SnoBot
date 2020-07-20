@@ -10,14 +10,14 @@ const redirect = encodeURIComponent(config.panelRedirect);
 //'https://snobot.yernemm.xyz/api/discord/callback'
 
 router.get('/login', (req, res) => {
-  res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${redirect}`);
+  res.redirect(`https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${redirect}`);
 });
 
 router.get('/callback', catchAsync(async (req, res) => {
     if (!req.query.code) throw new Error('NoCodeProvided');
     const code = req.query.code;
     const creds = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
-    const response = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`,
+    const response = await fetch(`https://discord.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`,
       {
         method: 'POST',
         headers: {
@@ -37,7 +37,13 @@ router.get('/callback', catchAsync(async (req, res) => {
     // Set cookie
     res.cookie('access_token', json.access_token, options) // options is optional
 
-    res.json(json)
+
+    res.send(`
+      init
+      https://discord.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}
+      res
+      ${JSON.stringify(json)}
+      `);
 
     //res.redirect(`/panel`);
 
