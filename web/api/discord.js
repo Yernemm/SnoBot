@@ -34,9 +34,14 @@ router.get('/callback', catchAsync(async (req, res) => {
     }
 
     // Set cookie
-    res.cookie('access_token', JSON.stringify(json), options) // options is optional
-    console.log(json);
-    res.redirect(`/panel`);
+    res.cookie('access_token', json.access_token, options) // options is optional
+
+    res.json({
+      init: json,
+      req: `${CLIENT_ID}:${CLIENT_SECRET}`
+    })
+
+    //res.redirect(`/panel`);
 
   }));
 
