@@ -25,16 +25,17 @@ router.get('/callback', catchAsync(async (req, res) => {
         },
       });
     const json = await response.json();
-   
-    
+
+
     let options = {
         maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours.
         //httpOnly: true // The cookie only accessible by the web server
-        path: "/"      
+        path: "/"
     }
 
     // Set cookie
-    res.cookie('access_token', json.access_token, options) // options is optional
+    res.cookie('access_token', JSON.stringify(json), options) // options is optional
+
     res.redirect(`/panel`);
 
   }));

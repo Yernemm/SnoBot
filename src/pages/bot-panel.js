@@ -5,32 +5,34 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 export class Panel extends React.Component {
     constructor(props) {
       super(props);
-  
+
     }
-  
+
     render () {
       if(!this.props.state.discordUserData)this.props.state.discordUserData = "none";
     return (
   <div>
   {
-          
-  
-  
+
+
+
           (this.props.state.loggedIn)?
-          
-          
+
+
           panelLogged(this.props.state)
-          
+
           :
-          
+
           this.props.state.authChecked?
           panelNotLogged(this.props.state)
           :
           <div class="infoBodyContainer w3-card card">
     <div class="infoBody">
-          <h2>Checking authentication...</h2>
-          <hr />
-          <p>If this takes too long, try logging in.</p>
+
+      <h1>The bot panel is coming soon...</h1>
+
+
+
           <DiscordLoginBtn />
           </div>
     </div>
@@ -38,7 +40,11 @@ export class Panel extends React.Component {
   </div>
     )
   }}
-  
+/*
+<h2>Checking authentication...</h2>
+<hr />
+<p>If this takes too long, try logging in.</p>
+*/
   const panelNotLogged = (data) =>(
     <div>
       <div class="infoBodyContainer w3-card card">
@@ -52,11 +58,11 @@ export class Panel extends React.Component {
     </div>
     </div>
   )
-  
+
   const panelLogged = (data) => (
     <div>
-    <div style={{"text-align": "left"}}> 
-      
+    <div style={{"text-align": "left"}}>
+
       <nav class="panel-sidebar w3-card card" id="mySidebar">
     <div class="panel-sidebar-welcome">
     <div class="w3-container w3-row">
@@ -67,8 +73,8 @@ export class Panel extends React.Component {
       <div class="w3-col s8 w3-bar">
         <span>Welcome, <strong>{data.discordUserData.username}</strong></span>
       </div>
-      
-      
+
+
     </div>
     <hr />
     </div>
@@ -81,7 +87,7 @@ export class Panel extends React.Component {
       </div>
       </nav>
     </div>
-    <div class="panel-contents card w3-card">    
+    <div class="panel-contents card w3-card">
     <div class="scrollbar-panel-content">
       <div class="overflow">
     <Switch>
@@ -99,7 +105,7 @@ export class Panel extends React.Component {
   function panelNav({ location }){
 
     let linkData = [];
-  
+
     function addLinkData(path, name, icon){
       linkData.push({
         "name": name,
@@ -107,14 +113,14 @@ export class Panel extends React.Component {
         "icon": icon
       })
     }
-  
+
     function addSeparator(name){
       linkData.push({
         "isSeparator": true,
         "name": name
       })
     }
-  
+
     addSeparator("Dashboard");
     addLinkData("", "Home", "fas fa-home");
     addSeparator("User");
@@ -122,13 +128,13 @@ export class Panel extends React.Component {
     addLinkData("/user/stats", "Statistics", "fas fa-chart-line")
    // addSeparator("Manage Servers");
    // for(let i = 0;i<50;i++)addLinkData("/server/sampleserver" + i, "Sample Server " + i, "fas fa-vials")
-  
-  
+
+
     let links = [];
-  
+
     linkData.forEach(d =>{
       if(!d.isSeparator){
-  
+
         let classes = "w3-bar-item w3-button w3-padding "
         d.path = "/panel" + d.path;
         if(d.path != "/panel"){
@@ -139,26 +145,23 @@ export class Panel extends React.Component {
           classes += "panel-sidebar-btn-active"
         }
         links.push(<Link class={classes} to={d.path}><i class={d.icon}></i> {d.name}</Link>);
-  
+
       } else {
         links.push(
           <div>
-          
-          <div class="w3-container">   
+
+          <div class="w3-container">
           <h5 style={{textAlign:"center"}}>{d.name}</h5>
         </div>
         </div>
         )
       }
-  
+
     })
-    
+
     return (
       <div>
         {links}
       </div>
     )
   }
-  
-  
-  
