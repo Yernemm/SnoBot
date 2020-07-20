@@ -10,7 +10,7 @@ const redirect = encodeURIComponent(config.panelRedirect);
 //'https://snobot.yernemm.xyz/api/discord/callback'
 
 router.get('/login', (req, res) => {
-  res.redirect(`https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${redirect}`);
+  res.redirect(`https://discord.com/api/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify&redirect_uri=${redirect}`);
 });
 
 router.get('/callback', catchAsync(async (req, res) => {
