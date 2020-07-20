@@ -48,7 +48,7 @@ router.get('/callback', catchAsync(async (req, res) => {
     // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
       code: code,
       grantType: "authorization_code",
-      scope: ["identify"],
+      scope: "identify",
     });
 
     let options = {
