@@ -6,26 +6,7 @@ import { Link } from 'react-router-dom'
 export const AnalyticsPage = (data) => (
     <div>
       <h1>Analytics</h1>
-      <table>
-      <tr>
-        <th>Image</th>
-        <th onclick={sortTable(1)}>ID</th>
-        <th onclick={sortTable(2)}>Server Name</th>
-        <th onclick={sortTable(3)}>Users</th>
-      </tr>
-      {        console.log('oop')}
-              {console.log(data)}
-      {
-        data.analyticsData.servers.map((item, i) => {
-        return (<tr>
-          <td><img src={item.image} class="w3-circle w3-margin-right" style={{"width":"46px"}}/></td>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.users}</td>
-        </tr>)
-      })
-      }
-      </table>
+      <p>{JSON.stringify(data)}</p>
     </div>
 )
 
