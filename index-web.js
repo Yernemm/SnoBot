@@ -17,23 +17,23 @@ var io = require('socket.io').listen(server);
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/web/index.html'));
   });
-  
+
   app.get('/panel', function (req, res) {
     res.sendFile(path.join(__dirname + '/web/panel.html'));
     console.log(req.url)
     console.log(req.cookies)
     var url = require('url');
-  
+
   });
-  
-  
+
+
   // ---------
   // Routes
   app.use('/api/discord', require('./web/api/discord'));
-  
-  
-  
-  
+
+
+
+
   //Err handling for express
   app.use((err, req, res, next) => {
     switch (err.message) {
@@ -49,19 +49,19 @@ app.get('/', function (req, res) {
         });
     }
   });
-  
+
   //User connected to websocket when page opened.
   io.on('connection', function (socket) {
     console.log('a user connected');
     socket.on('disconnect', function () {
       console.log('user disconnected');
     });
-  
+
     if (typeof socket.handshake.headers.cookie !== 'string')
       return;
-  
+
     let cookies = cookie.parse(socket.handshake.headers.cookie);
-  
+
     //Send axios request to discord API to verify the access token.
     axios.get(
         `https://discordapp.com/api/users/@me`, {
@@ -71,28 +71,32 @@ app.get('/', function (req, res) {
         }
       ).then(function (response) {
         console.log("emit");
-  
+
         socket.emit('login', "Logged in as " + response.data.username)
          //User logged in.
          let discordUserData = response.data;
          discordUserData.loaded = true;
          discordUserData.loggedIn = true;
-  
+
          socket.emit('userData', discordUserData)
+
+         if(response.data.id === config.ownerID){
+           socket.emit('ownerMessage', "This is a super secret message that should only be visible to the owner.")
+         }
         /*
         client.fetchUser(response.data.id).then(logged => {
-  
+
           //User logged in and found by bot.
             let discordUserData = logged;
             discordUserData.loaded = true;
             discordUserData.loggedIn = true;
-  
+
             socket.emit('userData', discordUserData)
-  
+
           })
           .catch(err => {
             //User logged in but bot cannot find it.
-            let discordUserData = 
+            let discordUserData =
             {
               "loaded": true,
               "loggedIn": false,
@@ -101,25 +105,25 @@ app.get('/', function (req, res) {
             socket.emit('userData', discordUserData)
           })
           */
-  
+
       })
       .catch(function (error) {
         console.log(error);
         //Authorisation failed.
-        socket.emit('userData', 
+        socket.emit('userData',
         {
           "loaded": true,
           "loggedIn": false,
           "loginMessage": "Invalid Discord login details."
         })
-  
+
       })
       .then(function () {
         // always executed
       });
-  
+
   });
-  
+
   //Start web server
   server.listen(config.webPort, () => {
     console.log(`Listening on ${config.webPort}`)

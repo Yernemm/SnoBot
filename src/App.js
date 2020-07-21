@@ -16,7 +16,8 @@ class App extends React.Component {
     super(props);
   this.state = {
     loggedIn: false,
-    authChecked: false
+    authChecked: false,
+    isOwner: false
   }
   this.signOutState = this.signOutState.bind(this);
   }
@@ -38,6 +39,12 @@ class App extends React.Component {
     });
     socket.on('login', function(msg){
       console.log(msg)
+    });
+    socket.on('ownerMessage', (msg)=>{
+      this.setState({
+        isOwner: true,
+        ownerMessage: msg
+      });
     });
   }
 
