@@ -61,9 +61,9 @@ router.get('/callback', catchAsync(async (req, res) => {
     res.cookie('access_token', json.access_token, options) // options is optional
 
 
-    res.send(json);
+    //res.send(json);
 
-    //res.redirect(`/panel`);
+    res.redirect(`/panel`);
 
   }));
 
