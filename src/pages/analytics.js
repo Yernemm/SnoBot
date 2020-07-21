@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export const AnalyticsPage = (data) => (
     <div>
       <h1>Analytics</h1>
-      <p>{JSON.stringify(data)}</p>
+
       <table>
       <tr>
         <th>Image</th>
