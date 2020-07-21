@@ -16,7 +16,7 @@ export class Panel extends React.Component {
 
 
 
-          (this.props.state.loggedIn)?
+          (this.props.state.loggedIn || true)?
 
 
           panelLogged(this.props.state)
@@ -92,8 +92,8 @@ export class Panel extends React.Component {
       <div class="overflow">
     <Switch>
         <Route exact={true} path="/panel" component={()=>(<div><h1>Coming Soon?</h1>
-        {this.props.state.isOwner?
-        <p>You are owner whew {this.props.state.ownerMessage}</p>
+        {data.isOwner?
+        <p>You are owner whew {data.ownerMessage}</p>
         :
         <p>no ownero</p>}</div>)}/>
         <Route exact={true} path="/panel/user/leaderboard" component={ComingSoon}/>
