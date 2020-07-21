@@ -13,9 +13,9 @@ export const AnalyticsPage = (data) => (
         <th onclick={sortTable(2)}>Server Name</th>
         <th onclick={sortTable(3)}>Users</th>
       </tr>
+      {        console.log('oop')}
+              {console.log(data)}
       {
-        console.log('oop')
-        console.log(data)
         data.analyticsData.servers.map((item, i) => {
         return (<tr>
           <td><img src={item.image} class="w3-circle w3-margin-right" style={{"width":"46px"}}/></td>
