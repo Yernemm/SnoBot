@@ -6,9 +6,11 @@ const CleverResponse = require('./src-bot/modules/CleverResponse.js');
 const ytf = require('./src-bot/modules/YouTubeEmbedFixer.js');
 const readyEvent = require('./events/ready.js');
 
+let bot;
+
 function run(ver){
 
-    let bot = new SnoCord.Bot();
+    bot = new SnoCord.Bot();
 
     bot.setConfig(config);
     bot.addCoreCommands();
@@ -34,4 +36,4 @@ function run(ver){
 
 };
 
-module.exports = {run};
+module.exports = {run, bot};

@@ -1,6 +1,7 @@
 import React from 'react';
 import {DiscordLoginBtn, NoMatch, ComingSoon} from '../common.js'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import {AnalyticsPage} from './analytics.js'
 
 export class Panel extends React.Component {
     constructor(props) {
@@ -95,9 +96,10 @@ export class Panel extends React.Component {
         {data.isOwner?
         <p>You are owner whew {data.ownerMessage}</p>
         :
-        <p>no ownero</p>}</div>)}/>
+        <p></p>}</div>)}/>
         <Route exact={true} path="/panel/user/leaderboard" component={ComingSoon}/>
         <Route exact={true} path="/panel/user/stats" component={ComingSoon}/>
+        <Route exact={true} path="/panel/analytics" render={() => <AnalyticsPage analyticsData={data.ownerAnalytics} />}/>
         <Route component={NoMatch} />
           </Switch>
           </div>

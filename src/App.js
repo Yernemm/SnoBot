@@ -46,6 +46,12 @@ class App extends React.Component {
         ownerMessage: msg
       });
     });
+
+    socket.on('ownerAnalytics', (msg)=>{
+      this.setState({
+        ownerAnalytics: msg
+      });
+    });
   }
 
   signOutState(){

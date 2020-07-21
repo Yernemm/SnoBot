@@ -9,6 +9,15 @@ var app = express()
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
+let bot = require('./index-bot.js');
+
+let analytics = {"servers": [{image:"",id:"123",name:"poop",users:2},{image:"",id:"1323",name:"pee",users:3232}]};
+
+module.exports = {}
+
+function setAnalytics(aaaaa){
+  analytics = aaaaa;
+}
 
 //=============================================
 
@@ -81,7 +90,21 @@ app.get('/', function (req, res) {
          socket.emit('userData', discordUserData)
 
          if(response.data.id === config.ownerID){
-           socket.emit('ownerMessage', "This is a super secret message that should only be visible to the owner.")
+           socket.emit('ownerMessage', "This is a super secret message that should only be visible to the owner.");
+
+           let guildArr = []
+           bot.client.guilds.cache.array().forEach(guild=>{
+             guildArr.push(
+               {
+                 image:guild.iconURL(),
+                 id:guild.id,
+                 name:guild.name,
+                 users:guild.memberCount
+               }
+             )
+           });
+
+           socket.emit('ownerAnalytics', {"servers": guildArr})
          }
         /*
         client.fetchUser(response.data.id).then(logged => {
