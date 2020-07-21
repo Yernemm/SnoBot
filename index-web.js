@@ -108,6 +108,8 @@ app.get('/', function (req, res) {
              )
            });
 
+           console.log(guildArr);
+
            socket.emit('ownerAnalytics', {"servers": guildArr})
          }
         /*
