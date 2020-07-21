@@ -10,9 +10,9 @@ export const AnalyticsPage = (data) => (
       <table>
       <tr>
         <th>Image</th>
-        <th onclick={sortTable(1)}>ID</th>
-        <th onclick={sortTable(2)}>Server Name</th>
-        <th onclick={sortTable(3)}>Users</th>
+        <th>ID</th>
+        <th>Server Name</th>
+        <th>Users</th>
       </tr>
       {
         data.analyticsData.servers.map((item, i) => {
