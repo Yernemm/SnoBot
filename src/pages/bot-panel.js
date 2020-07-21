@@ -17,7 +17,7 @@ export class Panel extends React.Component {
 
 
 
-          (this.props.state.loggedIn || true)?
+          (this.props.state.loggedIn)?
 
 
           panelLogged(this.props.state)

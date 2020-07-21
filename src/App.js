@@ -51,6 +51,7 @@ class App extends React.Component {
       this.setState({
         ownerAnalytics: msg
       });
+      console.log(msg);
     });
   }
 
