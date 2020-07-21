@@ -9,14 +9,16 @@ var app = express()
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
-let bot = require('./index-bot.js').bot;
+let bot;
 
 let analytics = {"servers": [{image:"",id:"123",name:"poop",users:2},{image:"",id:"1323",name:"pee",users:3232}]};
 
-module.exports = {}
+module.exports = {setBot}
 
-function setAnalytics(aaaaa){
-  analytics = aaaaa;
+function setBot(){
+  let indexbot = require('./index-bot.js');
+  bot = indexbot.getBot();
+
 }
 
 //=============================================
@@ -58,6 +60,8 @@ app.get('/', function (req, res) {
         });
     }
   });
+
+
 
   //User connected to websocket when page opened.
   io.on('connection', function (socket) {

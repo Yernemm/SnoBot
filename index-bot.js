@@ -36,4 +36,8 @@ function run(ver){
 
 };
 
-module.exports = {run, bot};
+function getBot(){
+  return bot;
+}
+
+module.exports = {run, getBot};
