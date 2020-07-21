@@ -94,7 +94,7 @@ export class Panel extends React.Component {
     <Switch>
         <Route exact={true} path="/panel" component={()=>(<div><h1>Coming Soon?</h1>
         {data.isOwner?
-        <p>You are owner whew {data.ownerMessage}</p>
+        <p>You are owner whew {data.ownerMessage} <Link to={'/panel/analytics'}>Analytics</Link></p>
         :
         <p></p>}</div>)}/>
         <Route exact={true} path="/panel/user/leaderboard" component={ComingSoon}/>
