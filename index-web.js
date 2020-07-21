@@ -9,7 +9,7 @@ var app = express()
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
-let bot = require('./index-bot.js');
+let bot = require('./index-bot.js').bot;
 
 let analytics = {"servers": [{image:"",id:"123",name:"poop",users:2},{image:"",id:"1323",name:"pee",users:3232}]};
 
