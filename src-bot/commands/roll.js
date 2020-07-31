@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const m = require("../../shared/methods.js");
 const { DiceRoll } = require('rpg-dice-roller/lib/umd/bundle.js');
-module.exports = 
+module.exports =
 class Command
 {
     constructor()
@@ -20,9 +20,9 @@ class Command
     run(sno)
     {
         //sno contains { bot, message, command, args, argsText, respond }
-        
-            
-            
+
+
+
         let res;
 
         if(sno.argsText.length <= 0){
@@ -33,7 +33,8 @@ class Command
 
             //let bannedCombos = ['!>=0', '!p>=0', '!p>0', '!>=-', '!p>=-', '!p>-', '!>0', '!>-'];
 
-            let bannedCombos = ['>', '<', '!', "r", "exp", "log", "max", "min", "pow", "sign"];
+            //let bannedCombos = ['>', '<', '!', "r", "exp", "log", "max", "min", "pow", "sign"];
+            let bannedCombos = ['!', "r"];
             let flag = true;
             let bannedOps = "";
             bannedCombos.forEach(c=>{
@@ -55,13 +56,13 @@ class Command
                 } finally {
                     sno.respond(res.toString().length <= 2000 ? res : "... " + res.toString().substr(-1996, 1996));
                 }
-                
+
             } else {
                 sno.respond("Dice roll contains a banned operation or modifier: " + bannedOps);
             }
 
-         
-        }     
+
+        }
 
     }
 }
