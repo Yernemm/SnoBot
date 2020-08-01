@@ -1,5 +1,10 @@
 const Discord = require('discord.js');
 const m = require("./../../shared/methods.js");
+
+const answers = [
+  'Yes.', 'No.', 'Most likely.', 'Unlikely.', 'Maybe.', 'My reply is no.', 'My reply is yes.', 'Definitely yes.', 'Absolutely not.', 'Impossible to say right now.', 'Maybe not right now.'
+];
+
 module.exports =
 class Command
 {
@@ -16,9 +21,7 @@ class Command
         };
     }
 
-    const answers = [
-      'Yes.', 'No.', 'Most likely.', 'Unlikely.', 'Maybe.', 'My reply is no.', 'My reply is yes.', 'Definitely yes.', 'Absolutely not.', 'Impossible to say right now.', 'Maybe not right now.'
-    ];
+
 
     run(sno)
     {
