@@ -28,7 +28,7 @@ class Command
         //sno contains { bot, message, command, args, argsText, respond }
 
 
-    let msg = '> "' + sno.message.content + '"\n';
+    let msg = '> "' + sno.argsText + '"\n';
     msg += answers[Math.floor(Math.random() * answers.length)];
 
 
