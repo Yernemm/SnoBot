@@ -1,6 +1,15 @@
 const Discord = require('discord.js');
 const m = require("./../../shared/methods.js");
 const mathjs = require('mathjs');
+const math = mathjs.create(mathjs.all);
+const limitedEvaluate = math.evaluate;
+
+math.import({
+  'import':     function () { throw new Error('Function import is disabled') },
+  'createUnit': function () { throw new Error('Function createUnit is disabled') }
+}, { override: true });
+
+
 module.exports =
 class Command
 {
@@ -21,10 +30,13 @@ class Command
     {
         //sno contains { bot, message, command, args, argsText, respond }
 
+
+
+
       let msg = "";
 
       try{
-        msg = mathjs.evaluate(sno.argsText).toString();
+        msg = limitedEvaluate(sno.argsText).toString();
       }catch(err){
         msg = err.toString();
       }
