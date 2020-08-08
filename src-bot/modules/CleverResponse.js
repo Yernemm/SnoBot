@@ -6,9 +6,13 @@ const CleverHandler = require('./CleverHandler.js');
 class CleverResponse extends Response {
 
     constructor(bot) {
-        super((message,bot)=>{
+      let testobj = {
+        promise: (message,bot)=>{
             return CleverHandler.checkCleverChannelCache(message.channel.id);
-        },sno=>this.cleverfunct(sno),2,1000)
+        }
+      };
+      console.log(typeof testobj);
+        super(testobj,sno=>this.cleverfunct(sno),2,1000)
     }
 
     cleverfunct(sno){

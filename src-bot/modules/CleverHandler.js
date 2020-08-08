@@ -24,20 +24,20 @@ messageTxt: the contents of the message to send.
 */
 function messageEventClever(messageChannel, messageTxt)
 {
-    
+
     checkCleverChannel(messageChannel.id, res => {
         if(res){
             messageChannel.startTyping();
             let session = getChannelSession(messageChannel.id)
-            
+
             session.queue(messageTxt).then(resp => {
                 messageChannel.send(resp)
                 .finally(messageChannel.stopTyping());
             })
-            
+
         }
     })
-    
+
 }
 
 //Add a clever channel to database.
@@ -64,7 +64,7 @@ function checkCleverChannel(channelId, callback)
     db.getFrom("CleverChannels", channelId)
     .then(val => {
         if(val === false || val.clever == false)
-        {        
+        {
             cleverChannelCache[channelId] = false;
             callback(false);
         }
@@ -72,7 +72,7 @@ function checkCleverChannel(channelId, callback)
             cleverChannelCache[channelId] = true;
             callback(true)
         }
-        
+
     })
     .catch(() => {
         cleverChannelCache[channelId] = true;
@@ -82,15 +82,18 @@ function checkCleverChannel(channelId, callback)
 
 function checkCleverChannelCache(channelId)
 {
+  return new Promise((resolve, reject)=>{
     if(cleverChannelCache[channelId] === undefined){
-        checkCleverChannel(channelId, ()=>{});
-        return true;
+        checkCleverChannel(channelId, (res)=>{resolve(res)});
+
     }else{
-        return cleverChannelCache[channelId];
+        resolve(cleverChannelCache[channelId]);
     }
+  });
+
 }
 
-/*  
+/*
 Check if a channel has a session
 if yes, return it
 if not, create one
@@ -100,7 +103,5 @@ function getChannelSession(channelId)
     if(cleverSessions[channelId] === undefined)
     cleverSessions[channelId] = new CleverChannel();
 
-    return cleverSessions[channelId];   
+    return cleverSessions[channelId];
 }
-
-
