@@ -11,7 +11,7 @@ class Command
         this.metadata = {
             commandWord: 'owoify',
             aliases: ['owoifier', 'uwuify', 'uwuifier'],
-            description: 'Emojifies a message.',
+            description: 'Owofies a message.',
             usage: '<message>',
             category: 'fun',
             permissions: [],
