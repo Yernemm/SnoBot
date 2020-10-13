@@ -37,8 +37,8 @@ class Command
             if(emojiArray){
                 word+= m.randArr(emojiArray);
 
-                if(Math.random() > 0.5) word+= m.randArr(emojiArray);
                 if(Math.random() > 0.8) word+= m.randArr(emojiArray);
+                if(Math.random() > 0.85) word+= m.randArr(emojiArray);
 
             }
 
