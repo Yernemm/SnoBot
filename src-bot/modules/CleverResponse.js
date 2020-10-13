@@ -27,6 +27,7 @@ class CleverResponse extends Response {
      */
     runCooldown(message, bot, cooldownStamp)
     {
+        /*
         message.reply(`Please wait **${utils.msToTime(cooldownStamp - Date.now())}** before sending another message.`)
         .then((msg)=>{
             msg.delete({timeout: 5000})
@@ -34,6 +35,9 @@ class CleverResponse extends Response {
             message.react('🚫')
             .then(()=>{}).catch(()=>{});
         });;
+        */
+
+       //Temporarily disabled due to a bug which triggered this block at random times outside of clever channels.
     }
 
 
