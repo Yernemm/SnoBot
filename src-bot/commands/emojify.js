@@ -42,7 +42,7 @@ class Command
 
             }
 
-            result += word;
+            result += word + " ";
             
         });
 
