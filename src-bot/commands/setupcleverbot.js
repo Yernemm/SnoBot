@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const m = require("./../../shared/methods.js");
+const warningMessage = "\n\n--------------------------\n**Warning:** This feature connects this channel with https://www.cleverbot.com/\n-The bot's responses may **not be suitable for children**.\n-The bot learns from what people say to it, **do not give it personal information**.\n-**The bot pretends to be human** and may sometimes seem creepy or inappropriate.\n-The bot does not actually understand you, and does not *mean* anything it says.\n\n**If you are not comfortable with this, you may want to disable this feature using** `setupcleverbot false`.\n--------------------------";
 module.exports = 
 class Command
 {
@@ -29,7 +30,7 @@ class Command
             case "t":
             case "yes":
                 ch.addCleverChannel(sno.message.channel.id);
-                msg = "You can now talk with CleverBot in this channel.";
+                msg = "You can now talk with CleverBot in this channel." + warningMessage;
                 break;
             case "false":
             case "f":
@@ -42,7 +43,7 @@ class Command
                 ch.checkCleverChannel(sno.message.channel.id, res => 
                     sno.respond(
                         res ? 
-                        "You can talk with CleverBot in this channel.\nUse `setupcleverbot false` to disable."
+                        "You can talk with CleverBot in this channel.\nUse `setupcleverbot false` to disable." + warningMessage
                         :
                         "CleverBot is not enabled in this channel.\nUse `setupcleverbot true` to enable."
                         )
