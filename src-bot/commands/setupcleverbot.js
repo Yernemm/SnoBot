@@ -42,7 +42,7 @@ class Command
                 ch.checkCleverChannel(sno.message.channel.id, res => 
                     sno.respond(
                         res ? 
-                        "You can talk with CleverBot in this channel.\nUse `setupcleverbot false` to disable."
+                        "You can talk with CleverBot in this channel.\nUse `setupcleverbot false` to disable.\n\n**Warning:** This feature connects this channel with https://www.cleverbot.com/\n-The bot's responses may **not be suitable for children**.\n-The bot learns from what people say to it, **do not give it personal information**.\n-**The bot pretends to be human** and may sometimes seem creepy.\n-The bot does not actually understand you, and does not *mean* anything it says.\n\nIf you are not comfortable with this, you may want to disable this feature."
                         :
                         "CleverBot is not enabled in this channel.\nUse `setupcleverbot true` to enable."
                         )
