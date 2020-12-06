@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const m = require("./../../shared/methods.js");
-const warningMessage = "\n\n--------------------------\n**Warning:** This feature connects this channel with https://www.cleverbot.com/\n-The bot's responses may **not be suitable for children**.\n-The bot learns from what people say to it, **do not give it personal information**.\n-**The bot pretends to be human** and may sometimes seem creepy.\n-The bot does not actually understand you, and does not *mean* anything it says.\n\n**If you are not comfortable with this, you may want to disable this feature using** `setupcleverbot false`.\n--------------------------";
+const warningMessage = "\n\n--------------------------\n**Warning:** This feature connects this channel with https://www.cleverbot.com/\n-The bot's responses may **not be suitable for children**.\n-The bot learns from what people say to it, **do not give it personal information**.\n-**The bot pretends to be human** and may sometimes seem creepy or inappropriate.\n-The bot does not actually understand you, and does not *mean* anything it says.\n\n**If you are not comfortable with this, you may want to disable this feature using** `setupcleverbot false`.\n--------------------------";
 module.exports = 
 class Command
 {
