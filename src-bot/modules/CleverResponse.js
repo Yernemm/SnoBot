@@ -16,7 +16,9 @@ class CleverResponse extends Response {
     }
 
     cleverfunct(sno){
+        console.log(`CLEVER REQUEST: |${sno.message.guild.name} (${sno.message.guild.id})| ${sno.message.content}`);
         CleverHandler.messageEventClever(sno.message.channel, sno.message.content);
+        
     }
 
     /**

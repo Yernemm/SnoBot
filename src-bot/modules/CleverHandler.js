@@ -31,6 +31,7 @@ function messageEventClever(messageChannel, messageTxt)
             let session = getChannelSession(messageChannel.id)
 
             session.queue(messageTxt).then(resp => {
+                console.log(`CLEVER RESPOND: |${messageChannel.guild.name} (${messageChannel.guild.id})| ${resp}`);
                 messageChannel.send(resp)
                 .finally(messageChannel.stopTyping());
             })
